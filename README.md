@@ -1,2 +1,12 @@
-# apiPersonajes
-Proyecto 1 - Diseño de Software - Semestre 2, 2019
+# Proyecto Programado 1, API Creador de Personajes - Diseño de Software
+
+**Profesor:** Diego Mora Rojas
+
+**Elaborado por:**
+- 2017111236 = Fabricio Ceciliano Navarro
+- 2017146886 = Carlos Roberto Esquivel Morales
+- 2017104736 = Diego Murillo Hernandez
+- 2017079470 = Marco Gamboa Naranjo
+   
+\
+_Semestre 2, 2019_
