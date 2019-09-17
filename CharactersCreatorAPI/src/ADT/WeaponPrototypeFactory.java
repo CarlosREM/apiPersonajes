@@ -5,8 +5,12 @@
  */
 package ADT;
 
+import Json.JsonLoader;
+import abstraction.AWeapon;
 import abstraction.IPrototype;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 
@@ -21,5 +25,23 @@ public class WeaponPrototypeFactory {
     
     public static void addPrototype(String prototypeName, IPrototype prototype){
         prototypes.put(prototypeName,prototype);
+    }
+    
+    public void loadDefaultPrototype(){
+        JsonLoader loader = new JsonLoader();
+        List<AWeapon> defaultWeapons = loader.loadDefaultWeapons();
+        defaultWeapons.forEach((weapon) -> {
+            addPrototype(weapon.getName(), weapon);
+        });
+    }
+    
+    
+    
+    public List<IPrototype> getPrototypes(int quantity, String prototypeName){
+        List<IPrototype> prototypesList = new ArrayList<>();
+        for(int i=0; i<quantity; i++){
+            prototypesList.add(getPrototype(prototypeName));
+        }
+        return prototypesList;
     }
 }
