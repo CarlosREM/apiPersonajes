@@ -35,7 +35,13 @@ public class WeaponPrototypeFactory {
         });
     }
     
-    
+    public void loadCustomPrototype(String strFile){
+        JsonLoader loader = new JsonLoader();
+        List<AWeapon> customWeapons = loader.loadCustomWeapon(strFile);
+        for(AWeapon weapon : customWeapons){
+            addPrototype(weapon.getName(), weapon);
+        }
+    }
     
     public List<IPrototype> getPrototypes(int quantity, String prototypeName){
         List<IPrototype> prototypesList = new ArrayList<>();

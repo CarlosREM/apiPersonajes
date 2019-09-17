@@ -29,10 +29,18 @@ public class CharacterPrototypeFactory {
     
     public void loadDefaultPrototype(){
         JsonLoader loader = new JsonLoader();
-        List<ACharacter> defaultWeapons = loader.loadDefaultCharacters();
-        defaultWeapons.forEach((character) -> {
+        List<ACharacter> defaultCharacters = loader.loadDefaultCharacters();
+        defaultCharacters.forEach((character) -> {
             addPrototype(character.getName(), character);
         });
+    }
+    
+    public void loadCustomPrototype(String strFile){
+        JsonLoader loader = new JsonLoader();
+        List<ACharacter> customCharacters = loader.loadCustomCharacters(strFile);
+        for(ACharacter character : customCharacters){
+            addPrototype(character.getName(), character);
+        }
     }
     
     public List<IPrototype> getPrototypes(int quantity, String prototypeName){
