@@ -44,7 +44,7 @@ public abstract class ACharacter implements IPrototype, ILookable{
         
     }
     
-    public ACharacter(String name, TreeMap<Integer,AAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
+    public ACharacter(String name, TreeMap<Integer,AAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons,int coorditateX,int coorditateY) {
         this.name = name;
         for(Integer i: appearances.keySet()){
             this.appearances.put(i, (AAppearance) appearances.get(i).deepClone());

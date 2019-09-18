@@ -4,11 +4,8 @@
  * and open the template in the editor.
  */
 package Controllers;
-
-import ADT.DefaultCharacter;
-import ADT.DefaultCharacterAppearance;
-import ADT.DefaultWeapon;
-import ADT.DefaultWeaponAppearance;
+import ADT.WeaponPrototypeFactory;
+import ADT.CharacterPrototypeFactory;
 import Json.JsonLoader;
 import java.util.ArrayList;
 import abstraction.ACharacter;
@@ -21,17 +18,31 @@ import abstraction.AWeapon;
 public class DefaultPrototypeController {
     public static void loadDefaultPrototypes(){
         JsonLoader loader = new JsonLoader();
-        ArrayList<ACharacter> a = (ArrayList<ACharacter>) loader.loadDefaultCharacters();
-        ArrayList<AWeapon> b = (ArrayList<AWeapon>) loader.loadDefaultWeapons();
+        ArrayList<ACharacter> characters = (ArrayList<ACharacter>) loader.loadDefaultCharacters();
+        ArrayList<AWeapon> weapons = (ArrayList<AWeapon>) loader.loadDefaultWeapons();
+        for (ACharacter c:characters){
+            CharacterPrototypeFactory.addPrototype(c.getName(), c);
+        }
+        for (AWeapon w:weapons){
+            WeaponPrototypeFactory.addPrototype(w.getName(), w);
+        }        
     }
     public static void loadCharacterPrototypes(String strFile){
         JsonLoader loader = new JsonLoader();
-        ArrayList<ACharacter> a = (ArrayList<ACharacter>) loader.loadCustomCharacters(strFile);
+        ArrayList<ACharacter> characters = (ArrayList<ACharacter>) loader.loadCustomCharacters(strFile);
+        for (ACharacter c:characters){
+            CharacterPrototypeFactory.addPrototype(c.getName(), c);
+        }    
     }  
     public static void loadWeaponPrototypes(String strFile){
         JsonLoader loader = new JsonLoader();
-        ArrayList<AWeapon> a = (ArrayList<AWeapon>) loader.loadCustomWeapon(strFile);
+        ArrayList<AWeapon> weapons = (ArrayList<AWeapon>) loader.loadCustomWeapon(strFile);
+        for (AWeapon w:weapons){
+            WeaponPrototypeFactory.addPrototype(w.getName(), w);
+        }   
     } 
-    
+    public static void main(String[] args){
+        loadDefaultPrototypes();
+    }
     
 }

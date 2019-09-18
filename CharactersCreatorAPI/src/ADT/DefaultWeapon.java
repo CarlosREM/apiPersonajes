@@ -62,7 +62,7 @@ public class DefaultWeapon extends AWeapon{
         private int level = 1;
         private int areaOfEffect = 1;
         private int hitPerUnit = 1;
-        private TreeMap<Integer,IAppearance> appearances = new TreeMap<>();
+        private TreeMap<Integer,AAppearance> appearances = new TreeMap<>();
         private int unlockLevel = 1;
 
         public DefaultWeaponBuilder setName(String name) {
@@ -95,12 +95,12 @@ public class DefaultWeapon extends AWeapon{
             return this;
         }
 
-        public DefaultWeaponBuilder setAppearances(TreeMap<Integer, IAppearance> appearances) {
+        public DefaultWeaponBuilder setAppearances(TreeMap<Integer, AAppearance> appearances) {
             this.appearances = appearances;
             return this;
         }
         
-        public DefaultWeaponBuilder addAppearance(int level, IAppearance appearance) {
+        public DefaultWeaponBuilder addAppearance(int level, AAppearance appearance) {
             if(this.appearances.containsKey(level))
                 this.appearances.replace(level, appearance);
             else

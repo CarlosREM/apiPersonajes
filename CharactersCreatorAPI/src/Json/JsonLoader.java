@@ -36,7 +36,6 @@ public class JsonLoader {
         try {
             File defaultFile = new File(getClass().getResource("/resources/defaultCharacters.json").toURI());
             try {
-
                 return mapper.readValue(defaultFile, new TypeReference<List<ACharacter>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
@@ -49,7 +48,7 @@ public class JsonLoader {
     }
     public List<AWeapon> loadDefaultWeapons(){
         try{
-            File defaultFile = new File(getClass().getResource("/resources/defaultWeapon.json").toURI());
+            File defaultFile = new File(getClass().getResource("/resources/defaultWeapons.json").toURI());
             try {
                 return mapper.readValue(defaultFile, new TypeReference<List<AWeapon>>(){});
             } catch (IOException e) {
