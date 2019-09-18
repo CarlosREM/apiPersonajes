@@ -61,6 +61,8 @@ public abstract class ACharacter implements IPrototype, ILookable{
             this.weapons.add((AWeapon)weapon.deepClone());
         }
         this.weapons = weapons;
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
     }
 
     public String getName() {
