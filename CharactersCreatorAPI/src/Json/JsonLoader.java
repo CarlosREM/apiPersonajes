@@ -11,19 +11,15 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import ADT.DefaultCharacter;
-import ADT.DefaultCharacterAppearance;
-import ADT.DefaultWeapon;
-import ADT.DefaultWeaponAppearance;
-import abstraction.AAppearance;
-import com.fasterxml.jackson.databind.jsontype.NamedType;
-import java.util.ArrayList;
 
 /**
  *
@@ -32,63 +28,54 @@ import java.util.ArrayList;
 public class JsonLoader {
     private static ObjectMapper mapper = new ObjectMapper();
     
-    public List<ACharacter> loadDefaultCharacters(){
-        try {
-            File defaultFile = new File(getClass().getResource("/resources/defaultCharacters.json").toURI());
+    public List<ACharacter> loadDefaultCharacters(){    
+            InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultCharacters.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
+            String json = null;
+            
+            try(Scanner scanner = new Scanner(defaultFile, StandardCharsets.UTF_8.name())){
+                json = scanner.useDelimiter("\\A").next();
+            }
             try {
-                return mapper.readValue(defaultFile, new TypeReference<List<ACharacter>>(){});
-            } catch (IOException e) {
-                e.printStackTrace();
+                
+                return mapper.readValue(json, new TypeReference<List<ACharacter>>(){});
+            } catch (IOException ex) {
+                Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
                 return null;
             }
-        } catch (URISyntaxException ex) {      
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+
     }
     public List<AWeapon> loadDefaultWeapons(){
-        try{
-            File defaultFile = new File(getClass().getResource("/resources/defaultWeapons.json").toURI());
-            try {
-                return mapper.readValue(defaultFile, new TypeReference<List<AWeapon>>(){});
-            } catch (IOException e) {
-               e.printStackTrace();
-               return null;
+            InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultWeapons.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
+            String json = null;
+            
+            try(Scanner scanner = new Scanner(defaultFile, StandardCharsets.UTF_8.name())){
+                json = scanner.useDelimiter("\\A").next();
             }
-        } catch (URISyntaxException ex) {      
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+            try {
+                
+                return mapper.readValue(json, new TypeReference<List<AWeapon>>(){});
+            } catch (IOException ex) {
+                Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
+                return null;
+            }            
     }
     public List<ACharacter> loadCustomCharacters(String strFile){
-        try{
-            File file = new File(getClass().getResource(strFile).toURI());
+            File file = new File(strFile);
             try {
                  return mapper.readValue(file, new TypeReference<List<ACharacter>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }   
-        }catch (URISyntaxException ex){
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     
     }
     public List<AWeapon> loadCustomWeapon(String strFile){
-        try{
-            File file = new File(getClass().getResource(strFile).toURI());
+            File file = new File(strFile);
             try {
                  return mapper.readValue(file, new TypeReference<List<AWeapon>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
             }
-         }catch (URISyntaxException ex){
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
     }
-    
-    
 }

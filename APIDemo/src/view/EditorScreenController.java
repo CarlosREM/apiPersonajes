@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package view;
-
+import ADT.CharacterPrototypeFactory;
+import ADT.DefaultCharacterAppearance;
+import Controllers.DefaultPrototypeController;
+import abstraction.ACharacter;
 import java.awt.event.ActionEvent;
 
 /**
