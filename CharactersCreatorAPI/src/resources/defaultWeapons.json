@@ -1,1 +1,47 @@
-[]
+[
+    {
+    "@class" : "ADT.DefaultWeapon",
+    "name" : "Meowmere",
+    "range" : 1,
+    "damage" : 300,
+    "level" : 1,
+    "areaOfEffect" : 1,
+    "hitPerUnit" : 2,
+    "appearances" : {
+      "1" : {
+        "@class" : "ADT.DefaultWeaponAppearance",
+        "looks" : ["src/resources/images/weapon1.png"]
+      }
+    }
+  },
+  {
+    "@class" : "ADT.DefaultWeapon",
+    "name" : "Vortex Beater",
+    "range" : 5,
+    "damage" : 250,
+    "level" : 1,
+    "areaOfEffect" : 1,
+    "hitPerUnit" : 3,
+    "appearances" : {
+      "1" : {
+        "@class" : "ADT.DefaultWeaponAppearance",
+        "looks" : ["src/resources/images/weapon2.png"]
+      }
+    }
+  },
+  {
+    "@class" : "ADT.DefaultWeapon",
+    "name" : "Stardust Dragon Staff",
+    "range" : 10,
+    "damage" : 400,
+    "level" : 1,
+    "areaOfEffect" : 3,
+    "hitPerUnit" : 1,
+    "appearances" : {
+      "1" : {
+        "@class" : "ADT.DefaultWeaponAppearance",
+        "looks" : ["src/resources/images/weapon3.png"]
+      }
+    }
+  }
+]
