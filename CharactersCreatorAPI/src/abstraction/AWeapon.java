@@ -19,12 +19,13 @@ public abstract class AWeapon implements IPrototype, ILookable{
     private int areaOfEffect = 1;
     private int hitPerUnit = 1;
     private TreeMap<Integer,IAppearance> appearances = new TreeMap<>();
+    private int unlockLevel = 1;
     
     public AWeapon(){
         
     }
 
-    public AWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,IAppearance> appearances) {
+    public AWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,IAppearance> appearances, int unlockLevel) {
         this.name = name;
         this.range = range;
         this.damage = damage;
@@ -32,6 +33,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
         this.areaOfEffect = areaOfEffect;
         this.hitPerUnit = hitPerUnit;
         this.appearances = appearances;
+        this.unlockLevel = unlockLevel;
     }
 
     public String getName() {
@@ -76,6 +78,13 @@ public abstract class AWeapon implements IPrototype, ILookable{
         this.hitPerUnit = hitPerUnit;
     }
 
+    public int getUnlockLevel() {
+        return unlockLevel;
+    }
+    public void setUnlockLevel(int unlockLevel) {
+        this.unlockLevel = unlockLevel;
+    }
+    
     @Override
     public IAppearance getAppearance(int level) {
         return appearances.floorEntry(level).getValue();

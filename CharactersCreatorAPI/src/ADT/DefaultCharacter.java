@@ -21,8 +21,8 @@ public class DefaultCharacter extends ACharacter {
 
     public DefaultCharacter() {}
 
-    public DefaultCharacter(String name, TreeMap<Integer, IAppearance> appearance, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
-        super(name, appearance, currentHealthPoints, maxHealthPoints, hitsPerUnit, level, tiles, unlockLevel, cost, weapons);
+    public DefaultCharacter(String name, TreeMap<Integer, IAppearance> appearance, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons, int coordinateX, int coordinateY) {
+        super(name, appearance, currentHealthPoints, maxHealthPoints, hitsPerUnit, level, tiles, unlockLevel, cost, weapons, coordinateX, coordinateY);
     }  
 
     @Override
@@ -107,7 +107,8 @@ public class DefaultCharacter extends ACharacter {
         }
         
         return new DefaultCharacter(getName(),newAppearances,getCurrentHealthPoints(),getMaxHealthPoints(),
-                                    getHitsPerUnit(),getLevel(),getTiles(),getUnlockLevel(),getCost(), newWeapons);
+                                    getHitsPerUnit(),getLevel(),getTiles(),getUnlockLevel(),getCost(),
+                                    newWeapons, getCoordinateX(),getCoordinateY());
     }
 
     @Override
@@ -173,7 +174,7 @@ public class DefaultCharacter extends ACharacter {
             this.cost = cost;
             return this;
         }
-
+        
         public DefaultCharacterBuilder setWeapons(ArrayList<AWeapon> weapons) {
             this.weapons = weapons;
             return this;
@@ -212,12 +213,11 @@ public class DefaultCharacter extends ACharacter {
             this.coordinateY = coordinateY;
             return this;
         }
-        
-        
                 
         @Override
         public ACharacter build() {
-            return new DefaultCharacter();
+            return new DefaultCharacter(name,appearances, currentHealthPoints, maxHealthPoints, hitsPerUnit,
+                                        level, tiles, unlockLevel, cost, weapons, coordinateX, coordinateY);
         }
     }
 }

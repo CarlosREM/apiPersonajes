@@ -31,7 +31,7 @@ public abstract class ACharacter implements IPrototype, ILookable{
         
     }
     
-    public ACharacter(String name, TreeMap<Integer,IAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
+    public ACharacter(String name, TreeMap<Integer,IAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons, int coordinateX, int coordinateY) {
         this.name = name;
         this.appearances = appearances;
         this.currentHealthPoints = currentHealthPoints;
@@ -42,6 +42,8 @@ public abstract class ACharacter implements IPrototype, ILookable{
         this.unlockLevel = unlockLevel;
         this.cost = cost;
         this.weapons = weapons;
+        this.coordinateX = coordinateX;
+        this.coordinateY = coordinateY;
     }
 
     public String getName() {
