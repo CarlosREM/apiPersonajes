@@ -1,1 +1,36 @@
-[]
+[
+    {
+  "@class" : "ADT.DefaultCharacter",
+  "name" : "Average Joe",
+  "appearances" : {
+    "1" : {
+      "@class" : "ADT.DefaultCharacterAppearance",
+      "looks" : [ "src/resources/images/spr_paladin.png", "src/resources/images/spr_paladin.png", "src/resources/images/spr_paladin.png", "src/resources/images/spr_paladin.png", "src/resources/images/spr_paladin.png", "src/resources/images/spr_paladin.png" ]
+    }
+  },
+  "currentHealthPoints" : 100,
+  "maxHealthPoints" : 100,
+  "hitsPerUnit" : 5,
+  "level" : 1,
+  "tiles" : 1,
+  "unlockLevel" : 1,
+  "cost" : 1,
+  "weapons" : [ {
+    "@class" : "ADT.DefaultWeapon",
+    "name" : "Melee",
+    "range" : 1,
+    "damage" : 1,
+    "level" : 1,
+    "areaOfEffect" : 1,
+    "hitPerUnit" : 1,
+    "appearances" : {
+      "1" : {
+        "@class" : "ADT.DefaultWeaponAppearance",
+        "looks" : ["src/resources/images/spr_paladin.png"]
+      }
+    }
+  } ],
+  "coordinateX" : 0,
+  "coordinateY" : 0
+}
+]

@@ -17,18 +17,26 @@ import java.net.URL;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ADT.DefaultCharacter;
+import ADT.DefaultCharacterAppearance;
+import ADT.DefaultWeapon;
+import ADT.DefaultWeaponAppearance;
+import abstraction.AAppearance;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
+import java.util.ArrayList;
 
 /**
  *
  * @author Marco Gamboa
  */
 public class JsonLoader {
-    private ObjectMapper mapper = new ObjectMapper();
+    private static ObjectMapper mapper = new ObjectMapper();
     
     public List<ACharacter> loadDefaultCharacters(){
         try {
             File defaultFile = new File(getClass().getResource("/resources/defaultCharacters.json").toURI());
             try {
+
                 return mapper.readValue(defaultFile, new TypeReference<List<ACharacter>>(){});
             } catch (IOException e) {
                 e.printStackTrace();
@@ -82,5 +90,6 @@ public class JsonLoader {
         }
         return null;
     }
-      
+    
+    
 }

@@ -25,21 +25,6 @@ public class JsonSaver {
     private ObjectMapper mapper = new ObjectMapper();
     
     
-    public List<ACharacter> loadCustomCharacters(String strFile){
-        try{
-            File file = new File(getClass().getResource(strFile).toURI());
-            try {
-                 return mapper.readValue(file, new TypeReference<List<ACharacter>>(){});
-            } catch (IOException e) {
-                e.printStackTrace();
-                return null;
-            }   
-        }catch (URISyntaxException ex){
-            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    
-    }    
     public void saveCustomCharacter(ACharacter value,String strFile){
         try{
             File file = new File(getClass().getResource(strFile).toURI());

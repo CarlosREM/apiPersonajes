@@ -5,7 +5,7 @@
  */
 package ADT;
 
-import abstraction.IAppearance;
+import abstraction.AAppearance;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,26 +13,30 @@ import java.util.List;
  *
  * @author Fabricio Ceciliano
  */
-public class DefaultCharacterAppearance implements IAppearance{
-    private List<String> looks; 
+public class DefaultCharacterAppearance extends AAppearance{
+    
 
     public DefaultCharacterAppearance(List<String> looks) {
-        this.looks = looks;
+        for(String look: looks){
+            String newLook = look;
+            getLooks().add(newLook);
+        }
+        
     }
+
+    public DefaultCharacterAppearance() {
+    }
+
+
     
     public static enum codes {
         DEFAULT,ATTACK,DEFEND,WALK,LOWHEALTH,HURT;
     }
 
     @Override
-    public String getLook(Enum code) {
-        return looks.get(code.ordinal());
-    }
-
-    @Override
-    public IAppearance deepClone() {
+    public AAppearance deepClone() {
         List<String> newLooks = new ArrayList<>();
-        looks.forEach((s) -> {
+        getLooks().forEach((s) -> {
             newLooks.add(s);
         });
         return new DefaultCharacterAppearance(newLooks);

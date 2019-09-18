@@ -5,12 +5,18 @@
  */
 package abstraction;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.TreeMap;
 
 /**
  *
  * @author Fabricio Ceciliano
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 public abstract class AWeapon implements IPrototype, ILookable{
     private String name = "Melee" ;
     private int range = 1;
@@ -18,13 +24,13 @@ public abstract class AWeapon implements IPrototype, ILookable{
     private int level = 1;
     private int areaOfEffect = 1;
     private int hitPerUnit = 1;
-    private TreeMap<Integer,IAppearance> appearances = new TreeMap<>();
+    private TreeMap<Integer,AAppearance> appearances = new TreeMap<>();
     
     public AWeapon(){
         
     }
 
-    public AWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,IAppearance> appearances) {
+    public AWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,AAppearance> appearances) {
         this.name = name;
         this.range = range;
         this.damage = damage;
@@ -77,11 +83,11 @@ public abstract class AWeapon implements IPrototype, ILookable{
     }
 
     @Override
-    public IAppearance getAppearance(int level) {
+    public AAppearance getAppearance(int level) {
         return appearances.floorEntry(level).getValue();
     }
     @Override
-    public void setAppearance(int level, IAppearance appearance) {
+    public void setAppearance(int level, AAppearance appearance) {
         if(this.appearances.containsKey(level))
             this.appearances.replace(level, appearance);
         else
@@ -89,7 +95,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
     }
     
     @Override
-    public TreeMap<Integer, IAppearance> getAppearances() {
+    public TreeMap<Integer, AAppearance> getAppearances() {
         return appearances;
     }
     

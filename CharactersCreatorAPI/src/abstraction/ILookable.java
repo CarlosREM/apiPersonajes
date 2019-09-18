@@ -12,7 +12,7 @@ import java.util.TreeMap;
  * @author Fabricio Ceciliano
  */
 public interface ILookable {
-    public IAppearance getAppearance(int level);
-    public TreeMap<Integer,IAppearance> getAppearances();
-    public void setAppearance(int level, IAppearance appearance);
+    public AAppearance getAppearance(int level);
+    public TreeMap<Integer,AAppearance> getAppearances();
+    public void setAppearance(int level, AAppearance appearance);
 }

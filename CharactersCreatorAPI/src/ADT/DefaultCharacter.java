@@ -7,9 +7,10 @@ package ADT;
 
 import abstraction.ACharacter;
 import abstraction.AWeapon;
-import abstraction.IAppearance;
+import abstraction.AAppearance;
 import abstraction.IBuild;
 import abstraction.IPrototype;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -17,11 +18,13 @@ import java.util.TreeMap;
  *
  * @author Fabricio Ceciliano
  */
+
 public class DefaultCharacter extends ACharacter {
 
+   
     public DefaultCharacter() {}
 
-    public DefaultCharacter(String name, TreeMap<Integer, IAppearance> appearance, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
+    public DefaultCharacter(String name, TreeMap<Integer, AAppearance> appearance, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
         super(name, appearance, currentHealthPoints, maxHealthPoints, hitsPerUnit, level, tiles, unlockLevel, cost, weapons);
     }  
 
@@ -97,13 +100,13 @@ public class DefaultCharacter extends ACharacter {
     @Override
     public IPrototype deepClone() {
         ArrayList<AWeapon> newWeapons = new ArrayList<>();
-        TreeMap<Integer,IAppearance> newAppearances = new TreeMap<>();
+        TreeMap<Integer,AAppearance> newAppearances = new TreeMap<>();
         
         for(AWeapon weapon:getWeapons()){
             newWeapons.add((AWeapon) weapon.deepClone());
         }
         for(Integer i : getAppearances().keySet()){
-            newAppearances.put(i, getAppearances().get(i).deepClone());
+            newAppearances.put(i, (AAppearance) getAppearances().get(i).deepClone());
         }
         
         return new DefaultCharacter(getName(),newAppearances,getCurrentHealthPoints(),getMaxHealthPoints(),
@@ -117,7 +120,7 @@ public class DefaultCharacter extends ACharacter {
     }
     public static class DefaultCharacterBuilder implements IBuild <ACharacter>{
         private String name = "Average Joe";
-        private TreeMap<Integer,IAppearance> appearances = new TreeMap<>();
+        private TreeMap<Integer,AAppearance> appearances = new TreeMap<>();
         private int currentHealthPoints = 100;
         private int maxHealthPoints = 100;
         private int hitsPerUnit = 5;
@@ -134,7 +137,7 @@ public class DefaultCharacter extends ACharacter {
             return this;
         }
 
-        public DefaultCharacterBuilder setAppearances(TreeMap<Integer, IAppearance> appearances) {
+        public DefaultCharacterBuilder setAppearances(TreeMap<Integer, AAppearance> appearances) {
             this.appearances = appearances;
             return this;
         }
@@ -195,7 +198,7 @@ public class DefaultCharacter extends ACharacter {
             return this;
         }
         
-        public DefaultCharacterBuilder addAppearance(int level, IAppearance appearance) {
+        public DefaultCharacterBuilder addAppearance(int level, AAppearance appearance) {
             if(this.appearances.containsKey(level))
                 this.appearances.replace(level, appearance);
             else
@@ -217,7 +220,8 @@ public class DefaultCharacter extends ACharacter {
                 
         @Override
         public ACharacter build() {
-            return new DefaultCharacter();
+            return new DefaultCharacter(name, appearances, currentHealthPoints, maxHealthPoints, hitsPerUnit, level, tiles, unlockLevel, cost, weapons);
+       
         }
     }
 }

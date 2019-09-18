@@ -7,7 +7,7 @@ package ADT;
 
 import abstraction.ACharacter;
 import abstraction.AWeapon;
-import abstraction.IAppearance;
+import abstraction.AAppearance;
 import abstraction.IPrototype;
 import java.util.TreeMap;
 
@@ -21,7 +21,7 @@ public class DefaultWeapon extends AWeapon{
         super();
     }
     
-    public DefaultWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,IAppearance> appearances) {
+    public DefaultWeapon(String name, int range, int damage, int level, int areaOfEffect, int hitPerUnit, TreeMap<Integer,AAppearance> appearances) {
         super(name, range, damage, level, areaOfEffect, hitPerUnit, appearances);
     }
 
@@ -46,10 +46,10 @@ public class DefaultWeapon extends AWeapon{
 
     @Override
     public IPrototype deepClone() {
-        TreeMap<Integer,IAppearance> newAppearances = new TreeMap<>();
+        TreeMap<Integer,AAppearance> newAppearances = new TreeMap<>();
         
         for(Integer i : getAppearances().keySet()){
-            newAppearances.put(i, getAppearances().get(i).deepClone());
+            newAppearances.put(i, (AAppearance) getAppearances().get(i).deepClone());
         }
         return new DefaultWeapon(getName(),getRange(),getDamage(),getLevel(),getAreaOfEffect(),getHitPerUnit(),newAppearances);
     }

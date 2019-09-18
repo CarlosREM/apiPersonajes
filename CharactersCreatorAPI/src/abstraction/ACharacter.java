@@ -5,6 +5,14 @@
  */
 package abstraction;
 
+import ADT.DefaultCharacter;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.As.PROPERTY;
+import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
+import static com.fasterxml.jackson.annotation.JsonTypeInfo.Id.NAME;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -12,10 +20,15 @@ import java.util.TreeMap;
  *
  * @author Fabricio Ceciliano
  */
+@JsonTypeInfo(
+        use = Id.CLASS,
+        include = As.PROPERTY,
+        property = "@class"
+)
 
 public abstract class ACharacter implements IPrototype, ILookable{
     private String name = "Average Joe";
-    private TreeMap<Integer,IAppearance> appearances = new TreeMap<>();
+    private TreeMap<Integer,AAppearance> appearances = new TreeMap<>();
     private int currentHealthPoints = 100;
     private int maxHealthPoints = 100;
     private int hitsPerUnit = 5;
@@ -24,16 +37,19 @@ public abstract class ACharacter implements IPrototype, ILookable{
     private int unlockLevel = 1;
     private int cost = 1;
     private ArrayList<AWeapon> weapons = new ArrayList<>();
-    private int coordinateX;
-    private int coordinateY;
+    private int coordinateX = 0;
+    private int coordinateY = 0;
 
     public ACharacter(){
         
     }
     
-    public ACharacter(String name, TreeMap<Integer,IAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
+    public ACharacter(String name, TreeMap<Integer,AAppearance> appearances, int currentHealthPoints, int maxHealthPoints, int hitsPerUnit, int level, int tiles, int unlockLevel, int cost, ArrayList<AWeapon> weapons) {
         this.name = name;
-        this.appearances = appearances;
+        for(Integer i: appearances.keySet()){
+            this.appearances.put(i, (AAppearance) appearances.get(i).deepClone());
+        }
+        
         this.currentHealthPoints = currentHealthPoints;
         this.maxHealthPoints = maxHealthPoints;
         this.hitsPerUnit = hitsPerUnit;
@@ -41,6 +57,9 @@ public abstract class ACharacter implements IPrototype, ILookable{
         this.tiles = tiles;
         this.unlockLevel = unlockLevel;
         this.cost = cost;
+        for(AWeapon weapon: weapons){
+            this.weapons.add((AWeapon)weapon.deepClone());
+        }
         this.weapons = weapons;
     }
 
@@ -122,19 +141,19 @@ public abstract class ACharacter implements IPrototype, ILookable{
     }
     
     @Override
-    public IAppearance getAppearance(int level){
+    public AAppearance getAppearance(int level){
         return appearances.floorEntry(level).getValue();
     }
     @Override
-    public void setAppearance(int level, IAppearance appearance) {
+    public void setAppearance(int level, AAppearance appearance) {
         if(this.appearances.containsKey(level))
-            this.appearances.replace(level, appearance);
+            this.appearances.replace(level, (AAppearance) appearance.deepClone());
         else
-            this.appearances.put(level, appearance);
+            this.appearances.put(level, (AAppearance) appearance.deepClone());
     }
      
     @Override
-    public TreeMap<Integer,IAppearance> getAppearances() {
+    public TreeMap<Integer,AAppearance> getAppearances() {
         return appearances;
     }
 
