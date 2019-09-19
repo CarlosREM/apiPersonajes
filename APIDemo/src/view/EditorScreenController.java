@@ -9,10 +9,10 @@ import ADT.DefaultCharacterAppearance;
 import ADT.WeaponPrototypeFactory;
 import Controllers.DefaultPrototypeController;
 import abstraction.ACharacter;
-import java.awt.Color;
-import java.util.List;
+import abstraction.ACharacter;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -27,10 +27,10 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         
         setupActionListeners();
         loadComboboxItems();
-        screen.setBackground(Color.BLACK);
+
    
         screen.setVisible(true);
-         }
+    }
 
     private void setupActionListeners() {
         screen.btnLoadCharClass.addActionListener(this);
@@ -51,7 +51,24 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         screen.cmBxCharClassDefault.setModel(new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray()));
         screen.cmBxWeaponClassDefault.setModel(new DefaultComboBoxModel(WeaponPrototypeFactory.getKeys().toArray()));
         
+        String CharName = screen.cmBxCharClassDefault.getSelectedItem().toString();
+        ACharacter character = (ACharacter) CharacterPrototypeFactory.getPrototype(CharName);
+        
+        screen.txtCharClassName.setText(character.getName());
+        screen.spnCharHealth.setValue(character.getMaxHealthPoints());
+        screen.spnCharHits.setValue(character.getHitsPerUnit());
+        screen.spnCharStartLvl.setValue(character.getLevel());
+        screen.spnCharTiles.setValue(character.getTiles());
+        screen.spnCharUnlockLvl.setValue(character.getUnlockLevel());
+        screen.spnCharCost.setValue(character.getCost());
+        ImageLoader imgloader = new ImageLoader();
+        String strImage = character.getAppearance(1).getLook(DefaultCharacterAppearance.codes.DEFAULT);
+        screen.lblCharSpritePreview.setIcon(imgloader.createImageicon(strImage));
+        
+        
     }
+ 
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {

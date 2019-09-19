@@ -10,7 +10,7 @@
     "appearances" : {
       "1" : {
         "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["src/resources/images/weapon1.png"]
+        "looks" : ["/resources/images/weapon1.png"]
       }
     }
   },
@@ -25,7 +25,7 @@
     "appearances" : {
       "1" : {
         "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["src/resources/images/weapon2.png"]
+        "looks" : ["/resources/images/weapon2.png"]
       }
     }
   },
@@ -40,7 +40,7 @@
     "appearances" : {
       "1" : {
         "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["src/resources/images/weapon3.png"]
+        "looks" : ["/resources/images/weapon3.png"]
       }
     }
   }

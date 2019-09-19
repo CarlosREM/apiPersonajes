@@ -28,6 +28,7 @@ public class EditorScreen extends javax.swing.JFrame {
         JTabbedPane = new javax.swing.JTabbedPane();
         CharactersTab = new javax.swing.JPanel();
         pnlCharSpritePreview = new javax.swing.JPanel();
+        lblCharSpritePreview = new javax.swing.JLabel();
         cmBxCharAppearance = new javax.swing.JComboBox<>();
         cmBxCharAppearanceLvl = new javax.swing.JComboBox<>();
         javax.swing.JLabel lblCharAppearance = new javax.swing.JLabel();
@@ -107,15 +108,22 @@ public class EditorScreen extends javax.swing.JFrame {
         pnlCharSpritePreview.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlCharSpritePreview.setPreferredSize(new java.awt.Dimension(250, 250));
 
+        lblCharSpritePreview.setText("jLabel1");
+
         javax.swing.GroupLayout pnlCharSpritePreviewLayout = new javax.swing.GroupLayout(pnlCharSpritePreview);
         pnlCharSpritePreview.setLayout(pnlCharSpritePreviewLayout);
         pnlCharSpritePreviewLayout.setHorizontalGroup(
             pnlCharSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(pnlCharSpritePreviewLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlCharSpritePreviewLayout.setVerticalGroup(
             pnlCharSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 219, Short.MAX_VALUE)
+            .addGroup(pnlCharSpritePreviewLayout.createSequentialGroup()
+                .addComponent(lblCharSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         cmBxCharAppearance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -850,6 +858,7 @@ public class EditorScreen extends javax.swing.JFrame {
     protected javax.swing.JComboBox<String> cmBxWeaponAppearanceLvl;
     protected javax.swing.JComboBox<String> cmBxWeaponClassDefault;
     protected javax.swing.JComboBox<String> cmBxWeaponClassUser;
+    protected javax.swing.JLabel lblCharSpritePreview;
     protected javax.swing.JList<String> listClassWeapons;
     protected javax.swing.JList<String> listWeapons;
     protected javax.swing.JPanel pnlCharSpritePreview;
