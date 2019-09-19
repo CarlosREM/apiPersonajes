@@ -22,8 +22,6 @@ public class EditorScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnGroupCharClass = new javax.swing.ButtonGroup();
-        btnGroupWeaponClass = new javax.swing.ButtonGroup();
         javax.swing.JPanel contentPane = new javax.swing.JPanel();
         JTabbedPane = new javax.swing.JTabbedPane();
         CharactersTab = new javax.swing.JPanel();
@@ -34,10 +32,7 @@ public class EditorScreen extends javax.swing.JFrame {
         javax.swing.JLabel lblCharAppearance = new javax.swing.JLabel();
         javax.swing.JLabel lblCharAppareanceLvl = new javax.swing.JLabel();
         javax.swing.JLabel lblCharacterClass = new javax.swing.JLabel();
-        rdBtnCharClassDefault = new javax.swing.JRadioButton();
-        rdBtnCharClassUser = new javax.swing.JRadioButton();
-        cmBxCharClassDefault = new javax.swing.JComboBox<>();
-        cmBxCharClassUser = new javax.swing.JComboBox<>();
+        cmBxCharClassSelect = new javax.swing.JComboBox<>();
         btnLoadCharClass = new javax.swing.JButton();
         javax.swing.JSeparator jSeparator1 = new javax.swing.JSeparator();
         javax.swing.JSeparator jSeparator2 = new javax.swing.JSeparator();
@@ -45,8 +40,8 @@ public class EditorScreen extends javax.swing.JFrame {
         javax.swing.JLabel lblCharClassName = new javax.swing.JLabel();
         txtCharClassName = new javax.swing.JTextField();
         btnAddCharAppearance = new javax.swing.JButton();
-        btnCreateCharObject = new javax.swing.JButton();
-        btnSaveCharClass = new javax.swing.JButton();
+        btnCharCreateObject = new javax.swing.JButton();
+        btnCharSaveClass = new javax.swing.JButton();
         chkBxCharHealth = new javax.swing.JCheckBox();
         spnCharHealth = new javax.swing.JSpinner();
         chkBxCharCost = new javax.swing.JCheckBox();
@@ -67,6 +62,9 @@ public class EditorScreen extends javax.swing.JFrame {
         listClassWeapons = new javax.swing.JList<>();
         btnDelWeapon = new javax.swing.JButton();
         javax.swing.JLabel lblClassWeapons = new javax.swing.JLabel();
+        btnCharExportJson = new javax.swing.JButton();
+        lblWeaponClassSelect1 = new javax.swing.JLabel();
+        btnCharImportJson = new javax.swing.JButton();
         WeaponsTab = new javax.swing.JPanel();
         pnlWeaponSpritePreview = new javax.swing.JPanel();
         lblWeaponSpritePreview = new javax.swing.JLabel();
@@ -78,10 +76,7 @@ public class EditorScreen extends javax.swing.JFrame {
         btnAddWeaponAppearance = new javax.swing.JButton();
         btnDelWeaponAppearance = new javax.swing.JButton();
         javax.swing.JLabel lblCharacterClass1 = new javax.swing.JLabel();
-        rdBtnWeaponClassDefault = new javax.swing.JRadioButton();
-        cmBxWeaponClassDefault = new javax.swing.JComboBox<>();
-        cmBxWeaponClassUser = new javax.swing.JComboBox<>();
-        rdBtnWeaponClassUser = new javax.swing.JRadioButton();
+        cmBxWeaponClassSelect = new javax.swing.JComboBox<>();
         btnLoadWeaponClass = new javax.swing.JButton();
         javax.swing.JSeparator jSeparator4 = new javax.swing.JSeparator();
         javax.swing.JLabel lblWeaponAttributes = new javax.swing.JLabel();
@@ -100,6 +95,9 @@ public class EditorScreen extends javax.swing.JFrame {
         chkBxWeaponRange = new javax.swing.JCheckBox();
         spnWeaponRange = new javax.swing.JSpinner();
         btnSaveWeapon = new javax.swing.JButton();
+        lblWeaponClassSelect = new javax.swing.JLabel();
+        btnWeaponImportJson = new javax.swing.JButton();
+        btnWeaponExportJson = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Character Creation API");
@@ -108,22 +106,8 @@ public class EditorScreen extends javax.swing.JFrame {
         pnlCharSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         pnlCharSpritePreview.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlCharSpritePreview.setPreferredSize(new java.awt.Dimension(250, 250));
-
-        javax.swing.GroupLayout pnlCharSpritePreviewLayout = new javax.swing.GroupLayout(pnlCharSpritePreview);
-        pnlCharSpritePreview.setLayout(pnlCharSpritePreviewLayout);
-        pnlCharSpritePreviewLayout.setHorizontalGroup(
-            pnlCharSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCharSpritePreviewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlCharSpritePreviewLayout.setVerticalGroup(
-            pnlCharSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCharSpritePreviewLayout.createSequentialGroup()
-                .addComponent(lblCharSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
+        pnlCharSpritePreview.setLayout(new java.awt.BorderLayout());
+        pnlCharSpritePreview.add(lblCharSpritePreview, java.awt.BorderLayout.CENTER);
 
         cmBxCharAppearance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -138,28 +122,7 @@ public class EditorScreen extends javax.swing.JFrame {
         lblCharacterClass.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblCharacterClass.setText("Character class");
 
-        btnGroupCharClass.add(rdBtnCharClassDefault);
-        rdBtnCharClassDefault.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        rdBtnCharClassDefault.setText("Default classes:");
-        rdBtnCharClassDefault.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnCharClassDefaultItemStateChanged(evt);
-            }
-        });
-
-        btnGroupCharClass.add(rdBtnCharClassUser);
-        rdBtnCharClassUser.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        rdBtnCharClassUser.setText("User defined:");
-        rdBtnCharClassUser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnCharClassUserItemStateChanged(evt);
-            }
-        });
-
-        cmBxCharClassDefault.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmBxCharClassUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmBxCharClassUser.setEnabled(false);
+        cmBxCharClassSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnLoadCharClass.setText("Load Character Class Info");
         btnLoadCharClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -180,14 +143,9 @@ public class EditorScreen extends javax.swing.JFrame {
 
         btnAddCharAppearance.setText("Add New Character Appearance");
 
-        btnCreateCharObject.setText("Create Character Object");
-        btnCreateCharObject.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateCharObjectActionPerformed(evt);
-            }
-        });
+        btnCharCreateObject.setText("Create Character Object");
 
-        btnSaveCharClass.setText("Save Character Class");
+        btnCharSaveClass.setText("Save Character Class");
 
         chkBxCharHealth.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharHealth.setSelected(true);
@@ -198,6 +156,8 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnCharHealth.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         chkBxCharCost.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharCost.setSelected(true);
         chkBxCharCost.setText("Production Cost:");
@@ -206,6 +166,8 @@ public class EditorScreen extends javax.swing.JFrame {
                 chkBxCharCostItemStateChanged(evt);
             }
         });
+
+        spnCharCost.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         chkBxCharHits.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharHits.setSelected(true);
@@ -216,6 +178,8 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnCharHits.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         chkBxCharTiles.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharTiles.setSelected(true);
         chkBxCharTiles.setText("Tile Hitbox:");
@@ -225,6 +189,8 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnCharTiles.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         chkBxCharStartLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharStartLvl.setSelected(true);
         chkBxCharStartLvl.setText("Starting Level:");
@@ -233,6 +199,8 @@ public class EditorScreen extends javax.swing.JFrame {
                 chkBxCharStartLvlItemStateChanged(evt);
             }
         });
+
+        spnCharStartLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         chkBxCharUnlockLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxCharUnlockLvl.setSelected(true);
@@ -244,21 +212,13 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnCharUnlockLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         btnDelCharAppearance.setText("Delete Selected Character Appearance");
 
         btnAddWeapon.setText(">");
         btnAddWeapon.setEnabled(false);
-        btnAddWeapon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddWeaponActionPerformed(evt);
-            }
-        });
 
-        listWeapons.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         listWeapons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listWeapons.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listWeapons.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -268,11 +228,6 @@ public class EditorScreen extends javax.swing.JFrame {
         });
         scrollWeapons.setViewportView(listWeapons);
 
-        listClassWeapons.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         listClassWeapons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listClassWeapons.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listClassWeapons.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -288,6 +243,13 @@ public class EditorScreen extends javax.swing.JFrame {
         lblClassWeapons.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         lblClassWeapons.setText("Weapons:");
 
+        btnCharExportJson.setText("Export JSON Character Data");
+
+        lblWeaponClassSelect1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponClassSelect1.setText("Select a class:");
+
+        btnCharImportJson.setText("Import JSON Character Data");
+
         javax.swing.GroupLayout CharactersTabLayout = new javax.swing.GroupLayout(CharactersTab);
         CharactersTab.setLayout(CharactersTabLayout);
         CharactersTabLayout.setHorizontalGroup(
@@ -296,21 +258,30 @@ public class EditorScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CharactersTabLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCharExportJson)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCharSaveClass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCharCreateObject))
+                    .addGroup(CharactersTabLayout.createSequentialGroup()
                         .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jSeparator1)
-                            .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(CharactersTabLayout.createSequentialGroup()
-                                    .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(rdBtnCharClassDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rdBtnCharClassUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cmBxCharClassDefault, 0, 140, Short.MAX_VALUE)
-                                        .addComponent(cmBxCharClassUser, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(lblCharAttributes)
-                                .addComponent(btnLoadCharClass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(lblCharacterClass)
-                            .addComponent(lblClassWeapons)
+                            .addGroup(CharactersTabLayout.createSequentialGroup()
+                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jSeparator1)
+                                    .addGroup(CharactersTabLayout.createSequentialGroup()
+                                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblWeaponClassSelect1)
+                                            .addComponent(lblCharAttributes)
+                                            .addComponent(lblCharacterClass)
+                                            .addComponent(lblClassWeapons)
+                                            .addComponent(cmBxCharClassSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnLoadCharClass, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btnCharImportJson, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(45, 45, 45)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(CharactersTabLayout.createSequentialGroup()
                                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(CharactersTabLayout.createSequentialGroup()
@@ -333,47 +304,39 @@ public class EditorScreen extends javax.swing.JFrame {
                                             .addComponent(chkBxCharCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(chkBxCharUnlockLvl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CharactersTabLayout.createSequentialGroup()
-                                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CharactersTabLayout.createSequentialGroup()
                                                 .addComponent(scrollWeapons, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(btnAddWeapon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(btnDelWeapon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(scrollClassWeapons, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CharactersTabLayout.createSequentialGroup()
                                                 .addComponent(chkBxCharStartLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(spnCharStartLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(174, 174, 174)))
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(spnCharStartLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(spnCharCost, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnCharTiles, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnCharUnlockLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(20, 20, 20)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(42, 42, 42)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                            .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(CharactersTabLayout.createSequentialGroup()
                                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(lblCharAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblCharAppareanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(30, 30, 30)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmBxCharAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmBxCharAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnAddCharAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelCharAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, CharactersTabLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSaveCharClass)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCreateCharObject)))
+                                    .addComponent(cmBxCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmBxCharAppearanceLvl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnAddCharAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnDelCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         CharactersTabLayout.setVerticalGroup(
@@ -382,17 +345,38 @@ public class EditorScreen extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(CharactersTabLayout.createSequentialGroup()
+                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, CharactersTabLayout.createSequentialGroup()
+                                .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmBxCharAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCharAppearance))
+                                .addGap(6, 6, 6)
+                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cmBxCharAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblCharAppareanceLvl))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAddCharAppearance)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnDelCharAppearance)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnCharSaveClass)
+                            .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnCharCreateObject)
+                                .addComponent(btnCharExportJson))))
+                    .addGroup(CharactersTabLayout.createSequentialGroup()
                         .addComponent(lblCharacterClass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblWeaponClassSelect1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmBxCharClassSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)
                         .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdBtnCharClassDefault)
-                            .addComponent(cmBxCharClassDefault, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdBtnCharClassUser)
-                            .addComponent(cmBxCharClassUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLoadCharClass)
+                            .addComponent(btnLoadCharClass)
+                            .addComponent(btnCharImportJson))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -423,31 +407,16 @@ public class EditorScreen extends javax.swing.JFrame {
                         .addComponent(lblClassWeapons)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollClassWeapons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(CharactersTabLayout.createSequentialGroup()
                                 .addComponent(btnAddWeapon)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnDelWeapon))
-                            .addComponent(scrollWeapons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(CharactersTabLayout.createSequentialGroup()
-                        .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmBxCharAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCharAppearance))
-                        .addGap(6, 6, 6)
-                        .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmBxCharAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCharAppareanceLvl))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddCharAppearance)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelCharAppearance))
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCreateCharObject)
-                    .addComponent(btnSaveCharClass))
+                                .addComponent(btnDelWeapon)
+                                .addGap(61, 126, Short.MAX_VALUE))
+                            .addGroup(CharactersTabLayout.createSequentialGroup()
+                                .addGroup(CharactersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(scrollClassWeapons, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(scrollWeapons))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
 
@@ -456,22 +425,8 @@ public class EditorScreen extends javax.swing.JFrame {
         pnlWeaponSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
         pnlWeaponSpritePreview.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlWeaponSpritePreview.setPreferredSize(new java.awt.Dimension(250, 250));
-
-        javax.swing.GroupLayout pnlWeaponSpritePreviewLayout = new javax.swing.GroupLayout(pnlWeaponSpritePreview);
-        pnlWeaponSpritePreview.setLayout(pnlWeaponSpritePreviewLayout);
-        pnlWeaponSpritePreviewLayout.setHorizontalGroup(
-            pnlWeaponSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWeaponSpritePreviewLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblWeaponSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlWeaponSpritePreviewLayout.setVerticalGroup(
-            pnlWeaponSpritePreviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlWeaponSpritePreviewLayout.createSequentialGroup()
-                .addComponent(lblWeaponSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 24, Short.MAX_VALUE))
-        );
+        pnlWeaponSpritePreview.setLayout(new java.awt.BorderLayout());
+        pnlWeaponSpritePreview.add(lblWeaponSpritePreview, java.awt.BorderLayout.CENTER);
 
         lblWeaponAppearance.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         lblWeaponAppearance.setText("Appearance:");
@@ -494,28 +449,7 @@ public class EditorScreen extends javax.swing.JFrame {
         lblCharacterClass1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblCharacterClass1.setText("Weapon class");
 
-        btnGroupCharClass.add(rdBtnWeaponClassDefault);
-        rdBtnWeaponClassDefault.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        rdBtnWeaponClassDefault.setText("Default classes:");
-        rdBtnWeaponClassDefault.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnWeaponClassDefaultItemStateChanged(evt);
-            }
-        });
-
-        cmBxWeaponClassDefault.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        cmBxWeaponClassUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cmBxWeaponClassUser.setEnabled(false);
-
-        btnGroupCharClass.add(rdBtnWeaponClassUser);
-        rdBtnWeaponClassUser.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        rdBtnWeaponClassUser.setText("User defined:");
-        rdBtnWeaponClassUser.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rdBtnWeaponClassUserItemStateChanged(evt);
-            }
-        });
+        cmBxWeaponClassSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnLoadWeaponClass.setText("Load Weapon Class Info");
         btnLoadWeaponClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -539,6 +473,8 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnWeaponDmg.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         chkBxWeaponHits.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxWeaponHits.setSelected(true);
         chkBxWeaponHits.setText("Hits per Time unit:");
@@ -547,6 +483,10 @@ public class EditorScreen extends javax.swing.JFrame {
                 chkBxWeaponHitsItemStateChanged(evt);
             }
         });
+
+        spnWeaponHits.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        spnWeaponStartLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         chkBxWeaponStartLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxWeaponStartLvl.setSelected(true);
@@ -567,6 +507,10 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
+        spnWeaponUnlockLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        spnWeaponAOE.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         chkBxWeaponAOE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         chkBxWeaponAOE.setSelected(true);
         chkBxWeaponAOE.setText("Area of Effect:");
@@ -585,7 +529,16 @@ public class EditorScreen extends javax.swing.JFrame {
             }
         });
 
-        btnSaveWeapon.setText("Save Weapon");
+        spnWeaponRange.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
+        btnSaveWeapon.setText("Save Weapon Class");
+
+        lblWeaponClassSelect.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponClassSelect.setText("Select a class:");
+
+        btnWeaponImportJson.setText("Import JSON Weapon Data");
+
+        btnWeaponExportJson.setText("Export JSON Weapon Data");
 
         javax.swing.GroupLayout WeaponsTabLayout = new javax.swing.GroupLayout(WeaponsTab);
         WeaponsTab.setLayout(WeaponsTabLayout);
@@ -620,44 +573,45 @@ public class EditorScreen extends javax.swing.JFrame {
                                     .addComponent(chkBxWeaponAOE, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(chkBxWeaponRange, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(chkBxWeaponUnlockLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(spnWeaponRange, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnWeaponAOE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnWeaponUnlockLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(WeaponsTabLayout.createSequentialGroup()
-                                .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(rdBtnWeaponClassDefault, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(rdBtnWeaponClassUser, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmBxWeaponClassDefault, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(cmBxWeaponClassUser, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(btnLoadWeaponClass, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblCharacterClass1)
                             .addComponent(lblWeaponAttributes)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WeaponsTabLayout.createSequentialGroup()
-                                .addComponent(lblWeaponAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(30, 30, 30)
-                                .addComponent(cmBxWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pnlWeaponSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWeaponClassSelect)
                             .addGroup(WeaponsTabLayout.createSequentialGroup()
                                 .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnAddWeaponAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnDelWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 17, Short.MAX_VALUE))
-                            .addGroup(WeaponsTabLayout.createSequentialGroup()
-                                .addComponent(lblWeaponAppareanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmBxWeaponAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WeaponsTabLayout.createSequentialGroup()
+                                    .addComponent(btnLoadWeaponClass, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                    .addComponent(cmBxWeaponClassSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnWeaponImportJson, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlWeaponSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(btnAddWeaponAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnDelWeaponAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WeaponsTabLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(WeaponsTabLayout.createSequentialGroup()
+                                        .addComponent(lblWeaponAppareanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(lblWeaponAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmBxWeaponAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cmBxWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(6, 6, 6))))
+                    .addGroup(WeaponsTabLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSaveWeapon)))
+                        .addComponent(btnWeaponExportJson, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSaveWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         WeaponsTabLayout.setVerticalGroup(
@@ -668,15 +622,13 @@ public class EditorScreen extends javax.swing.JFrame {
                     .addGroup(WeaponsTabLayout.createSequentialGroup()
                         .addComponent(lblCharacterClass1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblWeaponClassSelect)
+                        .addGap(8, 8, 8)
+                        .addComponent(cmBxWeaponClassSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdBtnWeaponClassDefault)
-                            .addComponent(cmBxWeaponClassDefault, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(rdBtnWeaponClassUser)
-                            .addComponent(cmBxWeaponClassUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnLoadWeaponClass)
+                            .addComponent(btnLoadWeaponClass)
+                            .addComponent(btnWeaponImportJson))
                         .addGap(18, 18, 18)
                         .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -719,8 +671,10 @@ public class EditorScreen extends javax.swing.JFrame {
                         .addComponent(btnDelWeaponAppearance))
                     .addComponent(jSeparator3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(35, 35, 35)
-                .addComponent(btnSaveWeapon)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSaveWeapon)
+                    .addComponent(btnWeaponExportJson))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         JTabbedPane.addTab("Weapons", WeaponsTab);
@@ -782,22 +736,6 @@ public class EditorScreen extends javax.swing.JFrame {
         spnCharHealth.setEnabled(chkBxCharHealth.isSelected());
     }//GEN-LAST:event_chkBxCharHealthItemStateChanged
 
-    private void rdBtnCharClassUserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnCharClassUserItemStateChanged
-        cmBxCharClassUser.setEnabled(rdBtnCharClassUser.isSelected());
-    }//GEN-LAST:event_rdBtnCharClassUserItemStateChanged
-
-    private void rdBtnCharClassDefaultItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnCharClassDefaultItemStateChanged
-        cmBxCharClassDefault.setEnabled(rdBtnCharClassDefault.isSelected());
-    }//GEN-LAST:event_rdBtnCharClassDefaultItemStateChanged
-
-    private void rdBtnWeaponClassDefaultItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnWeaponClassDefaultItemStateChanged
-        cmBxWeaponClassDefault.setEnabled(rdBtnWeaponClassDefault.isSelected());
-    }//GEN-LAST:event_rdBtnWeaponClassDefaultItemStateChanged
-
-    private void rdBtnWeaponClassUserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rdBtnWeaponClassUserItemStateChanged
-        cmBxWeaponClassUser.setEnabled(rdBtnWeaponClassUser.isSelected());
-    }//GEN-LAST:event_rdBtnWeaponClassUserItemStateChanged
-
     private void chkBxWeaponDmgItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkBxWeaponDmgItemStateChanged
         spnWeaponDmg.setEnabled(chkBxWeaponDmg.isSelected());
     }//GEN-LAST:event_chkBxWeaponDmgItemStateChanged
@@ -822,14 +760,6 @@ public class EditorScreen extends javax.swing.JFrame {
         spnWeaponRange.setEnabled(chkBxWeaponRange.isSelected());
     }//GEN-LAST:event_chkBxWeaponRangeItemStateChanged
 
-    private void btnCreateCharObjectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateCharObjectActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCreateCharObjectActionPerformed
-
-    private void btnAddWeaponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddWeaponActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddWeaponActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CharactersTab;
@@ -838,16 +768,18 @@ public class EditorScreen extends javax.swing.JFrame {
     protected javax.swing.JButton btnAddCharAppearance;
     protected javax.swing.JButton btnAddWeapon;
     protected javax.swing.JButton btnAddWeaponAppearance;
-    protected javax.swing.JButton btnCreateCharObject;
+    protected javax.swing.JButton btnCharCreateObject;
+    protected javax.swing.JButton btnCharExportJson;
+    protected javax.swing.JButton btnCharImportJson;
+    protected javax.swing.JButton btnCharSaveClass;
     protected javax.swing.JButton btnDelCharAppearance;
     protected javax.swing.JButton btnDelWeapon;
     protected javax.swing.JButton btnDelWeaponAppearance;
-    private javax.swing.ButtonGroup btnGroupCharClass;
-    private javax.swing.ButtonGroup btnGroupWeaponClass;
     protected javax.swing.JButton btnLoadCharClass;
     protected javax.swing.JButton btnLoadWeaponClass;
-    protected javax.swing.JButton btnSaveCharClass;
     protected javax.swing.JButton btnSaveWeapon;
+    protected javax.swing.JButton btnWeaponExportJson;
+    protected javax.swing.JButton btnWeaponImportJson;
     protected javax.swing.JCheckBox chkBxCharCost;
     protected javax.swing.JCheckBox chkBxCharHealth;
     protected javax.swing.JCheckBox chkBxCharHits;
@@ -862,22 +794,18 @@ public class EditorScreen extends javax.swing.JFrame {
     protected javax.swing.JCheckBox chkBxWeaponUnlockLvl;
     protected javax.swing.JComboBox<String> cmBxCharAppearance;
     protected javax.swing.JComboBox<String> cmBxCharAppearanceLvl;
-    protected javax.swing.JComboBox<String> cmBxCharClassDefault;
-    protected javax.swing.JComboBox<String> cmBxCharClassUser;
+    protected javax.swing.JComboBox<String> cmBxCharClassSelect;
     protected javax.swing.JComboBox<String> cmBxWeaponAppearance;
     protected javax.swing.JComboBox<String> cmBxWeaponAppearanceLvl;
-    protected javax.swing.JComboBox<String> cmBxWeaponClassDefault;
-    protected javax.swing.JComboBox<String> cmBxWeaponClassUser;
+    protected javax.swing.JComboBox<String> cmBxWeaponClassSelect;
     protected javax.swing.JLabel lblCharSpritePreview;
+    private javax.swing.JLabel lblWeaponClassSelect;
+    private javax.swing.JLabel lblWeaponClassSelect1;
     protected javax.swing.JLabel lblWeaponSpritePreview;
     protected javax.swing.JList<String> listClassWeapons;
     protected javax.swing.JList<String> listWeapons;
     protected javax.swing.JPanel pnlCharSpritePreview;
     protected javax.swing.JPanel pnlWeaponSpritePreview;
-    protected javax.swing.JRadioButton rdBtnCharClassDefault;
-    protected javax.swing.JRadioButton rdBtnCharClassUser;
-    protected javax.swing.JRadioButton rdBtnWeaponClassDefault;
-    protected javax.swing.JRadioButton rdBtnWeaponClassUser;
     protected javax.swing.JSpinner spnCharCost;
     protected javax.swing.JSpinner spnCharHealth;
     protected javax.swing.JSpinner spnCharHits;
