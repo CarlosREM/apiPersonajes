@@ -5,13 +5,17 @@
  */
 package view;
 import ADT.CharacterPrototypeFactory;
+import ADT.DefaultCharacter;
 import ADT.DefaultCharacterAppearance;
+import ADT.DefaultWeapon;
 import ADT.WeaponPrototypeFactory;
 import Controllers.DefaultPrototypeController;
 import abstraction.ACharacter;
 import abstraction.ACharacter;
+import abstraction.AWeapon;
 import java.awt.event.ActionEvent;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 
 /**
@@ -50,10 +54,14 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         
         screen.cmBxCharClassDefault.setModel(new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray()));
         screen.cmBxWeaponClassDefault.setModel(new DefaultComboBoxModel(WeaponPrototypeFactory.getKeys().toArray()));
+        loadCharClassInfo();   
+        loadWeaponClassInfo();
         
+    }
+    private void loadCharClassInfo (){
         String CharName = screen.cmBxCharClassDefault.getSelectedItem().toString();
         ACharacter character = (ACharacter) CharacterPrototypeFactory.getPrototype(CharName);
-        
+ 
         screen.txtCharClassName.setText(character.getName());
         screen.spnCharHealth.setValue(character.getMaxHealthPoints());
         screen.spnCharHits.setValue(character.getHitsPerUnit());
@@ -65,16 +73,51 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         String strImage = character.getAppearance(1).getLook(DefaultCharacterAppearance.codes.DEFAULT);
         screen.lblCharSpritePreview.setIcon(imgloader.createImageicon(strImage));
         
+        screen.listWeapons.setModel(new DefaultComboBoxModel(WeaponPrototypeFactory.getKeys().toArray()));
+        DefaultListModel<String> strWeapons = new DefaultListModel<>();
+        for (AWeapon weapon:character.getWeapons()){
+            strWeapons.addElement(weapon.getName());
+        }
+        screen.listClassWeapons.setModel(strWeapons);
+       
+    }
+        
+    
+        private void loadWeaponClassInfo (){
+        String CharName = screen.cmBxWeaponClassDefault.getSelectedItem().toString();
+        AWeapon weapon = (AWeapon) WeaponPrototypeFactory.getPrototype(CharName);
+ 
+        screen.txtWeaponClassName.setText(weapon.getName());
+        screen.spnWeaponStartLvl.setValue(weapon.getLevel());
+        screen.spnWeaponUnlockLvl.setValue(weapon.getUnlockLevel());
+        screen.spnWeaponAOE.setValue(weapon.getAreaOfEffect());
+        screen.spnWeaponDmg.setValue(weapon.getDamage());
+        screen.spnWeaponRange.setValue(weapon.getRange());
+        screen.spnWeaponHits.setValue(weapon.getHitPerUnit());       
+        
+        ImageLoader imgloader = new ImageLoader();
+        String strImage = weapon.getAppearance(1).getLook(DefaultCharacterAppearance.codes.DEFAULT);
+        screen.lblWeaponSpritePreview.setIcon(imgloader.createImageicon(strImage));
         
     }
- 
-    
+    public AWeapon captureWeaponClassInput(){
+        DefaultWeapon character = new DefaultWeapon();
+       /* String name = screen.txtWeaponClassName.getText();
+        int level = screen.spnWeaponStartLvl.getValue(),
+            unlockLevel = screen.spnWeaponUnlockLvl.getValue(),
+            aoe = screen.spnWeaponAOE.getValue(),   
+            damage = screen.spnWeaponDmg.getValue(),
+            range = screen.spnWeaponRange.getValue(),   
+            hits = screen.spnWeaponHits.getValue();     
+        return null;*/
+       return null;
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         switch(e.getActionCommand()) {
             case "Load Character Class Info":
-                
+                loadCharClassInfo();
                 break;
             case ">":
                 
@@ -95,7 +138,7 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                 
                 break;
             case "Load Weapon Class Info":
-                
+                loadWeaponClassInfo();
                 break;
             case "Add New Weapon Appareance":
                 

@@ -132,16 +132,16 @@
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="scrollWeapons" min="-2" pref="190" max="-2" attributes="0"/>
                                                           <EmptySpace max="-2" attributes="0"/>
-                                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                          <Group type="103" groupAlignment="0" attributes="0">
+                                                              <Component id="btnAddWeapon" max="32767" attributes="0"/>
                                                               <Component id="btnDelWeapon" max="32767" attributes="0"/>
-                                                              <Component id="btnAddWeapon" min="-2" pref="38" max="-2" attributes="0"/>
                                                           </Group>
                                                           <EmptySpace max="-2" attributes="0"/>
                                                           <Component id="scrollClassWeapons" min="-2" pref="190" max="-2" attributes="0"/>
                                                       </Group>
                                                       <Group type="102" alignment="0" attributes="0">
                                                           <Component id="chkBxCharStartLvl" min="-2" pref="160" max="-2" attributes="0"/>
-                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                                           <Component id="spnCharStartLvl" min="-2" pref="90" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
                                                       </Group>
@@ -322,9 +322,6 @@
                   </Layout>
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="lblCharSpritePreview">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="jLabel1"/>
-                      </Properties>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                       </AuxValues>
@@ -696,6 +693,9 @@
                     <Property name="text" type="java.lang.String" value="&gt;"/>
                     <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddWeaponActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
@@ -836,9 +836,9 @@
                                           </Group>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="chkBxWeaponAOE" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="chkBxWeaponRange" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="chkBxWeaponUnlockLvl" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="chkBxWeaponAOE" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                              <Component id="chkBxWeaponRange" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
+                                              <Component id="chkBxWeaponUnlockLvl" alignment="0" min="-2" pref="153" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -846,29 +846,24 @@
                                               <Component id="spnWeaponAOE" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                               <Component id="spnWeaponUnlockLvl" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="rdBtnWeaponClassDefault" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="rdBtnWeaponClassUser" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                      <Component id="cmBxWeaponClassDefault" alignment="0" max="32767" attributes="0"/>
-                                                      <Component id="cmBxWeaponClassUser" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
-                                                  </Group>
-                                              </Group>
-                                              <Component id="btnLoadWeaponClass" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
-                                              <Component id="lblCharacterClass1" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblWeaponAttributes" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jSeparator4" alignment="0" min="-2" pref="546" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="rdBtnWeaponClassDefault" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="rdBtnWeaponClassUser" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="cmBxWeaponClassDefault" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="cmBxWeaponClassUser" alignment="0" min="-2" pref="140" max="-2" attributes="0"/>
+                                          </Group>
                                       </Group>
+                                      <Component id="btnLoadWeaponClass" alignment="0" min="-2" pref="267" max="-2" attributes="0"/>
+                                      <Component id="lblCharacterClass1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblWeaponAttributes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jSeparator4" alignment="0" min="-2" pref="546" max="-2" attributes="0"/>
                                   </Group>
+                                  <EmptySpace max="32767" attributes="0"/>
                                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -877,13 +872,13 @@
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="cmBxWeaponAppearance" min="-2" pref="120" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="pnlWeaponSpritePreview" pref="251" max="32767" attributes="0"/>
+                                      <Component id="pnlWeaponSpritePreview" pref="267" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Component id="btnAddWeaponAppearance" alignment="0" max="32767" attributes="0"/>
                                               <Component id="btnDelWeaponAppearance" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                          <EmptySpace min="0" pref="17" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblWeaponAppareanceLvl" min="-2" pref="100" max="-2" attributes="0"/>
@@ -1001,15 +996,29 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblWeaponSpritePreview" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="219" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblWeaponSpritePreview" min="-2" pref="195" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="24" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="lblWeaponSpritePreview">
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
+                      </AuxValues>
+                    </Component>
+                  </SubComponents>
                 </Container>
                 <Component class="javax.swing.JLabel" name="lblWeaponAppearance">
                   <Properties>
