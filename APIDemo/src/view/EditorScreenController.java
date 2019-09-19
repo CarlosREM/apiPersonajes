@@ -6,9 +6,13 @@
 package view;
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacterAppearance;
+import ADT.WeaponPrototypeFactory;
 import Controllers.DefaultPrototypeController;
 import abstraction.ACharacter;
+import java.awt.Color;
+import java.util.List;
 import java.awt.event.ActionEvent;
+import javax.swing.DefaultComboBoxModel;
 
 /**
  *
@@ -22,9 +26,11 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         screen = new EditorScreen();
         
         setupActionListeners();
-        
+        loadComboboxItems();
+        screen.setBackground(Color.BLACK);
+   
         screen.setVisible(true);
-    }
+         }
 
     private void setupActionListeners() {
         screen.btnLoadCharClass.addActionListener(this);
@@ -38,6 +44,13 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         screen.btnSaveCharClass.addActionListener(this);
         screen.btnCreateCharObject.addActionListener(this);
         screen.btnSaveWeapon.addActionListener(this);
+    }
+    
+    private void loadComboboxItems() {
+        
+        screen.cmBxCharClassDefault.setModel(new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray()));
+        screen.cmBxWeaponClassDefault.setModel(new DefaultComboBoxModel(WeaponPrototypeFactory.getKeys().toArray()));
+        
     }
     
     @Override

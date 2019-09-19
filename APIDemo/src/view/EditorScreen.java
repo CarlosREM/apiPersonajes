@@ -68,11 +68,11 @@ public class EditorScreen extends javax.swing.JFrame {
         javax.swing.JLabel lblClassWeapons = new javax.swing.JLabel();
         WeaponsTab = new javax.swing.JPanel();
         pnlWeaponSpritePreview = new javax.swing.JPanel();
-        javax.swing.JLabel lblCharAppearance1 = new javax.swing.JLabel();
-        cmBxCharAppearance1 = new javax.swing.JComboBox<>();
+        javax.swing.JLabel lblWeaponAppearance = new javax.swing.JLabel();
+        cmBxWeaponAppearance = new javax.swing.JComboBox<>();
         javax.swing.JSeparator jSeparator3 = new javax.swing.JSeparator();
-        javax.swing.JLabel lblCharAppareanceLvl1 = new javax.swing.JLabel();
-        cmBxCharAppearanceLvl1 = new javax.swing.JComboBox<>();
+        javax.swing.JLabel lblWeaponAppareanceLvl = new javax.swing.JLabel();
+        cmBxWeaponAppearanceLvl = new javax.swing.JComboBox<>();
         btnAddWeaponAppearance = new javax.swing.JButton();
         btnDelWeaponAppearance = new javax.swing.JButton();
         javax.swing.JLabel lblCharacterClass1 = new javax.swing.JLabel();
@@ -456,19 +456,19 @@ public class EditorScreen extends javax.swing.JFrame {
             .addGap(0, 219, Short.MAX_VALUE)
         );
 
-        lblCharAppearance1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblCharAppearance1.setText("Appearance:");
+        lblWeaponAppearance.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponAppearance.setText("Appearance:");
 
-        cmBxCharAppearance1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmBxWeaponAppearance.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jSeparator3.setForeground(new java.awt.Color(187, 187, 187));
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setPreferredSize(new java.awt.Dimension(10, 50));
 
-        lblCharAppareanceLvl1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        lblCharAppareanceLvl1.setText("Level:");
+        lblWeaponAppareanceLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponAppareanceLvl.setText("Level:");
 
-        cmBxCharAppearanceLvl1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmBxWeaponAppearanceLvl.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnAddWeaponAppearance.setText("Add New Weapon Appearance");
 
@@ -628,9 +628,9 @@ public class EditorScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WeaponsTabLayout.createSequentialGroup()
-                                .addComponent(lblCharAppearance1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblWeaponAppearance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(30, 30, 30)
-                                .addComponent(cmBxCharAppearance1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cmBxWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(pnlWeaponSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                             .addGroup(WeaponsTabLayout.createSequentialGroup()
                                 .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -638,9 +638,9 @@ public class EditorScreen extends javax.swing.JFrame {
                                     .addComponent(btnDelWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 1, Short.MAX_VALUE))
                             .addGroup(WeaponsTabLayout.createSequentialGroup()
-                                .addComponent(lblCharAppareanceLvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblWeaponAppareanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(cmBxCharAppearanceLvl1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cmBxWeaponAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, WeaponsTabLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnSaveWeapon)))
@@ -693,12 +693,12 @@ public class EditorScreen extends javax.swing.JFrame {
                         .addComponent(pnlWeaponSpritePreview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmBxCharAppearance1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCharAppearance1))
+                            .addComponent(cmBxWeaponAppearance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWeaponAppearance))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(WeaponsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cmBxCharAppearanceLvl1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCharAppareanceLvl1))
+                            .addComponent(cmBxWeaponAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWeaponAppareanceLvl))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAddWeaponAppearance)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -812,40 +812,6 @@ public class EditorScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCreateCharObjectActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditorScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditorScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditorScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditorScreen.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new EditorScreen().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel CharactersTab;
@@ -877,11 +843,11 @@ public class EditorScreen extends javax.swing.JFrame {
     protected javax.swing.JCheckBox chkBxWeaponStartLvl;
     protected javax.swing.JCheckBox chkBxWeaponUnlockLvl;
     protected javax.swing.JComboBox<String> cmBxCharAppearance;
-    protected javax.swing.JComboBox<String> cmBxCharAppearance1;
     protected javax.swing.JComboBox<String> cmBxCharAppearanceLvl;
-    protected javax.swing.JComboBox<String> cmBxCharAppearanceLvl1;
     protected javax.swing.JComboBox<String> cmBxCharClassDefault;
     protected javax.swing.JComboBox<String> cmBxCharClassUser;
+    protected javax.swing.JComboBox<String> cmBxWeaponAppearance;
+    protected javax.swing.JComboBox<String> cmBxWeaponAppearanceLvl;
     protected javax.swing.JComboBox<String> cmBxWeaponClassDefault;
     protected javax.swing.JComboBox<String> cmBxWeaponClassUser;
     protected javax.swing.JList<String> listClassWeapons;

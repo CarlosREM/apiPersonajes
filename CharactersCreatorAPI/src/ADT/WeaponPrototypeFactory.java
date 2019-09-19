@@ -27,27 +27,15 @@ public class WeaponPrototypeFactory {
         prototypes.put(prototypeName,prototype);
     }
     
-    public void loadDefaultPrototype(){
-        JsonLoader loader = new JsonLoader();
-        List<AWeapon> defaultWeapons = loader.loadDefaultWeapons();
-        defaultWeapons.forEach((weapon) -> {
-            addPrototype(weapon.getName(), weapon);
-        });
-    }
     
-    public void loadCustomPrototype(String strFile){
-        JsonLoader loader = new JsonLoader();
-        List<AWeapon> customWeapons = loader.loadCustomWeapon(strFile);
-        for(AWeapon weapon : customWeapons){
-            addPrototype(weapon.getName(), weapon);
-        }
-    }
-    
-    public List<IPrototype> getPrototypes(int quantity, String prototypeName){
+    public static List<IPrototype> getPrototypes(int quantity, String prototypeName){
         List<IPrototype> prototypesList = new ArrayList<>();
         for(int i=0; i<quantity; i++){
-            prototypesList.add(getPrototype(prototypeName));
+            prototypesList.add(getPrototype(prototypeName).deepClone());
         }
         return prototypesList;
+    }
+    public static List<String> getKeys(){
+        return new ArrayList( prototypes.keySet());
     }
 }

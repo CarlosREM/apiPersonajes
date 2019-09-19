@@ -41,8 +41,4 @@ public class DefaultPrototypeController {
             WeaponPrototypeFactory.addPrototype(w.getName(), w);
         }   
     } 
-    public static void main(String[] args){
-        loadDefaultPrototypes();
-    }
-    
 }

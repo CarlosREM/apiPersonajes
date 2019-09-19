@@ -27,27 +27,16 @@ public class CharacterPrototypeFactory {
         prototypes.put(prototypeName,prototype);
     }
     
-    public void loadDefaultPrototype(){
-        JsonLoader loader = new JsonLoader();
-        List<ACharacter> defaultCharacters = loader.loadDefaultCharacters();
-        defaultCharacters.forEach((character) -> {
-            addPrototype(character.getName(), character);
-        });
-    }
     
-    public void loadCustomPrototype(String strFile){
-        JsonLoader loader = new JsonLoader();
-        List<ACharacter> customCharacters = loader.loadCustomCharacters(strFile);
-        for(ACharacter character : customCharacters){
-            addPrototype(character.getName(), character);
-        }
-    }
     
-    public List<IPrototype> getPrototypes(int quantity, String prototypeName){
+    public static List<IPrototype> getPrototypes(int quantity, String prototypeName){
         List<IPrototype> prototypesList = new ArrayList<>();
         for(int i=0; i<quantity; i++){
-            prototypesList.add(getPrototype(prototypeName));
+            prototypesList.add(getPrototype(prototypeName).deepClone());
         }
         return prototypesList;
+    }
+    public static List<String> getKeys(){
+        return new ArrayList( prototypes.keySet());
     }
 }
