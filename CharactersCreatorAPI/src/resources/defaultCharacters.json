@@ -79,8 +79,8 @@
   "hitsPerUnit" : 5,
   "level" : 1,
   "tiles" : 1,
-  "unlockLevel" : 1,
-  "cost" : 1,
+  "unlockLevel" : 6,
+  "cost" : 25,
   "weapons" : [ {
     "@class" : "ADT.DefaultWeapon",
     "name" : "Melee",
