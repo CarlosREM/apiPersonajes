@@ -4,17 +4,20 @@
  * and open the template in the editor.
  */
 package view;
+import utils.*;
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;
 import ADT.DefaultCharacterAppearance;
 import ADT.DefaultWeapon;
+import ADT.DefaultWeaponAppearance;
 import ADT.WeaponPrototypeFactory;
 import Controllers.DefaultPrototypeController;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
+import abstraction.AAppearance;
 import java.awt.event.ActionEvent;
-import utils.FileFilter;
 import java.util.ArrayList;
+import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -27,16 +30,20 @@ import javax.swing.JOptionPane;
 public class EditorScreenController implements java.awt.event.ActionListener {
     
     private final EditorScreen screen;
+    private final ImageHandler imgHandler;
     
     private DefaultComboBoxModel<String> cmBxModelCharClasses;
     private DefaultComboBoxModel<String> cmBxModelWeaponClasses;
     private DefaultListModel<String> listModelClassWeapons;
     
     private ArrayList<AWeapon> weaponList = new ArrayList<>();
+    private TreeMap<Integer, AAppearance> charSprites = new TreeMap<>();
+    private TreeMap<Integer, AAppearance> weaponSprites = new TreeMap<>();
     
     
     public EditorScreenController() {
         screen = new EditorScreen();
+        imgHandler = new ImageHandler();
         
         setupActionListeners();
         loadItems();
@@ -72,8 +79,20 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         
         //listModelWeapons = (DefaultListModel<String>) screen.listWeapons.getModel();
         
-        listModelClassWeapons = new DefaultListModel();
-        screen.listClassWeapons.setModel(listModelClassWeapons);
+        DefaultComboBoxModel<String> charAppearance = new DefaultComboBoxModel();
+        for (DefaultCharacterAppearance.codes appearance : DefaultCharacterAppearance.codes.values()) {
+            charAppearance.addElement(appearance.name());
+        }
+        screen.cmBxCharAppearance.setModel(charAppearance);
+        screen.cmBxCharAppearanceLvl.setModel(new DefaultComboBoxModel());
+
+        
+        DefaultComboBoxModel<String> weaponAppearance = new DefaultComboBoxModel();
+        for (DefaultWeaponAppearance.codes appearance : DefaultWeaponAppearance.codes.values()) {
+            weaponAppearance.addElement(appearance.name());
+        }
+        screen.cmBxWeaponAppearance.setModel(weaponAppearance);
+        screen.cmBxWeaponAppearanceLvl.setModel(new DefaultComboBoxModel());
     }
     
     private void loadCharClassInfo (){
@@ -81,24 +100,31 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         ACharacter character = (ACharacter) CharacterPrototypeFactory.getPrototype(CharName);
  
         screen.txtCharClassName.setText(character.getName());
-        screen.spnCharHealth.setValue(character.getMaxHealthPoints());
-        screen.spnCharCost.setValue(character.getCost());
-        screen.spnCharHits.setValue(character.getHitsPerUnit());
-        screen.spnCharTiles.setValue(character.getTiles());
-        screen.spnCharStartLvl.setValue(character.getLevel());
-        screen.spnCharUnlockLvl.setValue(character.getUnlockLevel());
+        screen.setCharHealth(character.getMaxHealthPoints());
+        screen.setCharCost(character.getCost());
+        screen.setCharHits(character.getHitsPerUnit());
+        screen.setCharTiles(character.getTiles());
+        screen.setCharStartLvl(character.getLevel());
+        screen.setCharUnlockLvl(character.getUnlockLevel());
         
-        ImageLoader imgloader = new ImageLoader();
+        screen.lblCharSpritePreview.setIcon(null);
+        screen.cmBxCharAppearance.setSelectedIndex(0);
+        screen.cmBxCharAppearanceLvl.setModel(new DefaultComboBoxModel());
         try {
-            String strImage = character.getAppearance(1).getLook(DefaultCharacterAppearance.codes.DEFAULT);
-            screen.lblCharSpritePreview.setIcon(imgloader.createImageicon(strImage,
-                                                screen.lblCharSpritePreview.getWidth(),
-                                                screen.lblCharSpritePreview.getHeight())
-            );
+            boolean loadImg = false;
+            for (int key : character.getAppearances().keySet()) {
+                screen.cmBxCharAppearanceLvl.addItem(String.valueOf(key));
+                if (!loadImg) {
+                    String strImage = character.getAppearance(key).getLook(DefaultCharacterAppearance.codes.DEFAULT);
+                    screen.lblCharSpritePreview.setIcon(imgHandler.createImageicon(strImage,
+                                                        screen.lblCharSpritePreview.getWidth(),
+                                                        screen.lblCharSpritePreview.getHeight())
+                    );
+                    loadImg = true;
+                }
+            }
         }
-        catch(Exception ex) {
-            System.out.println("Sorry esta madre no tiene sprites");
-        }
+        catch(Exception ex) {}
         
         weaponList = new ArrayList();
         listModelClassWeapons = new DefaultListModel<>();
@@ -115,29 +141,41 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         AWeapon weapon = (AWeapon) WeaponPrototypeFactory.getPrototype(CharName);
  
         screen.txtWeaponClassName.setText(weapon.getName());
-        screen.spnWeaponDmg.setValue(weapon.getDamage());
-        screen.spnWeaponRange.setValue(weapon.getRange());
-        screen.spnWeaponHits.setValue(weapon.getHitPerUnit());       
-        screen.spnWeaponAOE.setValue(weapon.getAreaOfEffect());
-        screen.spnWeaponStartLvl.setValue(weapon.getLevel());
-        screen.spnWeaponUnlockLvl.setValue(weapon.getUnlockLevel());
+        screen.setWeaponDmg(weapon.getDamage());
+        screen.setWeaponRange(weapon.getRange());
+        screen.setWeaponHits(weapon.getHitPerUnit());       
+        screen.setWeaponAOE(weapon.getAreaOfEffect());
+        screen.setWeaponStartLvl(weapon.getLevel());
+        screen.setWeaponUnlockLvl(weapon.getUnlockLevel());
         
-        ImageLoader imgloader = new ImageLoader();
-        String strImage = weapon.getAppearance(1).getLook(DefaultCharacterAppearance.codes.DEFAULT);
-        screen.lblWeaponSpritePreview.setIcon(imgloader.createImageicon(strImage,
-                                            screen.lblCharSpritePreview.getWidth(),
-                                            screen.lblCharSpritePreview.getHeight())
-        );
+        screen.lblWeaponSpritePreview.setIcon(null);
+        screen.cmBxWeaponAppearance.setSelectedIndex(0);
+        screen.cmBxWeaponAppearanceLvl.setModel(new DefaultComboBoxModel());
+        try {
+            boolean loadImg = false;
+            for (int key : weapon.getAppearances().keySet()) {
+                screen.cmBxWeaponAppearanceLvl.addItem(String.valueOf(key));
+                if (!loadImg) {
+                    String strImage = weapon.getAppearance(key).getLook(DefaultWeaponAppearance.codes.DEFAULT);
+                    screen.lblWeaponSpritePreview.setIcon(imgHandler.createImageicon(strImage,
+                                                        screen.lblWeaponSpritePreview.getWidth(),
+                                                        screen.lblWeaponSpritePreview.getHeight())
+                    );
+                    loadImg = true;
+                }
+            }
+        }
+        catch(Exception ex) {}
     }
         
     public ACharacter captureCharClassInput(){
         String name = screen.txtCharClassName.getText();
-        int health =        (Integer) screen.spnCharHealth.getValue(),   
-            cost =          (Integer) screen.spnCharCost.getValue(),
-            hits =          (Integer) screen.spnCharHits.getValue(), 
-            tiles =         (Integer) screen.spnCharTiles.getValue(),   
-            level =         (Integer) screen.spnCharStartLvl.getValue(),
-            unlockLevel =   (Integer) screen.spnCharUnlockLvl.getValue();
+        int health = screen.getCharHealth(),   
+            cost = screen.getCharCost(),
+            hits = screen.getCharHits(), 
+            tiles = screen.getCharTiles(),   
+            level = screen.getCharStartLvl(),
+            unlockLevel = screen.getCharUnlockLvl();
             
        return new DefaultCharacter.DefaultCharacterBuilder()
                .setName(name)
@@ -148,6 +186,7 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                .setLevel(level)
                .setUnlockLevel(unlockLevel)
                .setWeapons(weaponList)
+               .setAppearances(charSprites)
                .build();
     }
         
@@ -167,14 +206,16 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                 .setAreaOfEffect(aoe)
                 .setLevel(level)
                 .setUnlockLevel(unlockLevel)
+                .setAppearances(weaponSprites)
                 .build();
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        int selectedOption;
+        int selectedOption,
+            selectedIndex;
+        String path;
         AWeapon newWeapon;
-        ACharacter newCharacter;
         switch(e.getActionCommand()) {
             case "Load Character Class Info":
                 selectedOption =
@@ -186,7 +227,16 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                 break;
                 
             case "Import JSON Character Data":
-                loadJSONFile();
+                path = loadJSONFile();
+                if (path != null) {
+                    try {
+                        DefaultPrototypeController.loadCharacterPrototypes(path);
+                    }
+                    catch(Exception ex) {
+                        JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Character info",
+                                                     "Error - JSON File Parse", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
                 break;
                 
             case ">":
@@ -197,32 +247,28 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                 break;
                 
             case "X":
-                int index = screen.listClassWeapons.getSelectedIndex();
-                listModelClassWeapons.remove(index);
-                weaponList.remove(index);
+                selectedIndex = screen.listClassWeapons.getSelectedIndex();
+                listModelClassWeapons.remove(selectedIndex);
+                weaponList.remove(selectedIndex);
                 break;
                 
             case "Add New Character Appearance":
-                System.out.println(e.getActionCommand());
+                new AppearanceDialogController(this, screen, AppearanceDialogController.CHARACTER_MODE);
                 break;
                 
-            case "Delete Selected Character Appearance":
-                System.out.println(e.getActionCommand());
+            case "Delete Character Appearance":
+                deleteCharAppearance();
                 break;
                 
             case "Export JSON Character Data":
                 System.out.println(e.getActionCommand());
+                                
+                JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
+                                              "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
                 break;
                 
             case "Save Character Class":
-                newCharacter = captureCharClassInput();
-                try {
-                    CharacterPrototypeFactory.getPrototype(newCharacter.getName());
-                }
-                catch(Exception ex) {
-                    cmBxModelCharClasses.addElement(newCharacter.getName());
-                }
-                CharacterPrototypeFactory.addPrototype(newCharacter.getName(), newCharacter);
+                SaveCharClass();
                 break;
                 
             case "Create Character Object":
@@ -239,37 +285,42 @@ public class EditorScreenController implements java.awt.event.ActionListener {
                 break;
                 
             case "Import JSON Weapon Data":
-                loadJSONFile();
+                path = loadJSONFile();
+                if (path != null) {
+                    try {
+                        DefaultPrototypeController.loadWeaponPrototypes(path);
+                    }
+                    catch(Exception ex) {
+                        JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Weapon info",
+                                                     "Error - JSON File Parse", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
                 break;
                 
             case "Add New Weapon Appearance":
-                System.out.println(e.getActionCommand());
+                new AppearanceDialogController(this, screen, AppearanceDialogController.WEAPON_MODE);
                 break;
                 
-            case "Delete Selected Weapon Appearance":
-                System.out.println(e.getActionCommand());
+            case "Delete Weapon Appearance":
+                deleteWeaponAppearance();
                 break;
                 
             case "Export JSON Weapon Data":
                 System.out.println(e.getActionCommand());
+                
+                JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
+                                              "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
                 break;
                 
             case "Save Weapon Class":
-                newWeapon = captureWeaponClassInput();
-                try {
-                    WeaponPrototypeFactory.getPrototype(newWeapon.getName());
-                }
-                catch(Exception ex) {
-                    cmBxModelWeaponClasses.addElement(newWeapon.getName());
-                }
-                WeaponPrototypeFactory.addPrototype(newWeapon.getName(), newWeapon);
+                SaveWeaponClass();
                 break;
         }
     }
     
     private String loadJSONFile() {
         int result =
-                JOptionPane.showOptionDialog(screen, "Current classes will be overwritten. Proceed?",
+                JOptionPane.showOptionDialog(screen, "Current classes may be overwritten. Proceed?",
                                              "Load JSON File", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
                                              null, null, null);
         if (result == JOptionPane.NO_OPTION)
@@ -280,8 +331,108 @@ public class EditorScreenController implements java.awt.event.ActionListener {
         result = fileChooser.showOpenDialog(screen);
         if (result == JFileChooser.APPROVE_OPTION) {
             System.out.println("File directory: "+fileChooser.getSelectedFile().getAbsolutePath());
-            return "";
+            return fileChooser.getSelectedFile().getAbsolutePath();
         }
         return null;
+    }
+    
+    private void SaveCharClass() {
+        ACharacter newChar = captureCharClassInput();
+        try {
+            CharacterPrototypeFactory.getPrototype(newChar.getName());
+            int selectedOption = JOptionPane.showOptionDialog(screen, "Char class already exists. Overwrite?",
+            "Save CharClass", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
+            if (selectedOption == JOptionPane.NO_OPTION)
+                return;
+            }
+        catch(Exception ex) {
+            cmBxModelCharClasses.addElement(newChar.getName());
+        }
+        CharacterPrototypeFactory.addPrototype(newChar.getName(), newChar);
+    }
+    
+    private void SaveWeaponClass() {
+        AWeapon newWeapon = captureWeaponClassInput();
+        try {
+            WeaponPrototypeFactory.getPrototype(newWeapon.getName());
+            int selectedOption = JOptionPane.showOptionDialog(screen, "Weapon class already exists. Overwrite?",
+            "Save WeaponClass", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE, null, null, null);
+            if (selectedOption == JOptionPane.NO_OPTION)
+                return;
+            }
+        catch(Exception ex) {
+            cmBxModelWeaponClasses.addElement(newWeapon.getName());
+        }
+        WeaponPrototypeFactory.addPrototype(newWeapon.getName(), newWeapon);
+    }
+    
+    public boolean checkCharAppearance(int level) {
+        return charSprites.containsKey(level);
+    }
+    
+    public boolean checkWeaponAppearance(int level) {
+        return weaponSprites.containsKey(level);
+    }
+    
+    public void addCharAppearance(int level, AAppearance newAppearance) {
+        if (!charSprites.containsKey(level))
+            screen.cmBxCharAppearanceLvl.addItem(String.valueOf(level));
+        charSprites.put(level, newAppearance);
+    }
+    
+    public void addWeaponAppearance(int level, AAppearance newAppearance) {
+        if (!weaponSprites.containsKey(level))
+            screen.cmBxWeaponAppearanceLvl.addItem(String.valueOf(level));
+        weaponSprites.put(level, newAppearance);
+    }
+    
+    private void loadCharAppearance() {
+        
+    }
+    
+    private void loadWeaponAppearance() {
+        
+    }
+    
+    private void deleteCharAppearance() {      
+        if (screen.cmBxCharAppearanceLvl.getSelectedIndex() < 0) {
+            JOptionPane.showMessageDialog(screen, "No appearance selected.", "Delete Character Appearance", JOptionPane.ERROR_MESSAGE); ;
+            return;
+        }
+        
+        int selectedOption =
+                JOptionPane.showOptionDialog(screen, "The selected level and every Appearance associated will be deleted. Proceed?",
+                                                     "Delete Character Appearance", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+                                                     null, null, null);
+        if (selectedOption == JOptionPane.YES_OPTION) {
+            int selectedIndex = screen.cmBxCharAppearanceLvl.getSelectedIndex();
+            selectedOption = Integer.parseInt((String) screen.cmBxCharAppearanceLvl.getSelectedItem());
+            screen.cmBxCharAppearanceLvl.removeItemAt(selectedIndex);
+            charSprites.remove(selectedOption);
+                   
+            screen.cmBxCharAppearanceLvl.setSelectedIndex(-1);
+            screen.lblCharSpritePreview.setIcon(null);
+        }
+    }
+    
+    private void deleteWeaponAppearance() {
+        if (screen.cmBxWeaponAppearanceLvl.getSelectedIndex() < 0) {
+            JOptionPane.showMessageDialog(screen, "No appearance selected.", "Delete Weapon Appearance", JOptionPane.ERROR_MESSAGE); ;
+            return;
+        }
+                
+        int selectedOption =
+                JOptionPane.showOptionDialog(screen, "The selected level and every Appearance associated will be deleted. Proceed?",
+                                                     "Delete Weapon Appearance", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+                                                     null, null, null);
+        if (selectedOption == JOptionPane.YES_OPTION) {
+            int selectedIndex = screen.cmBxWeaponAppearanceLvl.getSelectedIndex();
+            selectedOption = Integer.parseInt((String) screen.cmBxWeaponAppearanceLvl.getSelectedItem());
+            screen.cmBxWeaponAppearanceLvl.removeItemAt(selectedIndex);
+            charSprites.remove(selectedOption);
+                    
+            screen.cmBxWeaponAppearanceLvl.setSelectedIndex(-1);
+            screen.lblWeaponSpritePreview.setIcon(null);
+        }
     }
 }

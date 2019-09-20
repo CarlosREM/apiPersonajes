@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package APIDemo;
 
 import Controllers.DefaultPrototypeController;
+import view.EditorScreenController;
 
 /**
- *
+ * @author Carlos Esquivel
  * @author Marco Gamboa
  */
 public class Main {

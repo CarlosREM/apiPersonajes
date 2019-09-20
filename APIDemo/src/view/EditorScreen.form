@@ -3,7 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Character Creation API"/>
+    <Property name="title" type="java.lang.String" value="Character Creation API Demo"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
@@ -162,17 +162,22 @@
                                       </Group>
                                   </Group>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="pnlCharSpritePreview" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="lblCharAppearance" max="32767" attributes="0"/>
-                                              <Component id="lblCharAppareanceLvl" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="cmBxCharAppearance" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                                              <Component id="cmBxCharAppearanceLvl" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="lblCharAppareanceLvl" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <Component id="lblCharAppearance" min="-2" pref="100" max="-2" attributes="0"/>
+                                                  <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="cmBxCharAppearanceLvl" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="cmBxCharAppearance" min="-2" pref="120" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Component id="btnAddCharAppearance" min="-2" pref="251" max="-2" attributes="0"/>
@@ -194,15 +199,15 @@
                                       <Component id="jSeparator2" alignment="0" max="32767" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="pnlCharSpritePreview" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="cmBxCharAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="lblCharAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
                                               <Component id="cmBxCharAppearanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="lblCharAppareanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="cmBxCharAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="lblCharAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="btnAddCharAppearance" min="-2" max="-2" attributes="0"/>
@@ -323,12 +328,7 @@
                 <Component class="javax.swing.JComboBox" name="cmBxCharAppearance">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -339,12 +339,7 @@
                 <Component class="javax.swing.JComboBox" name="cmBxCharAppearanceLvl">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -650,7 +645,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnDelCharAppearance">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Delete Selected Character Appearance"/>
+                    <Property name="text" type="java.lang.String" value="Delete Character Appearance"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
@@ -778,6 +773,12 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="btnWeaponExportJson" min="-2" pref="202" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnSaveWeapon" min="-2" pref="158" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -833,34 +834,27 @@
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="pnlWeaponSpritePreview" alignment="0" pref="263" max="32767" attributes="0"/>
+                                      <Component id="pnlWeaponSpritePreview" alignment="0" max="32767" attributes="0"/>
                                       <Component id="btnAddWeaponAppearance" alignment="1" max="32767" attributes="0"/>
                                       <Component id="btnDelWeaponAppearance" alignment="1" max="32767" attributes="0"/>
-                                      <Group type="102" alignment="1" attributes="0">
-                                          <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="lblWeaponAppearance" max="32767" attributes="0"/>
                                               <Group type="102" attributes="0">
                                                   <Component id="lblWeaponAppareanceLvl" min="-2" pref="100" max="-2" attributes="0"/>
                                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
-                                              <Component id="lblWeaponAppearance" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="cmBxWeaponAppearanceLvl" min="-2" pref="120" max="-2" attributes="0"/>
-                                              <Component id="cmBxWeaponAppearance" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="cmBxWeaponAppearance" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                                              <Component id="cmBxWeaponAppearanceLvl" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="btnWeaponExportJson" min="-2" pref="202" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="btnSaveWeapon" min="-2" pref="158" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -918,13 +912,13 @@
                                   <Component id="pnlWeaponSpritePreview" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cmBxWeaponAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblWeaponAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmBxWeaponAppearanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblWeaponAppareanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="cmBxWeaponAppearanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblWeaponAppareanceLvl" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cmBxWeaponAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblWeaponAppearance" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnAddWeaponAppearance" min="-2" max="-2" attributes="0"/>
@@ -993,12 +987,7 @@
                 <Component class="javax.swing.JComboBox" name="cmBxWeaponAppearance">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -1036,12 +1025,7 @@
                 <Component class="javax.swing.JComboBox" name="cmBxWeaponAppearanceLvl">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -1059,7 +1043,7 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="btnDelWeaponAppearance">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Delete Selected Weapon Appearance"/>
+                    <Property name="text" type="java.lang.String" value="Delete Weapon Appearance"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>

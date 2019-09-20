@@ -3,26 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package utils;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
- *
+ * @author Carlos Esquivel
  * @author Marco Gamboa
  */
-public class ImageLoader {
+public class ImageHandler {
    public ImageIcon createImageicon(String path, int width, int height){
         File f = new File(path);
         try {
@@ -41,7 +38,7 @@ public class ImageLoader {
             return new ImageIcon(dimg);
         }
         catch (IOException ex) {
-            Logger.getLogger(ImageLoader.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ImageHandler.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
