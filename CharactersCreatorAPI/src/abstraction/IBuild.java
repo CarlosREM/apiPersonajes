@@ -1,14 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package abstraction;
 
 /**
- *
+ * Interface used to implements the builder methods.
+ * @author Fabricio Ceciliano
+ * @author Carlos Esquivel
  * @author Marco Gamboa
+ * @author Diego Murillo
+ * @param <T> The object type will be created.
  */
 public interface IBuild<T> {
+    /**
+     * Method to make the build of the object
+     * @return An object of the specific implementation of the interface
+     */
     public T build();
 }

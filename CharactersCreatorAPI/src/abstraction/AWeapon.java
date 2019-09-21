@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package abstraction;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -169,6 +164,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
      * Gets the appearance of a specific weapon level.
      * @param level The level of which you want to get the appearance.
      * @return An AAppearance of the specified weapon level
+     * @see AAppearance
      */
     @Override
     public AAppearance getAppearance(int level) {
@@ -176,7 +172,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
     }
     
     /**
-     *  Sets the specific appearance in the specified level.
+     * Sets the specific appearance in the specified level.
      * @param level The level to link the appearance.
      * @param appearance The new weapon's appearance.
      */

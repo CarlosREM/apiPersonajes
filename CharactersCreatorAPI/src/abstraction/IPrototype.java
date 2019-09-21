@@ -1,16 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package abstraction;
 
 /**
- *
+ * Interface used to implements the prototyping of different objects
  * @author Fabricio Ceciliano
- * @param <T>
+ * @author Carlos Esquivel
+ * @author Marco Gamboa
+ * @author Diego Murillo
+ * @param <T> The type of object you want to prototype.
  */
 public interface IPrototype<T extends IPrototype> extends Cloneable {
    
+    /**
+     * Method to realize a deep clone to the desired object.
+     * @return The new cloned object.
+     */
     public T deepClone();
 }
