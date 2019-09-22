@@ -54,6 +54,8 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
         lblLevel.setText("Level:");
 
+        spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         btnCancel.setText("Cancel");
 
         btnOk.setText("OK");

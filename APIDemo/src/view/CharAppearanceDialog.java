@@ -95,6 +95,8 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
 
         lblLevel.setText("Level:");
 
+        spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(

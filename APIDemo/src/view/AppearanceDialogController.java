@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import utils.FileFilter;
 
@@ -21,32 +20,30 @@ public class AppearanceDialogController implements ActionListener {
     public static final int CHARACTER_MODE = 1;
     public static final int WEAPON_MODE = 2;
     
-    private EditorScreenController controllerParent;
+    private CharactersController characterController;
+    private WeaponsController weaponController;
+    
     private int selectedMode;
     private int selectedLvl;
     private List<String> imgPaths;
    
     private JDialog screen;
     
-    public AppearanceDialogController(EditorScreenController controllerParent, JFrame parent, int mode) {
-        this.controllerParent = controllerParent;
-        selectedMode = mode;
-        switch (mode) {
-            case CHARACTER_MODE:
-                screen = new CharAppearanceDialog(parent);
-                break;
-            case WEAPON_MODE:
-                screen = new WeaponAppearanceDialog(parent);
-                break;
-            default:
-                throw new IllegalArgumentException("Invalid Dialog mode");
-        }
-        setupActionListeners();
+    public AppearanceDialogController(CharactersController characterController, int mode) {
+        this.characterController = characterController;
+        screen = new CharAppearanceDialog(null);
+        setupActionListeners(mode);
         screen.setVisible(true);
     }
-
-    private void setupActionListeners() {
-        if (selectedMode == WEAPON_MODE) {
+    
+    public AppearanceDialogController(WeaponsController weaponController, int mode) {
+        this.weaponController = weaponController;
+        screen = new WeaponAppearanceDialog(null);
+        setupActionListeners(mode);
+        screen.setVisible(true);
+    }
+    private void setupActionListeners(int mode) {
+        if (mode == WEAPON_MODE) {
             WeaponAppearanceDialog dialog = (WeaponAppearanceDialog) this.screen;
             dialog.btnDefault.addActionListener(this);
             dialog.btnCancel.addActionListener(this);
@@ -78,11 +75,15 @@ public class AppearanceDialogController implements ActionListener {
                 
                 if (selectedMode == CHARACTER_MODE) {
                     getPaths_Char();
-                    controllerParent.addCharAppearance(selectedLvl, new DefaultCharacterAppearance(imgPaths));
+                    if (imgPaths == null)
+                        break;
+                    characterController.addCharAppearance(selectedLvl, new DefaultCharacterAppearance(imgPaths));
                 }
                 else { 
                     getPaths_Weapon();
-                    controllerParent.addWeaponAppearance(selectedLvl, new DefaultWeaponAppearance(imgPaths));
+                    if (imgPaths == null)
+                        break;
+                    weaponController.addWeaponAppearance(selectedLvl, new DefaultWeaponAppearance(imgPaths));
                 }
                 screen.dispose();
                 break;
@@ -140,9 +141,9 @@ public class AppearanceDialogController implements ActionListener {
         boolean check;
 
         if (selectedMode == CHARACTER_MODE)
-            check = controllerParent.checkCharAppearance(selectedLvl);
+            check = characterController.checkCharAppearance(selectedLvl);
         else
-            check = controllerParent.checkWeaponAppearance(selectedLvl);
+            check = weaponController.checkWeaponAppearance(selectedLvl);
         
         boolean confirmation = true;
         if (check) {
@@ -173,6 +174,12 @@ public class AppearanceDialogController implements ActionListener {
         imgPaths.add(dialog.lblWalkPath.getText());
         imgPaths.add(dialog.lblLowHealthPath.getText());
         imgPaths.add(dialog.lblHurtPath.getText());
+        
+        if (imgPaths.contains("Not Selected")) {
+            JOptionPane.showMessageDialog(screen, "Every appearance type must have an image path.",
+                                          "Add New Appearance", JOptionPane.WARNING_MESSAGE);
+            imgPaths = null;
+        }
     }
     
     private void getPaths_Weapon() {
@@ -182,5 +189,11 @@ public class AppearanceDialogController implements ActionListener {
         
         imgPaths = new ArrayList<>();
         imgPaths.add(dialog.lblDefaultPath.getText());
+        
+        if (imgPaths.contains("Not Selected")) {
+            JOptionPane.showMessageDialog(screen, "Every appearance type must have an image path.",
+                                          "Add New Appearance", JOptionPane.WARNING_MESSAGE);
+            imgPaths = null;
+        }
     }
 }

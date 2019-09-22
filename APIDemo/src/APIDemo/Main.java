@@ -6,7 +6,9 @@
 package APIDemo;
 
 import Controllers.DefaultPrototypeController;
-import view.EditorScreenController;
+import view.EditorScreen;
+import view.CharactersController;
+import view.WeaponsController;
 
 /**
  * @author Carlos Esquivel
@@ -15,6 +17,11 @@ import view.EditorScreenController;
 public class Main {
     public static void main(String[] args){
         DefaultPrototypeController.loadDefaultPrototypes();
-        new EditorScreenController(); 
+        EditorScreen screen = new EditorScreen();
+        CharactersController charController = new CharactersController(screen.getCharactersTab());
+        WeaponsController weaponController = new WeaponsController(screen.getWeaponsTab());
+        charController.setWeaponList(weaponController.getWeaponClassesModel());
+        screen.setVisible(true);
+
     } 
 }
