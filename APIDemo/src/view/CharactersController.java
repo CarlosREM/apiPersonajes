@@ -11,6 +11,8 @@ import abstraction.AWeapon;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
@@ -67,13 +69,30 @@ public class CharactersController implements ActionListener {
         listModelClassWeapons = new DefaultListModel<>();
         screen.listClassWeapons.setModel(listModelClassWeapons);
         
+        screen.cmBxCharAppearanceLvl.setModel(new DefaultComboBoxModel());
+        screen.cmBxCharAppearanceLvl.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    screen.cmBxCharAppearance.setSelectedIndex(0);
+                    loadCharAppearance();
+                }
+           }
+        });
+        
         DefaultComboBoxModel<String> charAppearance = new DefaultComboBoxModel();
         for (DefaultCharacterAppearance.codes appearance : DefaultCharacterAppearance.codes.values()) {
             charAppearance.addElement(appearance.name());
         }
         screen.cmBxCharAppearance.setModel(charAppearance);
-        screen.cmBxCharAppearanceLvl.setModel(new DefaultComboBoxModel());
-
+        screen.cmBxCharAppearance.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    loadCharAppearance();
+                }
+            }
+        });
     }
 
     private void loadCharClassInfo (){
@@ -90,22 +109,22 @@ public class CharactersController implements ActionListener {
         
         screen.lblCharSpritePreview.setIcon(null);
         screen.cmBxCharAppearance.setSelectedIndex(0);
+        charSprites = character.getAppearances();
         screen.cmBxCharAppearanceLvl.setModel(new DefaultComboBoxModel());
         try {
             boolean loadImg = false;
             for (int key : character.getAppearances().keySet()) {
                 screen.cmBxCharAppearanceLvl.addItem(String.valueOf(key));
                 if (!loadImg) {
-                    String strImage = character.getAppearance(key).getLook(DefaultCharacterAppearance.codes.DEFAULT);
-                    screen.lblCharSpritePreview.setIcon(imgHandler.createImageicon(strImage,
-                                                        screen.lblCharSpritePreview.getWidth(),
-                                                        screen.lblCharSpritePreview.getHeight())
-                    );
+                    screen.cmBxCharAppearanceLvl.setSelectedIndex(0);
+                    loadCharAppearance();
                     loadImg = true;
                 }
             }
         }
-        catch(Exception ex) {}
+        catch(Exception ex) {
+            screen.lblCharSpritePreview.setText("No sprites found.");
+        }
         
         weaponList = new ArrayList();
         listModelClassWeapons = new DefaultListModel<>();
@@ -182,7 +201,7 @@ public class CharactersController implements ActionListener {
                 break;
                 
             case "Add New Character Appearance":
-                new AppearanceDialogController(this, AppearanceDialogController.CHARACTER_MODE);
+                new AppearanceDialogController(this);
                 break;
                 
             case "Delete Character Appearance":
@@ -254,7 +273,13 @@ public class CharactersController implements ActionListener {
     }
     
     private void loadCharAppearance() {
-        
+        int key = Integer.valueOf((String) screen.cmBxCharAppearanceLvl.getSelectedItem());
+                    String appearanceType = (String) screen.cmBxCharAppearance.getSelectedItem();
+                    String imageURL = charSprites.get(key).getLook(DefaultCharacterAppearance.codes.valueOf(appearanceType));
+                    
+                    screen.lblCharSpritePreview.setIcon(imgHandler.createImageicon(imageURL,
+                                                                                   screen.lblCharSpritePreview.getWidth(),
+                                                                                   screen.lblCharSpritePreview.getHeight()));
     }
     
     private void deleteCharAppearance() {      

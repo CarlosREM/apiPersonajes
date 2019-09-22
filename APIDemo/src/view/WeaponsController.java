@@ -36,8 +36,6 @@ public class WeaponsController implements ActionListener {
         
         setupActionListeners();
         loadItems();
-
-        screen.setVisible(true);
     }
     
     private void setupActionListeners() {
@@ -142,7 +140,7 @@ public class WeaponsController implements ActionListener {
                 break;
                 
             case "Add New Weapon Appearance":
-                new AppearanceDialogController(this, AppearanceDialogController.WEAPON_MODE);
+                new AppearanceDialogController(this);
                 break;
                 
             case "Delete Weapon Appearance":

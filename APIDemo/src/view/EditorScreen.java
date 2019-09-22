@@ -21,9 +21,9 @@ public class EditorScreen extends javax.swing.JFrame {
     
     private void initComponents() {
         setTitle("Editor Screen test");
-	//setResizable(false);
+	setResizable(false);
 	setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 887, 661);
+        setBounds(100, 100, 876, 649);
 	contentPane = new javax.swing.JPanel();
 	contentPane.setBorder(null);
 	contentPane.setLayout(null);

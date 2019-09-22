@@ -21,7 +21,7 @@ public class Main {
         CharactersController charController = new CharactersController(screen.getCharactersTab());
         WeaponsController weaponController = new WeaponsController(screen.getWeaponsTab());
         charController.setWeaponList(weaponController.getWeaponClassesModel());
+        
         screen.setVisible(true);
-
     } 
 }

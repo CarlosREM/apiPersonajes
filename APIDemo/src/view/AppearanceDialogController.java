@@ -29,21 +29,23 @@ public class AppearanceDialogController implements ActionListener {
    
     private JDialog screen;
     
-    public AppearanceDialogController(CharactersController characterController, int mode) {
+    public AppearanceDialogController(CharactersController characterController) {
         this.characterController = characterController;
+        this.selectedMode = CHARACTER_MODE;
         screen = new CharAppearanceDialog(null);
-        setupActionListeners(mode);
+        setupActionListeners();
         screen.setVisible(true);
     }
     
-    public AppearanceDialogController(WeaponsController weaponController, int mode) {
+    public AppearanceDialogController(WeaponsController weaponController) {
         this.weaponController = weaponController;
+        this.selectedMode = WEAPON_MODE;
         screen = new WeaponAppearanceDialog(null);
-        setupActionListeners(mode);
+        setupActionListeners();
         screen.setVisible(true);
     }
-    private void setupActionListeners(int mode) {
-        if (mode == WEAPON_MODE) {
+    private void setupActionListeners() {
+        if (selectedMode == WEAPON_MODE) {
             WeaponAppearanceDialog dialog = (WeaponAppearanceDialog) this.screen;
             dialog.btnDefault.addActionListener(this);
             dialog.btnCancel.addActionListener(this);

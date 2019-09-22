@@ -41,6 +41,7 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Weapon Character - Character Creation API Demo");
+        setResizable(false);
 
         lblInstruction1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         lblInstruction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
