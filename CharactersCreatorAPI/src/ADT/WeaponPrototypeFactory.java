@@ -26,7 +26,7 @@ public class WeaponPrototypeFactory {
     
     /**
      * Static method to insert a prototype into the HashMap.
-     * @param prototypeNameThe name of the new prototype.
+     * @param prototypeName The name of the new prototype.
      * @param prototype The new prototype.
      */
     public static void addPrototype(String prototypeName, IPrototype prototype){

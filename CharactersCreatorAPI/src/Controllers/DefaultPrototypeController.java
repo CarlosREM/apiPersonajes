@@ -16,7 +16,9 @@ import abstraction.AWeapon;
 public class DefaultPrototypeController {
     
     /**
-     * Static method used to load the default prototypes from a Json file to the corresponding Character or Weapon prototype factory.
+     * Static method used to load the default prototypes from a Json file to the corresponding Character and Weapon prototype factory.
+     * @see CharacterPrototypeFactory
+     * @see WeaponPrototypeFactory
      */
     public static void loadDefaultPrototypes(){
         JsonLoader loader = new JsonLoader();
@@ -31,8 +33,9 @@ public class DefaultPrototypeController {
     }
     
     /**
-     * 
-     * @param strFile 
+     * Static method to load the character prototypes into the CharacterPrototypeFactory through a file.
+     * @param strFile The path of the file containing the prototypes.
+     * @see CharacterPrototypeFactory
      */
     public static void loadCharacterPrototypes(String strFile){
         JsonLoader loader = new JsonLoader();
@@ -43,8 +46,9 @@ public class DefaultPrototypeController {
     }  
     
     /**
-     * 
-     * @param strFile 
+     * Static method to load the weapons prototypes into the WeaponPrototypeFactory through a file.
+     * @param strFile The path of the file containing the prototypes.
+     * @see WeaponPrototypeFactory
      */
     public static void loadWeaponPrototypes(String strFile){
         JsonLoader loader = new JsonLoader();
