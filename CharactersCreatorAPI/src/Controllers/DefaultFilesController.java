@@ -18,7 +18,7 @@ public class DefaultFilesController {
     private static final String dataPath = System.getenv("APPDATA")+"/CharactersCreatorAPIData";
     
     /**
-     * 
+     * Creates a directory in AppData/Roaming for storage the API data
      */
     public static void createDataDirectory(){
         File file = new File(dataPath);
@@ -29,9 +29,9 @@ public class DefaultFilesController {
     }
     
     /**
-     * 
-     * @param originalPath
-     * @return
+     * Takes a image and storage it in API data directory and returns the path of new location
+     * @param originalPath The path of the image that you want to save
+     * @return A String of the new location of the image
      * @throws IOException 
      */
     public static String saveImage(Path originalPath) throws IOException{

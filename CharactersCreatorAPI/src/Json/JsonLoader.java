@@ -24,8 +24,8 @@ public class JsonLoader {
     private static ObjectMapper mapper = new ObjectMapper();
     
     /**
-     * 
-     * @return 
+     * Loads a json with default values for Characters
+     * @return A list of ACharacteres with API's defaults 
      */
     public List<ACharacter> loadDefaultCharacters(){    
         InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultCharacters.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
@@ -43,8 +43,8 @@ public class JsonLoader {
     }
     
     /**
-     * 
-     * @return 
+     * Loads a json with default values for Weapons
+     * @return A list of AWeapons with API's defaults 
      */
     public List<AWeapon> loadDefaultWeapons(){
         InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultWeapons.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
@@ -63,9 +63,9 @@ public class JsonLoader {
     }
     
     /**
-     * 
-     * @param strFile
-     * @return 
+     * Loads a json with custom values for Characters
+     * @param strFile The file path of the custom json of characters
+     * @return A list of ACharacters with the custom characters 
      */
     public List<ACharacter> loadCustomCharacters(String strFile){
         File file = new File(strFile);
@@ -79,9 +79,9 @@ public class JsonLoader {
     }
     
     /**
-     * 
-     * @param strFile
-     * @return 
+     * Loads a json with custom values for Weapons
+     * @param strFile The file path of the custom json of weapons
+     * @return A list of AWeapons with the custom weapons
      */
     public List<AWeapon> loadCustomWeapon(String strFile){
         File file = new File(strFile);
