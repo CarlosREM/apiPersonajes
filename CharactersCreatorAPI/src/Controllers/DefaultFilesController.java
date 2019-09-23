@@ -32,7 +32,7 @@ public class DefaultFilesController {
      * Takes a image and storage it in API data directory and returns the path of new location
      * @param originalPath The path of the image that you want to save
      * @return A String of the new location of the image
-     * @throws IOException 
+     * @throws IOException If occurs some exception in the I/O operations.
      */
     public static String saveImage(Path originalPath) throws IOException{
         createDataDirectory();
