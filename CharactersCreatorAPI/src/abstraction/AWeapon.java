@@ -3,12 +3,6 @@ package abstraction;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import java.util.TreeMap;
 
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.CLASS,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "@class"
-)
-
 /**
  * Abstract class used to implements weapons.
  * @author Fabricio Ceciliano
@@ -16,6 +10,11 @@ import java.util.TreeMap;
  * @author Marco Gamboa
  * @author Diego Murillo
  */
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "@class"
+)
 public abstract class AWeapon implements IPrototype, ILookable{
     private String name = "Melee" ;
     private int range = 1;
@@ -139,7 +138,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
     }
     /**
      * Sets the weapon's hits per unit of time.
-     * @param hitPerUnit The new weapon's hits per unit of time.
+     * @param hitPerUnit The weapon's new hits per unit of time.
      */
     public void setHitPerUnit(int hitPerUnit) {
         this.hitPerUnit = hitPerUnit;
@@ -172,7 +171,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
     }
     
     /**
-     * Sets the specific appearance in the specified level.
+     * Sets the specific appearance in the specified level. If the appearance already exists, it's replace.
      * @param level The level to link the appearance.
      * @param appearance The new weapon's appearance.
      */

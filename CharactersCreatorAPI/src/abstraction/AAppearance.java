@@ -6,12 +6,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import java.util.ArrayList;
 import java.util.List;
 
-@JsonTypeInfo(
-        use = Id.CLASS,
-        include = As.PROPERTY,
-        property = "@class"
-)
-
 /** 
  * Abstract class used to implements the appearance of characters and weapons
  * @author Fabricio Ceciliano
@@ -19,6 +13,11 @@ import java.util.List;
  * @author Marco Gamboa
  * @author Diego Murillo
  */
+@JsonTypeInfo(
+        use = Id.CLASS,
+        include = As.PROPERTY,
+        property = "@class"
+)
 public abstract class AAppearance implements IPrototype<AAppearance>{
     /**
      * String list of images, one for each scenario listed in the corresponding enum implementation

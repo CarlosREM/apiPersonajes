@@ -1,26 +1,25 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.CopyOption;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
+ * @author Fabricio Ceciliano
+ * @author Carlos Esquivel
  * @author Marco Gamboa
+ * @author Diego Murillo
  */
 public class DefaultFilesController {
     private static final String dataPath = System.getenv("APPDATA")+"/CharactersCreatorAPIData";
+    
+    /**
+     * 
+     */
     public static void createDataDirectory(){
         File file = new File(dataPath);
         if(!file.isDirectory()){
@@ -28,6 +27,13 @@ public class DefaultFilesController {
             System.out.println(file.isDirectory());
         }
     }
+    
+    /**
+     * 
+     * @param originalPath
+     * @return
+     * @throws IOException 
+     */
     public static String saveImage(Path originalPath) throws IOException{
         createDataDirectory();
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");

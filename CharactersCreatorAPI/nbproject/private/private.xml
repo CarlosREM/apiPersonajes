@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< Updated upstream
         <group/>
+=======
+        <group>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/abstraction/IBuild.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/abstraction/IPrototype.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/abstraction/ILookable.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/ADT/CharacterPrototypeFactory.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/abstraction/AWeapon.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/ADT/DefaultCharacter.java</file>
+            <file>file:/C:/Users/Gómez%20Montero/Desktop/CharacterCreatorAPI/CharactersCreatorAPI/src/ADT/DefaultCharacterAppearance.java</file>
+        </group>
+>>>>>>> Stashed changes
     </open-files>
 </project-private>

@@ -6,12 +6,6 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
-@JsonTypeInfo(
-        use = Id.CLASS,
-        include = As.PROPERTY,
-        property = "@class"
-)
-
 /**
  * Abstract class used to implements characters.
  * @author Fabricio Ceciliano
@@ -19,6 +13,11 @@ import java.util.TreeMap;
  * @author Marco Gamboa
  * @author Diego Murillo
  */
+@JsonTypeInfo(
+        use = Id.CLASS,
+        include = As.PROPERTY,
+        property = "@class"
+)
 public abstract class ACharacter implements IPrototype, ILookable{
     private String name = "Average Joe";
     private TreeMap<Integer,AAppearance> appearances = new TreeMap<>();
@@ -253,7 +252,7 @@ public abstract class ACharacter implements IPrototype, ILookable{
     }
     
     /**
-     * Sets the specific appearance in the specified level.
+     * Sets the specific appearance in the specified level. If the appearance already exists, it's replace.
      * @param level The level to link the appearance.
      * @param appearance The new character's appearance.
      * @see ILookable
@@ -287,7 +286,7 @@ public abstract class ACharacter implements IPrototype, ILookable{
      * Abstract method used to employ in a Character a AWeapon from a specific index.
      * @param index The index of the AWeapon in the character's weapons arraylist.
      * @param character The character who is going to be affected by the weapon.
-     * @throws IndexOutOfBoundsException If index is not in the ACharacter´s list bounds.
+     * @throws IndexOutOfBoundsException If index is not in the AWeapon's list bounds.
      */
     public abstract void useWeapon(int index, ACharacter character) throws IndexOutOfBoundsException;
     
@@ -314,7 +313,7 @@ public abstract class ACharacter implements IPrototype, ILookable{
     public abstract void levelDown();
     
     /**
-     * Abstract method used to add a weapon to the character's weapons list.
+     * Abstract method used to add a weapon to the character weapons list.
      * @param weapon The weapon that will be added.
      */
     public abstract void addWeapon(AWeapon weapon);

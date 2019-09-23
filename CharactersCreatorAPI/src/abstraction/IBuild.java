@@ -6,7 +6,7 @@ package abstraction;
  * @author Carlos Esquivel
  * @author Marco Gamboa
  * @author Diego Murillo
- * @param <T> The object type will be created.
+ * @param <T> The object type that will be created.
  */
 public interface IBuild<T> {
     /**

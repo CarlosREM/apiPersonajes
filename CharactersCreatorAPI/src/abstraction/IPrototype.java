@@ -11,7 +11,7 @@ package abstraction;
 public interface IPrototype<T extends IPrototype> extends Cloneable {
    
     /**
-     * Method to realize a deep clone to the desired object.
+     * Method to realize a deep clone of the desired object.
      * @return The new cloned object.
      */
     public T deepClone();
