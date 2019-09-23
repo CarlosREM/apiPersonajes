@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import utils.FileFilter;
 import utils.ImageHandler;
 
+
 /**
  *
  * @author Carlos Esquivel
@@ -45,7 +46,7 @@ public class CharactersController implements ActionListener {
     public CharactersController(CharactersTabPanel screen) {
         this.screen = screen;
         imgHandler = new ImageHandler();
-
+        
         setupActionListeners();
         loadItems();
     }
@@ -98,7 +99,7 @@ public class CharactersController implements ActionListener {
     private void loadCharClassInfo (){
         String CharName = screen.cmBxCharClassSelect.getSelectedItem().toString();
         ACharacter character = (ACharacter) CharacterPrototypeFactory.getPrototype(CharName);
- 
+      
         screen.txtCharClassName.setText(character.getName());
         screen.setCharHealth(character.getMaxHealthPoints());
         screen.setCharCost(character.getCost());
