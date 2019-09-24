@@ -14,8 +14,8 @@ import java.util.TreeMap;
  * @author Diego Murillo
  */
 @JsonTypeInfo(
-        use = Id.CLASS,
-        include = As.PROPERTY,
+        use = JsonTypeInfo.Id.CLASS,
+        include = JsonTypeInfo.As.PROPERTY,
         property = "@class"
 )
 public abstract class ACharacter implements IPrototype, ILookable{

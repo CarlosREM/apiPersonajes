@@ -3,11 +3,16 @@ package view;
 import ADT.DefaultWeapon;
 import ADT.DefaultWeaponAppearance;
 import ADT.WeaponPrototypeFactory;
+import Controllers.DefaultFilesController;
 import Controllers.DefaultPrototypeController;
 import abstraction.AAppearance;
 import abstraction.AWeapon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
@@ -21,7 +26,7 @@ import utils.ImageHandler;
  */
 public class WeaponsController implements ActionListener {
     
-    WeaponsTabPanel screen;
+    WeaponsTab screen;
     ImageHandler imgHandler;
     
     private DefaultComboBoxModel<String> cmBxModelWeaponClasses;
@@ -30,7 +35,7 @@ public class WeaponsController implements ActionListener {
     
     public DefaultComboBoxModel<String> getWeaponClassesModel() { return cmBxModelWeaponClasses; }
     
-    public WeaponsController(WeaponsTabPanel screen) {
+    public WeaponsController(WeaponsTab screen) {
         this.screen = screen;
         imgHandler = new ImageHandler();
         
@@ -81,6 +86,7 @@ public class WeaponsController implements ActionListener {
                 screen.cmBxWeaponAppearanceLvl.addItem(String.valueOf(key));
                 if (!loadImg) {
                     String strImage = weapon.getAppearance(key).getLook(DefaultWeaponAppearance.codes.DEFAULT);
+                    screen.lblWeaponSpritePreview.setText("");
                     screen.lblWeaponSpritePreview.setIcon(imgHandler.createImageicon(strImage,
                                                         screen.lblWeaponSpritePreview.getWidth(),
                                                         screen.lblWeaponSpritePreview.getHeight())
@@ -89,7 +95,9 @@ public class WeaponsController implements ActionListener {
                 }
             }
         }
-        catch(Exception ex) {}
+        catch(Exception ex) {
+            screen.lblWeaponSpritePreview.setText("No sprites found.");
+        }
     }
     
     public AWeapon captureWeaponClassInput() {
@@ -118,6 +126,10 @@ public class WeaponsController implements ActionListener {
         String path;
         switch(e.getActionCommand()) {
             case "Load Weapon Class Info":
+                if (screen.cmBxWeaponClassSelect.getSelectedIndex() == -1) {
+                    JOptionPane.showMessageDialog(screen, "No class selected.", "Load Weapon Class", JOptionPane.ERROR_MESSAGE);  
+                    break;
+                }
                 selectedOption =
                         JOptionPane.showOptionDialog(screen, "The current information will be lost if you haven't saved. Proceed?",
                                                      "Load Weapon class info", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -181,6 +193,12 @@ public class WeaponsController implements ActionListener {
     }
     
     private void SaveWeaponClass() {
+        try {
+            saveSprites();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(screen, "Error saving images.", "Save images", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         AWeapon newWeapon = captureWeaponClassInput();
         try {
             WeaponPrototypeFactory.getPrototype(newWeapon.getName());
@@ -228,6 +246,16 @@ public class WeaponsController implements ActionListener {
             screen.cmBxWeaponAppearanceLvl.setSelectedIndex(-1);
             screen.lblWeaponSpritePreview.setIcon(null);
         }
+    }
+    
+    private void saveSprites() throws IOException{
+        for(AAppearance characterAppearance : weaponSprites.values()){
+            List<String> newLooks = new ArrayList<>();
+            for(String look : characterAppearance.getLooks()){
+                newLooks.add(DefaultFilesController.saveImage(Paths.get(look)));
+            }
+            characterAppearance.setLooks(newLooks);
+        } 
     }
     
 }

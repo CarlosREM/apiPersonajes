@@ -21,7 +21,9 @@ public class DefaultCharacter extends ACharacter {
    /**
     * Creates a default character with the default information from its parent.
     */
-    public DefaultCharacter() {}
+    public DefaultCharacter() {
+        super();
+    }
 
     /**
      * Creates a character with the specified information.

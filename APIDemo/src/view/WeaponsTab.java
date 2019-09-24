@@ -4,12 +4,12 @@ package view;
  *
  * @author Carlos Esquivel
  */
-public class WeaponsTabPanel extends javax.swing.JPanel {
+public class WeaponsTab extends javax.swing.JPanel {
 
     /**
      * Creates new form WeaponsTabPanel
      */
-    public WeaponsTabPanel() {
+    public WeaponsTab() {
         initComponents();
     }
 

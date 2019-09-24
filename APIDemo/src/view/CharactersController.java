@@ -4,6 +4,7 @@ import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;
 import ADT.DefaultCharacterAppearance;
 import ADT.WeaponPrototypeFactory;
+import Controllers.DefaultFilesController;
 import Controllers.DefaultPrototypeController;
 import abstraction.AAppearance;
 import abstraction.ACharacter;
@@ -13,12 +14,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import utils.CustomCmBx;
 import utils.FileFilter;
 import utils.ImageHandler;
 
@@ -28,7 +35,7 @@ import utils.ImageHandler;
  */
 public class CharactersController implements ActionListener {
     
-    CharactersTabPanel screen;
+    CharactersTab screen;
     ImageHandler imgHandler;
     
     private DefaultComboBoxModel<String> cmBxModelCharClasses;
@@ -37,12 +44,16 @@ public class CharactersController implements ActionListener {
     private ArrayList<AWeapon> weaponList = new ArrayList<>();
     private TreeMap<Integer, AAppearance> charSprites = new TreeMap<>();
     
+    public DefaultComboBoxModel<String> getCharClasses() {
+        return cmBxModelCharClasses;
+    }
+    
     public void setWeaponList(DefaultComboBoxModel<String> listModelWeapons) {
         screen.listWeapons.setModel(listModelWeapons);
     }
     
     
-    public CharactersController(CharactersTabPanel screen) {
+    public CharactersController(CharactersTab screen) {
         this.screen = screen;
         imgHandler = new ImageHandler();
 
@@ -64,7 +75,8 @@ public class CharactersController implements ActionListener {
     
     private void loadItems() {
         cmBxModelCharClasses = new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray());
-        screen.cmBxCharClassSelect.setModel(cmBxModelCharClasses);
+        
+        screen.cmBxCharClassSelect.setModel(new CustomCmBx.Model(cmBxModelCharClasses));
         
         listModelClassWeapons = new DefaultListModel<>();
         screen.listClassWeapons.setModel(listModelClassWeapons);
@@ -179,6 +191,7 @@ public class CharactersController implements ActionListener {
                 if (path != null) {
                     try {
                         DefaultPrototypeController.loadCharacterPrototypes(path);
+                        loadItems();
                     }
                     catch(Exception ex) {
                         JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Character info",
@@ -210,7 +223,16 @@ public class CharactersController implements ActionListener {
                 
             case "Export JSON Character Data":
                 System.out.println(e.getActionCommand());
-                                
+                String directory = openDirectoryChooser();
+                if(directory == null)
+                    return;
+                {
+                    try {
+                        DefaultPrototypeController.exportCharacterPrototypes(directory);
+                    } catch (IOException ex) {
+                        Logger.getLogger(CharactersController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
                 JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
                                               "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
                 break;
@@ -247,6 +269,12 @@ public class CharactersController implements ActionListener {
     }
         
     private void SaveCharClass() {
+        try {
+            saveSprites();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(screen, "Error saving images.", "Save images", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         ACharacter newChar = captureCharClassInput();
         try {
             CharacterPrototypeFactory.getPrototype(newChar.getName());
@@ -274,13 +302,13 @@ public class CharactersController implements ActionListener {
     
     private void loadCharAppearance() {
         int key = Integer.valueOf((String) screen.cmBxCharAppearanceLvl.getSelectedItem());
-                    String appearanceType = (String) screen.cmBxCharAppearance.getSelectedItem();
-                    String imageURL = charSprites.get(key).getLook(DefaultCharacterAppearance.codes.valueOf(appearanceType));
-                    
-                    screen.lblCharSpritePreview.setIcon(imgHandler.createImageicon(imageURL,
-                                                                                   screen.lblCharSpritePreview.getWidth(),
-                                                                                   screen.lblCharSpritePreview.getHeight()));
-    }
+        String appearanceType = (String) screen.cmBxCharAppearance.getSelectedItem();
+        String imageURL = charSprites.get(key).getLook(DefaultCharacterAppearance.codes.valueOf(appearanceType));
+
+        screen.lblCharSpritePreview.setIcon(imgHandler.createImageicon(imageURL,
+                                                                       screen.lblCharSpritePreview.getWidth(),
+                                                                       screen.lblCharSpritePreview.getHeight()));
+}
     
     private void deleteCharAppearance() {      
         if (screen.cmBxCharAppearanceLvl.getSelectedIndex() < 0) {
@@ -303,4 +331,27 @@ public class CharactersController implements ActionListener {
         }
     }
     
+    private void saveSprites() throws IOException{
+        for(AAppearance characterAppearance : charSprites.values()){
+            List<String> newLooks = new ArrayList<>();
+            for(String look : characterAppearance.getLooks()){
+                newLooks.add(DefaultFilesController.saveImage(Paths.get(look)));
+            }
+            characterAppearance.setLooks(newLooks);
+        } 
+    }
+    
+    private String openDirectoryChooser(){
+        JFileChooser chooser = new JFileChooser();
+        chooser.setCurrentDirectory(new java.io.File("."));
+        chooser.setDialogTitle("Directory chooser");
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        chooser.setAcceptAllFileFilterUsed(false);
+        
+        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
+            return chooser.getSelectedFile().toString();
+        }else{
+            return null;
+        }
+    }
 }

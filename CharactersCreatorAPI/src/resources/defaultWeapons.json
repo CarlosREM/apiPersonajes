@@ -1,4 +1,21 @@
-[
+{
+  "@class" : "Json.JSONWeaponHolder",
+  "weapons" : [
+  {
+    "@class" : "ADT.DefaultWeapon",
+    "name" : "Melee",
+    "range" : 1,
+    "damage" : 25,
+    "level" : 1,
+    "areaOfEffect" : 1,
+    "hitPerUnit" : 2,
+    "appearances" : {
+      "1" : {
+        "@class" : "ADT.DefaultWeaponAppearance",
+        "looks" : ["/resources/images/melee.png"]
+      }
+    }
+  },
     {
     "@class" : "ADT.DefaultWeapon",
     "name" : "Meowmere",
@@ -45,3 +62,4 @@
     }
   }
 ]
+}

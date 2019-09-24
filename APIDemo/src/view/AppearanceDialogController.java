@@ -2,6 +2,7 @@ package view;
 
 import ADT.DefaultCharacterAppearance;
 import ADT.DefaultWeaponAppearance;
+import abstraction.AAppearance;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public class AppearanceDialogController implements ActionListener {
     private WeaponsController weaponController;
     
     private int selectedMode;
-    private int selectedLvl;
+    private int selectedLvl = 1;
     private List<String> imgPaths;
    
     private JDialog screen;
@@ -72,6 +73,7 @@ public class AppearanceDialogController implements ActionListener {
                 break;
             case "OK":
                 getLevel();
+                System.out.println("Level " + selectedLvl);
                 if (!getAppearanceOverwriteConfirmation())
                     break;
                 
@@ -80,6 +82,7 @@ public class AppearanceDialogController implements ActionListener {
                     if (imgPaths == null)
                         break;
                     characterController.addCharAppearance(selectedLvl, new DefaultCharacterAppearance(imgPaths));
+                    
                 }
                 else { 
                     getPaths_Weapon();
@@ -87,6 +90,7 @@ public class AppearanceDialogController implements ActionListener {
                         break;
                     weaponController.addWeaponAppearance(selectedLvl, new DefaultWeaponAppearance(imgPaths));
                 }
+                
                 screen.dispose();
                 break;
                 

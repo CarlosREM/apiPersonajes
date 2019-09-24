@@ -1,5 +1,6 @@
 package ADT;
 
+import abstraction.AWeapon;
 import abstraction.IPrototype;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class WeaponPrototypeFactory {
     public static List<IPrototype> getPrototypes(int quantity, String prototypeName){
         List<IPrototype> prototypesList = new ArrayList<>();
         for(int i=0; i<quantity; i++){
-            prototypesList.add(getPrototype(prototypeName).deepClone());
+            prototypesList.add(getPrototype(prototypeName));
         }
         return prototypesList;
     }
@@ -53,5 +54,13 @@ public class WeaponPrototypeFactory {
      */
     public static List<String> getKeys(){
         return new ArrayList( prototypes.keySet());
+    }
+    
+    public static List<AWeapon> getAllWeapons(){
+        List<AWeapon> prototypesList = new ArrayList<>();
+        for(String key:prototypes.keySet()){
+           prototypesList.add((AWeapon)getPrototype(key));
+        }
+        return prototypesList;
     }
 }

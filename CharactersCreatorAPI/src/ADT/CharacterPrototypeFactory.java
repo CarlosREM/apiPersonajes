@@ -1,5 +1,6 @@
 package ADT;
 
+import abstraction.ACharacter;
 import abstraction.IPrototype;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -42,7 +43,7 @@ public class CharacterPrototypeFactory {
     public static List<IPrototype> getPrototypes(int quantity, String prototypeName){
         List<IPrototype> prototypesList = new ArrayList<>();
         for(int i=0; i<quantity; i++){
-            prototypesList.add(getPrototype(prototypeName).deepClone());
+            prototypesList.add(getPrototype(prototypeName));
         }
         return prototypesList;
     }
@@ -53,5 +54,13 @@ public class CharacterPrototypeFactory {
      */
     public static List<String> getKeys(){
         return new ArrayList( prototypes.keySet());
+    }
+    
+    public static List<ACharacter> getAllCharacters(){
+        List<ACharacter> prototypesList = new ArrayList<>();
+        for(String key:prototypes.keySet()){
+           prototypesList.add((ACharacter)getPrototype(key));
+        }
+        return prototypesList;
     }
 }

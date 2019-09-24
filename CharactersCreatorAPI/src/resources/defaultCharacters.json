@@ -1,102 +1,106 @@
-[
-    {
-  "@class" : "ADT.DefaultCharacter",
-  "name" : "Brad Sanders",
-  "appearances" : {
-    "1" : {
-      "@class" : "ADT.DefaultCharacterAppearance",
-      "looks" : [ "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png" ]
-    }
-  },
-  "currentHealthPoints" : 100,
-  "maxHealthPoints" : 100,
-  "hitsPerUnit" : 5,
-  "level" : 1,
-  "tiles" : 1,
-  "unlockLevel" : 1,
-  "cost" : 1,
-  "weapons" : [ {
-    "@class" : "ADT.DefaultWeapon",
-    "name" : "Melee",
-    "range" : 1,
-    "damage" : 1,
-    "level" : 1,
-    "areaOfEffect" : 1,
-    "hitPerUnit" : 1,
+{
+  "@class" : "Json.JSONCharacterHolder",
+  "characters" : [ {
+    "@class" : "ADT.DefaultCharacter",
+    "name" : "Average Joe",
     "appearances" : {
       "1" : {
-        "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["/resources/images/weapon1.png"]
+        "@class" : "ADT.DefaultCharacterAppearance",
+        "looks" : [ "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png" ]
       }
-    }
-  } ],
-  "coordinateX" : 0,
-  "coordinateY" : 0
-},  {
-  "@class" : "ADT.DefaultCharacter",
-  "name" : "Average Joe",
-  "appearances" : {
-    "1" : {
-      "@class" : "ADT.DefaultCharacterAppearance",
-      "looks" : [ "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png", "/resources/images/spr_paladin.png" ]
-    }
-  },
-  "currentHealthPoints" : 100,
-  "maxHealthPoints" : 100,
-  "hitsPerUnit" : 5,
-  "level" : 1,
-  "tiles" : 1,
-  "unlockLevel" : 1,
-  "cost" : 1,
-  "weapons" : [ {
-    "@class" : "ADT.DefaultWeapon",
-    "name" : "Melee",
-    "range" : 1,
-    "damage" : 1,
+    },
+    "currentHealthPoints" : 100,
+    "maxHealthPoints" : 100,
+    "hitsPerUnit" : 5,
     "level" : 1,
-    "areaOfEffect" : 1,
-    "hitPerUnit" : 1,
+    "tiles" : 1,
+    "unlockLevel" : 1,
+    "cost" : 1,
+    "weapons" : [ {
+      "@class" : "ADT.DefaultWeapon",
+      "name" : "Melee",
+      "range" : 1,
+      "damage" : 1,
+      "level" : 1,
+      "areaOfEffect" : 1,
+      "hitPerUnit" : 1,
+      "appearances" : {
+        "1" : {
+          "@class" : "ADT.DefaultWeaponAppearance",
+          "looks" : [ "/resources/images/weapon2.png" ]
+        }
+      },
+      "unlockLevel" : 1
+    } ],
+    "coordinateX" : 0,
+    "coordinateY" : 0
+  }, {
+    "@class" : "ADT.DefaultCharacter",
+    "name" : "Brad Sanders",
     "appearances" : {
       "1" : {
-        "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["/resources/images/weapon2.png"]
+        "@class" : "ADT.DefaultCharacterAppearance",
+        "looks" : [ "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png", "/resources/images/spr_mago.png" ]
       }
-    }
-  } ],
-  "coordinateX" : 0,
-  "coordinateY" : 0
-},  {
-  "@class" : "ADT.DefaultCharacter",
-  "name" : "Steve Johns",
-  "appearances" : {
-    "1" : {
-      "@class" : "ADT.DefaultCharacterAppearance",
-      "looks" : [ "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png" ]
-    }
-  },
-  "currentHealthPoints" : 100,
-  "maxHealthPoints" : 100,
-  "hitsPerUnit" : 5,
-  "level" : 1,
-  "tiles" : 1,
-  "unlockLevel" : 6,
-  "cost" : 25,
-  "weapons" : [ {
-    "@class" : "ADT.DefaultWeapon",
-    "name" : "Melee",
-    "range" : 1,
-    "damage" : 1,
+    },
+    "currentHealthPoints" : 100,
+    "maxHealthPoints" : 100,
+    "hitsPerUnit" : 5,
     "level" : 1,
-    "areaOfEffect" : 1,
-    "hitPerUnit" : 1,
+    "tiles" : 1,
+    "unlockLevel" : 1,
+    "cost" : 1,
+    "weapons" : [ {
+      "@class" : "ADT.DefaultWeapon",
+      "name" : "Melee",
+      "range" : 1,
+      "damage" : 1,
+      "level" : 1,
+      "areaOfEffect" : 1,
+      "hitPerUnit" : 1,
+      "appearances" : {
+        "1" : {
+          "@class" : "ADT.DefaultWeaponAppearance",
+          "looks" : [ "/resources/images/weapon1.png" ]
+        }
+      },
+      "unlockLevel" : 1
+    } ],
+    "coordinateX" : 0,
+    "coordinateY" : 0
+  }, {
+    "@class" : "ADT.DefaultCharacter",
+    "name" : "Steve Johns",
     "appearances" : {
       "1" : {
-        "@class" : "ADT.DefaultWeaponAppearance",
-        "looks" : ["/resources/images/weapon3.png"]
+        "@class" : "ADT.DefaultCharacterAppearance",
+        "looks" : [ "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png", "/resources/images/spr_espadachin.png" ]
       }
-    }
-  } ],
-  "coordinateX" : 0,
-  "coordinateY" : 0
+    },
+    "currentHealthPoints" : 100,
+    "maxHealthPoints" : 100,
+    "hitsPerUnit" : 5,
+    "level" : 1,
+    "tiles" : 1,
+    "unlockLevel" : 6,
+    "cost" : 25,
+    "weapons" : [ {
+      "@class" : "ADT.DefaultWeapon",
+      "name" : "Melee",
+      "range" : 1,
+      "damage" : 1,
+      "level" : 1,
+      "areaOfEffect" : 1,
+      "hitPerUnit" : 1,
+      "appearances" : {
+        "1" : {
+          "@class" : "ADT.DefaultWeaponAppearance",
+          "looks" : [ "/resources/images/weapon3.png" ]
+        }
+      },
+      "unlockLevel" : 1
+    } ],
+    "coordinateX" : 0,
+    "coordinateY" : 0
+  } ]
 }
-]

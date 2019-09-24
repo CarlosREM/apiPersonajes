@@ -1,15 +1,20 @@
 package Json;
 
+import ADT.DefaultCharacter;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
+ * 
  * @author Fabricio Ceciliano
  * @author Carlos Esquivel
  * @author Marco Gamboa
@@ -18,6 +23,8 @@ import java.util.List;
 public class JsonSaver {
     private ObjectMapper mapper = new ObjectMapper();
     
+    
+    
     /**
      * Saves a single ACharacter in a custom json file
      * @param value The ACharacter that will save
@@ -25,12 +32,16 @@ public class JsonSaver {
      */
     public void saveCustomCharacter(ACharacter value,String strFile){
         File file = new File(strFile);
+        
         try {
-
-            List<ACharacter> arr = mapper.readValue(file, List.class);
-            arr.add(value);
-            mapper.writeValue(file, arr);
-            System.out.println(arr.toString());
+            JSONCharacterHolder newHolder = mapper.readValue(file, new TypeReference<JSONCharacterHolder>(){});
+            
+            
+            
+            newHolder.getCharacters().add(value);
+            
+            mapper.writeValue(file, newHolder);
+            
         } catch (IOException e) {
             e.printStackTrace();
         }        
@@ -41,7 +52,7 @@ public class JsonSaver {
      * @param values The arrayList of ACharacters that will save 
      * @param strFile A String with the Json file path of the custom characters
      */
-    public void saveCustomCharacters(ArrayList<ACharacter> values,String strFile){
+    public void saveCustomCharacters(ArrayList<ACharacter> values,String strFile){ 
         for(int i=0;i<values.size();i++){
             saveCustomCharacter(values.get(i), strFile);
         }
@@ -54,14 +65,19 @@ public class JsonSaver {
      */
     public void saveCustomWeapon(AWeapon value,String strFile){   
         File file = new File(strFile);
+        
         try {
-            List<AWeapon> arr = mapper.readValue(file, List.class);
-            arr.add(value);
-            mapper.writeValue(file, arr);
-            System.out.println(arr.toString());
+            JSONWeaponHolder newHolder = mapper.readValue(file, new TypeReference<JSONWeaponHolder>(){});
+            
+            
+            
+            newHolder.getWeapons().add(value);
+            
+            mapper.writeValue(file, newHolder);
+            
         } catch (IOException e) {
             e.printStackTrace();
-        }   
+        }       
     }
     
     /**

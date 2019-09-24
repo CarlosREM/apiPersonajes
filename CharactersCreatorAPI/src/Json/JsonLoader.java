@@ -35,7 +35,9 @@ public class JsonLoader {
             json = scanner.useDelimiter("\\A").next();
         }
         try {
-            return mapper.readValue(json, new TypeReference<List<ACharacter>>(){});
+            JSONCharacterHolder newHolder = mapper.readValue(json, new TypeReference<JSONCharacterHolder>(){});
+            return newHolder.getCharacters();
+            
         } catch (IOException ex) {
             Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -55,7 +57,8 @@ public class JsonLoader {
         }
         try {
 
-            return mapper.readValue(json, new TypeReference<List<AWeapon>>(){});
+            JSONWeaponHolder newHolder = mapper.readValue(json, new TypeReference<JSONWeaponHolder>(){});
+            return newHolder.getWeapons();
         } catch (IOException ex) {
             Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -70,7 +73,9 @@ public class JsonLoader {
     public List<ACharacter> loadCustomCharacters(String strFile){
         File file = new File(strFile);
         try {
-             return mapper.readValue(file, new TypeReference<List<ACharacter>>(){});
+            JSONCharacterHolder newHolder = mapper.readValue(file, new TypeReference<JSONCharacterHolder>(){});
+            return newHolder.getCharacters();
+            
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -86,7 +91,9 @@ public class JsonLoader {
     public List<AWeapon> loadCustomWeapon(String strFile){
         File file = new File(strFile);
         try {
-             return mapper.readValue(file, new TypeReference<List<AWeapon>>(){});
+            JSONWeaponHolder newHolder = mapper.readValue(file, new TypeReference<JSONWeaponHolder>(){});
+            return newHolder.getWeapons();
+             
         } catch (IOException e) {
             e.printStackTrace();
             return null;

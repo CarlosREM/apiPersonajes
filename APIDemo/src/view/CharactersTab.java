@@ -4,12 +4,12 @@ package view;
  *
  * @author Carlos Esquivel
  */
-public class CharactersTabPanel extends javax.swing.JPanel {
+public class CharactersTab extends javax.swing.JPanel {
 
     /**
      * Creates new form CharactersTabPanel
      */
-    public CharactersTabPanel() {
+    public CharactersTab() {
         initComponents();
     }
 
@@ -62,6 +62,8 @@ public class CharactersTabPanel extends javax.swing.JPanel {
         javax.swing.JLabel lblClassWeapons = new javax.swing.JLabel();
         btnCharCreateObject = new javax.swing.JButton();
         btnCharExportJson = new javax.swing.JButton();
+        javax.swing.JLabel lblObjQuantity = new javax.swing.JLabel();
+        spnObjQuantity = new javax.swing.JSpinner();
 
         btnCharSaveClass.setText("Save Character Class");
 
@@ -204,6 +206,11 @@ public class CharactersTabPanel extends javax.swing.JPanel {
 
         btnCharExportJson.setText("Export JSON Character Data");
 
+        lblObjQuantity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lblObjQuantity.setText("Quantity:");
+
+        spnObjQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -211,13 +218,6 @@ public class CharactersTabPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnCharExportJson)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCharSaveClass)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCharCreateObject))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -229,7 +229,7 @@ public class CharactersTabPanel extends javax.swing.JPanel {
                                             .addComponent(lblCharAttributes)
                                             .addComponent(lblCharacterClass)
                                             .addComponent(lblClassWeapons)
-                                            .addComponent(cmBxCharClassSelect, 0, 238, Short.MAX_VALUE)
+                                            .addComponent(cmBxCharClassSelect, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(btnLoadCharClass, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
                                         .addComponent(btnCharImportJson, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,7 +280,7 @@ public class CharactersTabPanel extends javax.swing.JPanel {
                                 .addGap(42, 42, 42)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                            .addComponent(pnlCharSpritePreview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblCharAppareanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +292,20 @@ public class CharactersTabPanel extends javax.swing.JPanel {
                                     .addComponent(cmBxCharAppearanceLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cmBxCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(btnAddCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnDelCharAppearance, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(spnObjQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCharExportJson)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnCharSaveClass)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblObjQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCharCreateObject))))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
@@ -366,7 +379,10 @@ public class CharactersTabPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(scrollClassWeapons, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(scrollWeapons))
+                                    .addComponent(scrollWeapons)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblObjQuantity)
+                                        .addComponent(spnObjQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(btnCharSaveClass)
@@ -513,6 +529,7 @@ public class CharactersTabPanel extends javax.swing.JPanel {
     protected javax.swing.JSpinner spnCharStartLvl;
     protected javax.swing.JSpinner spnCharTiles;
     protected javax.swing.JSpinner spnCharUnlockLvl;
+    protected javax.swing.JSpinner spnObjQuantity;
     protected javax.swing.JTextField txtCharClassName;
     // End of variables declaration//GEN-END:variables
 }

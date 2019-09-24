@@ -2,9 +2,11 @@ package Controllers;
 import ADT.WeaponPrototypeFactory;
 import ADT.CharacterPrototypeFactory;
 import Json.JsonLoader;
+import Json.JsonSaver;
 import java.util.ArrayList;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
+import java.io.IOException;
 
 /**
  *
@@ -57,4 +59,16 @@ public class DefaultPrototypeController {
             WeaponPrototypeFactory.addPrototype(w.getName(), w);
         }   
     } 
+    
+    public static void exportCharacterPrototypes(String directory) throws IOException{
+        String path = DefaultFilesController.createCharacterJson(directory);
+        JsonSaver saver = new JsonSaver();
+        saver.saveCustomCharacters((ArrayList<ACharacter>) CharacterPrototypeFactory.getAllCharacters(),path);
+    }
+    
+    public static void exportWeaponPrototypes(String directory)throws IOException{
+        String path = DefaultFilesController.createWeaponJson(directory);
+        JsonSaver saver = new JsonSaver();
+        saver.saveCustomWeapons((ArrayList<AWeapon>) WeaponPrototypeFactory.getAllWeapons(),path);
+    }
 }
