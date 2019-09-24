@@ -9,14 +9,17 @@ public class EditorScreen extends javax.swing.JFrame {
     
     javax.swing.JPanel contentPane = new javax.swing.JPanel();
     
-    CharactersTabPanel charactersTab;
-    WeaponsTabPanel weaponsTab;
+    CharactersTab charactersTab;
+    WeaponsTab weaponsTab;
+    SimulationTab simulationTab;
     
-    public CharactersTabPanel getCharactersTab() { return charactersTab; }
-    public WeaponsTabPanel getWeaponsTab() { return weaponsTab; }
+    public CharactersTab getCharactersTab() { return charactersTab; }
+    public WeaponsTab getWeaponsTab() { return weaponsTab; }
+    public SimulationTab getSimulationTab() { return simulationTab; }
     
     public EditorScreen() {
         initComponents();
+        setupControllers();
     }
     
     private void initComponents() {
@@ -32,11 +35,25 @@ public class EditorScreen extends javax.swing.JFrame {
         
         javax.swing.JTabbedPane tabbedPane = new javax.swing.JTabbedPane();
         tabbedPane.setBounds(0, 0, 870, 614);
-        charactersTab = new CharactersTabPanel();
+        
+        charactersTab = new CharactersTab();
         tabbedPane.add(charactersTab, "Characters");
-        weaponsTab = new WeaponsTabPanel();
+        
+        weaponsTab = new WeaponsTab();
         tabbedPane.add(weaponsTab, "Weapons");
+        
+        simulationTab = new SimulationTab();
+        tabbedPane.add(simulationTab, "Simulation");
+        
         contentPane.add(tabbedPane);
+    }
+    
+    private void setupControllers() {
+        CharactersController charController = new CharactersController(charactersTab);
+        WeaponsController weaponController = new WeaponsController(weaponsTab);
+        charController.setWeaponList(weaponController.getWeaponClassesModel());
+        SimulationController simController = new SimulationController(simulationTab);
+        simController.setcmBxModelCharacters(charController.getCharClasses());
     }
     
 }

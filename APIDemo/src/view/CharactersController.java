@@ -8,17 +8,20 @@ import Controllers.DefaultPrototypeController;
 import abstraction.AAppearance;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
+import abstraction.IPrototype;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import utils.CustomCmBx;
 import utils.FileFilter;
 import utils.ImageHandler;
 
@@ -29,7 +32,7 @@ import utils.ImageHandler;
  */
 public class CharactersController implements ActionListener {
     
-    CharactersTabPanel screen;
+    CharactersTab screen;
     ImageHandler imgHandler;
     
     private DefaultComboBoxModel<String> cmBxModelCharClasses;
@@ -38,12 +41,16 @@ public class CharactersController implements ActionListener {
     private ArrayList<AWeapon> weaponList = new ArrayList<>();
     private TreeMap<Integer, AAppearance> charSprites = new TreeMap<>();
     
+    public DefaultComboBoxModel<String> getCharClasses() {
+        return cmBxModelCharClasses;
+    }
+    
     public void setWeaponList(DefaultComboBoxModel<String> listModelWeapons) {
         screen.listWeapons.setModel(listModelWeapons);
     }
     
     
-    public CharactersController(CharactersTabPanel screen) {
+    public CharactersController(CharactersTab screen) {
         this.screen = screen;
         imgHandler = new ImageHandler();
         
@@ -65,7 +72,8 @@ public class CharactersController implements ActionListener {
     
     private void loadItems() {
         cmBxModelCharClasses = new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray());
-        screen.cmBxCharClassSelect.setModel(cmBxModelCharClasses);
+        
+        screen.cmBxCharClassSelect.setModel(new CustomCmBx.Model(cmBxModelCharClasses));
         
         listModelClassWeapons = new DefaultListModel<>();
         screen.listClassWeapons.setModel(listModelClassWeapons);
@@ -167,6 +175,10 @@ public class CharactersController implements ActionListener {
         AWeapon newWeapon;
         switch(e.getActionCommand()) {
             case "Load Character Class Info":
+                if (screen.cmBxCharClassSelect.getSelectedIndex() == -1) {
+                    JOptionPane.showMessageDialog(screen, "No class selected.", "Load Character Class", JOptionPane.ERROR_MESSAGE);  
+                    break;
+                }
                 selectedOption =
                         JOptionPane.showOptionDialog(screen, "The current information will be lost if you haven't saved. Proceed?",
                                                      "Load Character class info", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
@@ -221,7 +233,7 @@ public class CharactersController implements ActionListener {
                 break;
                 
             case "Create Character Object":
-                System.out.println(e.getActionCommand());
+                createCharObject();
                 break;
                 
             default:
@@ -285,7 +297,7 @@ public class CharactersController implements ActionListener {
     
     private void deleteCharAppearance() {      
         if (screen.cmBxCharAppearanceLvl.getSelectedIndex() < 0) {
-            JOptionPane.showMessageDialog(screen, "No appearance selected.", "Delete Character Appearance", JOptionPane.ERROR_MESSAGE); ;
+            JOptionPane.showMessageDialog(screen, "No appearance selected.", "Delete Character Appearance", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
@@ -304,4 +316,26 @@ public class CharactersController implements ActionListener {
         }
     }
     
+    private void createCharObject() {
+        if (screen.txtCharClassName.getText().isEmpty()){
+            JOptionPane.showMessageDialog(screen, "Character class name must be filled.", "Create Character Object", JOptionPane.ERROR_MESSAGE);  
+            return;
+        }
+                    
+        int quantity = (Integer) screen.spnObjQuantity.getValue();
+        String prototypeName = screen.txtCharClassName.getText();
+        try {
+            List<IPrototype> charList = CharacterPrototypeFactory.getPrototypes(quantity, prototypeName);
+            System.out.println("Created "+quantity+" "+prototypeName+" Objects:");
+            for (IPrototype character : charList) {
+                System.out.println("> "+character);
+            }
+            JOptionPane.showMessageDialog(screen, "Created "+quantity+" "+prototypeName+" objects succesfully",
+                                         "Create Character Object", JOptionPane.INFORMATION_MESSAGE);  
+        }
+        catch(Exception ex) {
+            JOptionPane.showMessageDialog(screen, "Character class must be saved.", "Create Character Object", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }
 }

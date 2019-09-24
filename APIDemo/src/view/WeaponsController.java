@@ -21,7 +21,7 @@ import utils.ImageHandler;
  */
 public class WeaponsController implements ActionListener {
     
-    WeaponsTabPanel screen;
+    WeaponsTab screen;
     ImageHandler imgHandler;
     
     private DefaultComboBoxModel<String> cmBxModelWeaponClasses;
@@ -30,7 +30,7 @@ public class WeaponsController implements ActionListener {
     
     public DefaultComboBoxModel<String> getWeaponClassesModel() { return cmBxModelWeaponClasses; }
     
-    public WeaponsController(WeaponsTabPanel screen) {
+    public WeaponsController(WeaponsTab screen) {
         this.screen = screen;
         imgHandler = new ImageHandler();
         
@@ -81,6 +81,7 @@ public class WeaponsController implements ActionListener {
                 screen.cmBxWeaponAppearanceLvl.addItem(String.valueOf(key));
                 if (!loadImg) {
                     String strImage = weapon.getAppearance(key).getLook(DefaultWeaponAppearance.codes.DEFAULT);
+                    screen.lblWeaponSpritePreview.setText("");
                     screen.lblWeaponSpritePreview.setIcon(imgHandler.createImageicon(strImage,
                                                         screen.lblWeaponSpritePreview.getWidth(),
                                                         screen.lblWeaponSpritePreview.getHeight())
@@ -89,7 +90,9 @@ public class WeaponsController implements ActionListener {
                 }
             }
         }
-        catch(Exception ex) {}
+        catch(Exception ex) {
+            screen.lblWeaponSpritePreview.setText("No sprites found.");
+        }
     }
     
     public AWeapon captureWeaponClassInput() {
@@ -118,6 +121,10 @@ public class WeaponsController implements ActionListener {
         String path;
         switch(e.getActionCommand()) {
             case "Load Weapon Class Info":
+                if (screen.cmBxWeaponClassSelect.getSelectedIndex() == -1) {
+                    JOptionPane.showMessageDialog(screen, "No class selected.", "Load Weapon Class", JOptionPane.ERROR_MESSAGE);  
+                    break;
+                }
                 selectedOption =
                         JOptionPane.showOptionDialog(screen, "The current information will be lost if you haven't saved. Proceed?",
                                                      "Load Weapon class info", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
