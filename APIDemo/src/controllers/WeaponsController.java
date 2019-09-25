@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -188,11 +187,10 @@ public class WeaponsController implements ActionListener {
                 if(directory == null)
                     return;
                 {
-                    try{
+                    try {
                         DefaultPrototypeController.exportWeaponPrototypes(directory);
-                    }catch(IOException ex){
-                        System.out.println("IOException generada");
                     }
+                    catch(IOException ex){}
                 }
                 JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
                                               "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
@@ -231,7 +229,6 @@ public class WeaponsController implements ActionListener {
         fileChooser.setFileFilter(new FileFilter("json", "JSON File"));
         result = fileChooser.showOpenDialog(screen);
         if (result == JFileChooser.APPROVE_OPTION) {
-            System.out.println("File directory: "+fileChooser.getSelectedFile().getAbsolutePath());
             return fileChooser.getSelectedFile().getAbsolutePath();
         }
         return null;
@@ -240,7 +237,8 @@ public class WeaponsController implements ActionListener {
     private void SaveWeaponClass() throws InterruptedException {
         try {
             saveSprites();
-        } catch (IOException ex) {
+        }
+        catch (IOException ex) {
             JOptionPane.showMessageDialog(screen, "Error saving images.", "Save images", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -300,13 +298,10 @@ public class WeaponsController implements ActionListener {
     }
     
     private void saveSprites() throws IOException, InterruptedException{
-        System.out.println("Cantidad de sprites: " + weaponSprites.size());
         for(AAppearance weaponAppearance : weaponSprites.values()){
             List<String> newLooks = new ArrayList<>();
-            System.out.println("Cant looks: " + weaponAppearance.getLooks().size());
             for(String look : weaponAppearance.getLooks()){
                 Thread.sleep(100);
-                //DefaultFilesController d = new DefaultFilesController();
                 newLooks.add(DefaultFilesController.saveImage(look));
             }
             weaponAppearance.setLooks(newLooks);

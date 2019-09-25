@@ -16,7 +16,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
@@ -289,7 +288,6 @@ public class CharactersController implements ActionListener {
         fileChooser.setFileFilter(new FileFilter("json", "JSON File"));
         result = fileChooser.showOpenDialog(screen);
         if (result == JFileChooser.APPROVE_OPTION) {
-            System.out.println("File directory: "+fileChooser.getSelectedFile().getAbsolutePath());
             return fileChooser.getSelectedFile().getAbsolutePath();
         }
         return null;
@@ -361,10 +359,8 @@ public class CharactersController implements ActionListener {
     }
     
     private void saveSprites() throws IOException, InterruptedException{
-        System.out.println("Cantidad de sprites: " + charSprites.size());
         for(AAppearance characterAppearance : charSprites.values()){
             List<String> newLooks = new ArrayList<>();
-            System.out.println("Cant looks: " + characterAppearance.getLooks().size());
             for(String look : characterAppearance.getLooks()){
                 Thread.sleep(100);
                 //DefaultFilesController d = new DefaultFilesController();
