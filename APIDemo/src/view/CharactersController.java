@@ -1,5 +1,6 @@
 package view;
 
+import utils.DirectoryChooser;
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;
 import ADT.DefaultCharacterAppearance;
@@ -85,7 +86,7 @@ public class CharactersController implements ActionListener {
         screen.cmBxCharAppearanceLvl.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED & screen.cmBxCharAppearanceLvl.getSelectedIndex() > 1) {
+                if (event.getStateChange() == ItemEvent.SELECTED & screen.cmBxCharAppearanceLvl.getItemCount() > 1) {
                     screen.cmBxCharAppearance.setSelectedIndex(0);
                     loadCharAppearance();
                 }
@@ -234,7 +235,8 @@ public class CharactersController implements ActionListener {
                 break;
                 
             case "Export JSON Character Data":
-                String directory = openDirectoryChooser();
+
+                String directory = DirectoryChooser.openDirectoryChooser();
                 if(directory == null)
                     return;
                 {
@@ -249,12 +251,21 @@ public class CharactersController implements ActionListener {
                 break;
                 
             case "Save Character Class":
+
                 if (screen.txtCharClassName.getText().isEmpty())
                     JOptionPane.showMessageDialog(screen, "Class name must be filled.",
                                                  "Save Character Class", JOptionPane.ERROR_MESSAGE);
-                else
+                else{
+
+                try {
                     SaveCharClass();
-                break;
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(CharactersController.class.getName()).log(Level.SEVERE, null, ex);
+                }                    
+		}
+            
+            break;
+
                 
             case "Create Character Object":
                 createCharObject();
@@ -283,7 +294,7 @@ public class CharactersController implements ActionListener {
         return null;
     }
         
-    private void SaveCharClass() {
+    private void SaveCharClass() throws InterruptedException {
         try {
             saveSprites();
         } catch (IOException ex) {
@@ -298,6 +309,7 @@ public class CharactersController implements ActionListener {
                                                               null, null, null);
             if (selectedOption == JOptionPane.NO_OPTION)
                 return;
+
         }
         catch(NullPointerException ex) {
             cmBxModelCharClasses.addElement(newChar.getName());
@@ -346,28 +358,17 @@ public class CharactersController implements ActionListener {
         }
     }
     
-    private void saveSprites() throws IOException{
+    private void saveSprites() throws IOException, InterruptedException{
+        System.out.println("Cantidad de sprites: " + charSprites.size());
         for(AAppearance characterAppearance : charSprites.values()){
             List<String> newLooks = new ArrayList<>();
+            System.out.println("Cant looks: " + characterAppearance.getLooks().size());
             for(String look : characterAppearance.getLooks()){
+                Thread.sleep(100);
                 newLooks.add(DefaultFilesController.saveImage(Paths.get(look)));
             }
             characterAppearance.setLooks(newLooks);
         } 
-    }
-    
-    private String openDirectoryChooser(){
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
-        chooser.setDialogTitle("Directory chooser");
-        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        chooser.setAcceptAllFileFilterUsed(false);
-        
-        if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION){
-            return chooser.getSelectedFile().toString();
-        }else{
-            return null;
-        }
     }
     
     private void createCharObject() {

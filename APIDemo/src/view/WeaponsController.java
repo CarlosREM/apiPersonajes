@@ -1,5 +1,6 @@
 package view;
 
+import utils.DirectoryChooser;
 import ADT.DefaultWeapon;
 import ADT.DefaultWeaponAppearance;
 import ADT.WeaponPrototypeFactory;
@@ -9,11 +10,15 @@ import abstraction.AAppearance;
 import abstraction.AWeapon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -56,12 +61,30 @@ public class WeaponsController implements ActionListener {
         cmBxModelWeaponClasses = new DefaultComboBoxModel(WeaponPrototypeFactory.getKeys().toArray());
         screen.cmBxWeaponClassSelect.setModel(cmBxModelWeaponClasses);
         
+        screen.cmBxWeaponAppearanceLvl.setModel(new DefaultComboBoxModel());
+        screen.cmBxWeaponAppearanceLvl.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED & screen.cmBxWeaponAppearanceLvl.getItemCount() > 1) {
+                    screen.cmBxWeaponAppearance.setSelectedIndex(0);
+                    loadWeaponAppearance();
+                }
+           }
+        });
+        
         DefaultComboBoxModel<String> weaponAppearance = new DefaultComboBoxModel();
         for (DefaultWeaponAppearance.codes appearance : DefaultWeaponAppearance.codes.values()) {
             weaponAppearance.addElement(appearance.name());
         }
         screen.cmBxWeaponAppearance.setModel(weaponAppearance);
-        screen.cmBxWeaponAppearanceLvl.setModel(new DefaultComboBoxModel());
+        screen.cmBxWeaponAppearance.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent event) {
+                if (event.getStateChange() == ItemEvent.SELECTED) {
+                    loadWeaponAppearance();
+                }
+            }
+        });    
     }
 
             
@@ -79,18 +102,15 @@ public class WeaponsController implements ActionListener {
         
         screen.lblWeaponSpritePreview.setIcon(null);
         screen.cmBxWeaponAppearance.setSelectedIndex(0);
+        weaponSprites = weapon.getAppearances();
         screen.cmBxWeaponAppearanceLvl.setModel(new DefaultComboBoxModel());
         try {
             boolean loadImg = false;
             for (int key : weapon.getAppearances().keySet()) {
                 screen.cmBxWeaponAppearanceLvl.addItem(String.valueOf(key));
                 if (!loadImg) {
-                    String strImage = weapon.getAppearance(key).getLook(DefaultWeaponAppearance.codes.DEFAULT);
-                    screen.lblWeaponSpritePreview.setText("");
-                    screen.lblWeaponSpritePreview.setIcon(imgHandler.createImageicon(strImage,
-                                                        screen.lblWeaponSpritePreview.getWidth(),
-                                                        screen.lblWeaponSpritePreview.getHeight())
-                    );
+                    screen.cmBxWeaponAppearanceLvl.setSelectedIndex(0);
+                    loadWeaponAppearance();
                     loadImg = true;
                 }
             }
@@ -143,6 +163,7 @@ public class WeaponsController implements ActionListener {
                 if (path != null) {
                     try {
                         DefaultPrototypeController.loadWeaponPrototypes(path);
+                        loadItems();
                     }
                     catch(Exception ex) {
                         JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Weapon info",
@@ -160,14 +181,28 @@ public class WeaponsController implements ActionListener {
                 break;
                 
             case "Export JSON Weapon Data":
-                System.out.println(e.getActionCommand());
-                
+                String directory = DirectoryChooser.openDirectoryChooser();
+                if(directory == null)
+                    return;
+                {
+                    try{
+                        DefaultPrototypeController.exportWeaponPrototypes(directory);
+                    }catch(IOException ex){
+                        System.out.println("IOException generada");
+                    }
+                }
                 JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
                                               "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
                 break;
                 
             case "Save Weapon Class":
-                SaveWeaponClass();
+            {
+                try {
+                    SaveWeaponClass();
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(WeaponsController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
             default:
                 throw new UnsupportedOperationException("Not supported.");
@@ -192,7 +227,7 @@ public class WeaponsController implements ActionListener {
         return null;
     }
     
-    private void SaveWeaponClass() {
+    private void SaveWeaponClass() throws InterruptedException {
         try {
             saveSprites();
         } catch (IOException ex) {
@@ -224,8 +259,14 @@ public class WeaponsController implements ActionListener {
     }
     
     private void loadWeaponAppearance() {
-        
-    }
+        int key = Integer.valueOf((String) screen.cmBxWeaponAppearanceLvl.getSelectedItem());
+        String appearanceType = (String) screen.cmBxWeaponAppearance.getSelectedItem();
+        String imageURL = weaponSprites.get(key).getLook(DefaultWeaponAppearance.codes.valueOf(appearanceType));
+
+        screen.lblWeaponSpritePreview.setIcon(imgHandler.createImageicon(imageURL,
+                                                                       screen.lblWeaponSpritePreview.getWidth(),
+                                                                       screen.lblWeaponSpritePreview.getHeight()));
+}
     
     private void deleteWeaponAppearance() {
         if (screen.cmBxWeaponAppearanceLvl.getSelectedIndex() < 0) {
@@ -248,13 +289,16 @@ public class WeaponsController implements ActionListener {
         }
     }
     
-    private void saveSprites() throws IOException{
-        for(AAppearance characterAppearance : weaponSprites.values()){
+    private void saveSprites() throws IOException, InterruptedException{
+        System.out.println("Cantidad de sprites: " + weaponSprites.size());
+        for(AAppearance weaponAppearance : weaponSprites.values()){
             List<String> newLooks = new ArrayList<>();
-            for(String look : characterAppearance.getLooks()){
+            System.out.println("Cant looks: " + weaponAppearance.getLooks().size());
+            for(String look : weaponAppearance.getLooks()){
+                Thread.sleep(100);
                 newLooks.add(DefaultFilesController.saveImage(Paths.get(look)));
             }
-            characterAppearance.setLooks(newLooks);
+            weaponAppearance.setLooks(newLooks);
         } 
     }
     
