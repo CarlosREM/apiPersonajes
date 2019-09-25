@@ -49,7 +49,7 @@ public class DefaultFilesController {
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
         Date date = new Date(System.currentTimeMillis());        
         File newImg = new File(dataPath+"/"+formatter.format(date)+ "_" + System.currentTimeMillis() +".png");
-
+        
         copy(originalPath,newImg);
         return newImg.toPath().toString();
     }
@@ -65,12 +65,14 @@ public class DefaultFilesController {
         ClassLoader classLoader = getClass().getClassLoader();
         char charAt = var.charAt(0);
         if (charAt=='\\'){
+                System.out.println(var);
                 Files.copy(classLoader.getResourceAsStream(var), newImg.toPath());      
         }
         else{
                 Files.copy(originalPath, newImg.toPath());
         }
     }
+    
     /**
      * Static method to delete an image from a absolute path.
      * @param fileName The name of the file to be deleted.

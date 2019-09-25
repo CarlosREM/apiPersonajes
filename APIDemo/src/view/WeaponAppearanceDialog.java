@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author carlo
@@ -19,6 +21,7 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
         super(parent, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initComponents();
+        
     }
 
     /**
@@ -43,25 +46,39 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
         setTitle("Add Weapon Character - Character Creation API Demo");
         setResizable(false);
 
+        lblInstruction1.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblInstruction1.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction1.setText("Select the level of the Appearance");
 
+        btnDefault.setBackground(new java.awt.Color(51, 51, 51));
+        btnDefault.setForeground(new java.awt.Color(204, 204, 204));
         btnDefault.setText("DEFAULT");
 
+        lblInstruction2.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblInstruction2.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction2.setText("Select every image to use on the specified Appearance");
 
+        lblLevel.setBackground(new java.awt.Color(51, 51, 51));
+        lblLevel.setForeground(new java.awt.Color(51, 51, 51));
         lblLevel.setText("Level:");
 
         spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        btnCancel.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancel.setForeground(new java.awt.Color(204, 204, 204));
         btnCancel.setText("Cancel");
 
+        btnOk.setBackground(new java.awt.Color(51, 51, 51));
+        btnOk.setForeground(new java.awt.Color(204, 204, 204));
         btnOk.setText("OK");
 
+        lblDefaultPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblDefaultPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setText("Not Selected");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Carlos Esquivel
@@ -11,6 +13,7 @@ public class WeaponsTab extends javax.swing.JPanel {
      */
     public WeaponsTab() {
         initComponents();
+        this.setBackground(Color.DARK_GRAY);
     }
 
     /**
@@ -55,7 +58,12 @@ public class WeaponsTab extends javax.swing.JPanel {
         chkBxWeaponDmg = new javax.swing.JCheckBox();
         spnWeaponDmg = new javax.swing.JSpinner();
 
+        setBackground(new java.awt.Color(51, 51, 51));
+        setForeground(new java.awt.Color(204, 204, 204));
+
+        chkBxWeaponHits.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponHits.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponHits.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponHits.setSelected(true);
         chkBxWeaponHits.setText("Hits per Time unit:");
         chkBxWeaponHits.addItemListener(new java.awt.event.ItemListener() {
@@ -68,13 +76,16 @@ public class WeaponsTab extends javax.swing.JPanel {
 
         spnWeaponStartLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
-        pnlWeaponSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlWeaponSpritePreview.setBackground(new java.awt.Color(51, 51, 51));
+        pnlWeaponSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
         pnlWeaponSpritePreview.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlWeaponSpritePreview.setPreferredSize(new java.awt.Dimension(250, 250));
         pnlWeaponSpritePreview.setLayout(new java.awt.BorderLayout());
         pnlWeaponSpritePreview.add(lblWeaponSpritePreview, java.awt.BorderLayout.CENTER);
 
+        chkBxWeaponStartLvl.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponStartLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponStartLvl.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponStartLvl.setSelected(true);
         chkBxWeaponStartLvl.setText("Starting Level:");
         chkBxWeaponStartLvl.addItemListener(new java.awt.event.ItemListener() {
@@ -83,7 +94,9 @@ public class WeaponsTab extends javax.swing.JPanel {
             }
         });
 
+        chkBxWeaponUnlockLvl.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponUnlockLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponUnlockLvl.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponUnlockLvl.setSelected(true);
         chkBxWeaponUnlockLvl.setText("Unlocking Level:");
         chkBxWeaponUnlockLvl.setToolTipText("");
@@ -95,12 +108,16 @@ public class WeaponsTab extends javax.swing.JPanel {
 
         spnWeaponUnlockLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        lblWeaponAppearance.setBackground(new java.awt.Color(51, 51, 51));
         lblWeaponAppearance.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponAppearance.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponAppearance.setText("Appearance:");
 
         spnWeaponAOE.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        chkBxWeaponAOE.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponAOE.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponAOE.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponAOE.setSelected(true);
         chkBxWeaponAOE.setText("Area of Effect:");
         chkBxWeaponAOE.addItemListener(new java.awt.event.ItemListener() {
@@ -113,7 +130,9 @@ public class WeaponsTab extends javax.swing.JPanel {
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
         jSeparator3.setPreferredSize(new java.awt.Dimension(10, 50));
 
+        chkBxWeaponRange.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponRange.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponRange.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponRange.setSelected(true);
         chkBxWeaponRange.setText("Attack Range:");
         chkBxWeaponRange.addItemListener(new java.awt.event.ItemListener() {
@@ -122,41 +141,67 @@ public class WeaponsTab extends javax.swing.JPanel {
             }
         });
 
+        lblWeaponAppareanceLvl.setBackground(new java.awt.Color(51, 51, 51));
         lblWeaponAppareanceLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponAppareanceLvl.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponAppareanceLvl.setText("Level:");
 
         spnWeaponRange.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        btnSaveWeapon.setBackground(new java.awt.Color(51, 51, 51));
+        btnSaveWeapon.setForeground(new java.awt.Color(204, 204, 204));
         btnSaveWeapon.setText("Save Weapon Class");
 
+        btnAddWeaponAppearance.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddWeaponAppearance.setForeground(new java.awt.Color(204, 204, 204));
         btnAddWeaponAppearance.setText("Add New Weapon Appearance");
 
+        lblWeaponClassSelect.setBackground(new java.awt.Color(51, 51, 51));
         lblWeaponClassSelect.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponClassSelect.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponClassSelect.setText("Select a class:");
 
+        btnDelWeaponAppearance.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelWeaponAppearance.setForeground(new java.awt.Color(204, 204, 204));
         btnDelWeaponAppearance.setText("Delete Weapon Appearance");
 
+        btnWeaponImportJson.setBackground(new java.awt.Color(51, 51, 51));
+        btnWeaponImportJson.setForeground(new java.awt.Color(204, 204, 204));
         btnWeaponImportJson.setText("Import JSON Weapon Data");
 
+        lblCharacterClass1.setBackground(new java.awt.Color(51, 51, 51));
         lblCharacterClass1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblCharacterClass1.setForeground(new java.awt.Color(204, 204, 204));
         lblCharacterClass1.setText("Weapon class");
 
+        btnWeaponExportJson.setBackground(new java.awt.Color(51, 51, 51));
+        btnWeaponExportJson.setForeground(new java.awt.Color(204, 204, 204));
         btnWeaponExportJson.setText("Export JSON Weapon Data");
 
+        btnLoadWeaponClass.setBackground(new java.awt.Color(51, 51, 51));
+        btnLoadWeaponClass.setForeground(new java.awt.Color(204, 204, 204));
         btnLoadWeaponClass.setText("Load Weapon Class Info");
         btnLoadWeaponClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jSeparator4.setForeground(new java.awt.Color(187, 187, 187));
 
+        lblWeaponAttributes.setBackground(new java.awt.Color(51, 51, 51));
         lblWeaponAttributes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblWeaponAttributes.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponAttributes.setText("Attributes");
 
+        lblWeaponClassName.setBackground(new java.awt.Color(51, 51, 51));
         lblWeaponClassName.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponClassName.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponClassName.setText("Weapon name:");
 
+        txtWeaponClassName.setBackground(new java.awt.Color(51, 51, 51));
+        txtWeaponClassName.setForeground(new java.awt.Color(204, 204, 204));
         txtWeaponClassName.setToolTipText("Class Name");
 
+        chkBxWeaponDmg.setBackground(new java.awt.Color(51, 51, 51));
         chkBxWeaponDmg.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxWeaponDmg.setForeground(new java.awt.Color(204, 204, 204));
         chkBxWeaponDmg.setSelected(true);
         chkBxWeaponDmg.setText("Weapon Damage:");
         chkBxWeaponDmg.addItemListener(new java.awt.event.ItemListener() {

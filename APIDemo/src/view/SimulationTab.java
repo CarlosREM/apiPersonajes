@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author carlo
@@ -16,6 +18,7 @@ public class SimulationTab extends javax.swing.JPanel {
      */
     public SimulationTab() {
         initComponents();
+        this.setBackground(Color.DARK_GRAY);
     }
 
     /**
@@ -51,42 +54,53 @@ public class SimulationTab extends javax.swing.JPanel {
         javax.swing.JLabel lblPlayerHP = new javax.swing.JLabel();
         cmBxPlayerWeapon = new javax.swing.JComboBox<>();
 
+        btnPlayerAttack.setBackground(new java.awt.Color(51, 51, 51));
         btnPlayerAttack.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnPlayerAttack.setText("Attack");
         btnPlayerAttack.setEnabled(false);
 
         txtPlayerHP.setEditable(false);
+        txtPlayerHP.setBackground(new java.awt.Color(51, 51, 51));
         txtPlayerHP.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtPlayerHP.setForeground(new java.awt.Color(204, 204, 204));
         txtPlayerHP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPlayerHPActionPerformed(evt);
             }
         });
 
-        pnlPlayerWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlPlayerWeapon.setBackground(new java.awt.Color(51, 51, 51));
+        pnlPlayerWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlPlayerWeapon.setForeground(new java.awt.Color(204, 204, 204));
         pnlPlayerWeapon.setLayout(new java.awt.BorderLayout());
         pnlPlayerWeapon.add(lblPlayerWeapon, java.awt.BorderLayout.CENTER);
 
-        pnlComputerImage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Computer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlComputerImage.setBackground(new java.awt.Color(51, 51, 51));
+        pnlComputerImage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Computer", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlComputerImage.setForeground(new java.awt.Color(204, 204, 204));
         pnlComputerImage.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlComputerImage.setPreferredSize(new java.awt.Dimension(250, 250));
         pnlComputerImage.setLayout(new java.awt.BorderLayout());
         pnlComputerImage.add(lblComputerImage, java.awt.BorderLayout.CENTER);
 
-        lblPlayerChar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblPlayerChar.setForeground(new java.awt.Color(204, 204, 204));
         lblPlayerChar.setText("Player character:");
 
-        lblComChar.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblComChar.setForeground(new java.awt.Color(204, 204, 204));
         lblComChar.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblComChar.setText("Com. character:");
 
-        pnlPlayerImage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlPlayerImage.setBackground(new java.awt.Color(51, 51, 51));
+        pnlPlayerImage.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Player", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlPlayerImage.setForeground(new java.awt.Color(204, 204, 204));
         pnlPlayerImage.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlPlayerImage.setPreferredSize(new java.awt.Dimension(250, 250));
         pnlPlayerImage.setLayout(new java.awt.BorderLayout());
         pnlPlayerImage.add(lblPlayerImage, java.awt.BorderLayout.CENTER);
 
+        btnReady.setBackground(new java.awt.Color(51, 51, 51));
         btnReady.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnReady.setForeground(new java.awt.Color(204, 204, 204));
         btnReady.setText("READY");
         btnReady.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,7 +115,9 @@ public class SimulationTab extends javax.swing.JPanel {
             }
         });
 
+        btnStop.setBackground(new java.awt.Color(51, 51, 51));
         btnStop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnStop.setForeground(new java.awt.Color(204, 204, 204));
         btnStop.setText("STOP");
         btnStop.setEnabled(false);
         btnStop.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +126,9 @@ public class SimulationTab extends javax.swing.JPanel {
             }
         });
 
-        pnlComWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlComWeapon.setBackground(new java.awt.Color(51, 51, 51));
+        pnlComWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlComWeapon.setForeground(new java.awt.Color(204, 204, 204));
         pnlComWeapon.setLayout(new java.awt.BorderLayout());
         pnlComWeapon.add(lblComWeapon, java.awt.BorderLayout.CENTER);
 
@@ -120,10 +138,13 @@ public class SimulationTab extends javax.swing.JPanel {
         scrollCombatLog.setViewportView(txtCombatLog);
 
         lblComHP.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblComHP.setForeground(new java.awt.Color(204, 204, 204));
         lblComHP.setText("HP");
 
         txtComHP.setEditable(false);
+        txtComHP.setBackground(new java.awt.Color(51, 51, 51));
         txtComHP.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        txtComHP.setForeground(new java.awt.Color(204, 204, 204));
         txtComHP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtComHPActionPerformed(evt);
@@ -131,6 +152,7 @@ public class SimulationTab extends javax.swing.JPanel {
         });
 
         lblPlayerHP.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblPlayerHP.setForeground(new java.awt.Color(204, 204, 204));
         lblPlayerHP.setText("HP");
 
         cmBxPlayerWeapon.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N

@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author Carlos Esquivel
@@ -11,6 +13,10 @@ public class CharactersTab extends javax.swing.JPanel {
      */
     public CharactersTab() {
         initComponents();
+        this.setBackground(Color.DARK_GRAY);
+        spnCharHealth.setBackground(Color.BLACK);
+        spnCharHealth.setForeground(Color.BLACK);
+       
     }
 
     /**
@@ -65,12 +71,17 @@ public class CharactersTab extends javax.swing.JPanel {
         javax.swing.JLabel lblObjQuantity = new javax.swing.JLabel();
         spnObjQuantity = new javax.swing.JSpinner();
 
+        btnCharSaveClass.setBackground(new java.awt.Color(51, 51, 51));
+        btnCharSaveClass.setForeground(new java.awt.Color(204, 204, 204));
         btnCharSaveClass.setText("Save Character Class");
 
         lblWeaponClassSelect1.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblWeaponClassSelect1.setForeground(new java.awt.Color(204, 204, 204));
         lblWeaponClassSelect1.setText("Select a class:");
 
+        chkBxCharHealth.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharHealth.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharHealth.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharHealth.setSelected(true);
         chkBxCharHealth.setText("Max Health Points (HP):");
         chkBxCharHealth.addItemListener(new java.awt.event.ItemListener() {
@@ -79,11 +90,15 @@ public class CharactersTab extends javax.swing.JPanel {
             }
         });
 
+        btnCharImportJson.setBackground(new java.awt.Color(51, 51, 51));
+        btnCharImportJson.setForeground(new java.awt.Color(204, 204, 204));
         btnCharImportJson.setText("Import JSON Character Data");
 
         spnCharHealth.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        chkBxCharCost.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharCost.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharCost.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharCost.setSelected(true);
         chkBxCharCost.setText("Production Cost:");
         chkBxCharCost.addItemListener(new java.awt.event.ItemListener() {
@@ -94,7 +109,9 @@ public class CharactersTab extends javax.swing.JPanel {
 
         spnCharCost.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        chkBxCharHits.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharHits.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharHits.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharHits.setSelected(true);
         chkBxCharHits.setText("Hits per Time unit:");
         chkBxCharHits.addItemListener(new java.awt.event.ItemListener() {
@@ -105,7 +122,9 @@ public class CharactersTab extends javax.swing.JPanel {
 
         spnCharHits.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        chkBxCharTiles.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharTiles.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharTiles.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharTiles.setSelected(true);
         chkBxCharTiles.setText("Tile Hitbox:");
         chkBxCharTiles.addItemListener(new java.awt.event.ItemListener() {
@@ -116,7 +135,9 @@ public class CharactersTab extends javax.swing.JPanel {
 
         spnCharTiles.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        chkBxCharStartLvl.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharStartLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharStartLvl.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharStartLvl.setSelected(true);
         chkBxCharStartLvl.setText("Starting Level:");
         chkBxCharStartLvl.addItemListener(new java.awt.event.ItemListener() {
@@ -126,14 +147,18 @@ public class CharactersTab extends javax.swing.JPanel {
         });
 
         lblCharAppearance.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblCharAppearance.setForeground(new java.awt.Color(204, 204, 204));
         lblCharAppearance.setText("Appearance:");
 
         spnCharStartLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         lblCharAppareanceLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblCharAppareanceLvl.setForeground(new java.awt.Color(204, 204, 204));
         lblCharAppareanceLvl.setText("Level:");
 
+        chkBxCharUnlockLvl.setBackground(new java.awt.Color(51, 51, 51));
         chkBxCharUnlockLvl.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        chkBxCharUnlockLvl.setForeground(new java.awt.Color(204, 204, 204));
         chkBxCharUnlockLvl.setSelected(true);
         chkBxCharUnlockLvl.setText("Unlocking Level:");
         chkBxCharUnlockLvl.setToolTipText("");
@@ -144,20 +169,32 @@ public class CharactersTab extends javax.swing.JPanel {
         });
 
         lblCharacterClass.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblCharacterClass.setForeground(new java.awt.Color(204, 204, 204));
         lblCharacterClass.setText("Character class");
 
         spnCharUnlockLvl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        cmBxCharClassSelect.setBackground(new java.awt.Color(255, 255, 255));
+        cmBxCharClassSelect.setForeground(new java.awt.Color(51, 51, 51));
+
+        btnDelCharAppearance.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelCharAppearance.setForeground(new java.awt.Color(204, 204, 204));
         btnDelCharAppearance.setText("Delete Character Appearance");
 
+        btnLoadCharClass.setBackground(new java.awt.Color(51, 51, 51));
+        btnLoadCharClass.setForeground(new java.awt.Color(204, 204, 204));
         btnLoadCharClass.setText("Load Character Class Info");
         btnLoadCharClass.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        btnAddWeapon.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddWeapon.setForeground(new java.awt.Color(204, 204, 204));
         btnAddWeapon.setText(">");
         btnAddWeapon.setEnabled(false);
 
         jSeparator1.setForeground(new java.awt.Color(187, 187, 187));
 
+        listWeapons.setBackground(new java.awt.Color(51, 51, 51));
+        listWeapons.setForeground(new java.awt.Color(204, 204, 204));
         listWeapons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listWeapons.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listWeapons.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -172,8 +209,11 @@ public class CharactersTab extends javax.swing.JPanel {
         jSeparator2.setPreferredSize(new java.awt.Dimension(10, 50));
 
         lblCharAttributes.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblCharAttributes.setForeground(new java.awt.Color(204, 204, 204));
         lblCharAttributes.setText("Attributes");
 
+        listClassWeapons.setBackground(new java.awt.Color(51, 51, 51));
+        listClassWeapons.setForeground(new java.awt.Color(204, 204, 204));
         listClassWeapons.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listClassWeapons.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         listClassWeapons.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
@@ -184,28 +224,53 @@ public class CharactersTab extends javax.swing.JPanel {
         scrollClassWeapons.setViewportView(listClassWeapons);
 
         lblCharClassName.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
+        lblCharClassName.setForeground(new java.awt.Color(204, 204, 204));
         lblCharClassName.setText("Class name:");
 
+        txtCharClassName.setBackground(new java.awt.Color(51, 51, 51));
+        txtCharClassName.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        txtCharClassName.setForeground(new java.awt.Color(204, 204, 204));
         txtCharClassName.setToolTipText("Class Name");
 
-        pnlCharSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18))); // NOI18N
+        pnlCharSpritePreview.setBackground(new java.awt.Color(51, 51, 51));
+        pnlCharSpritePreview.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Sprite Preview", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
+        pnlCharSpritePreview.setForeground(new java.awt.Color(204, 204, 204));
         pnlCharSpritePreview.setMaximumSize(new java.awt.Dimension(250, 250));
         pnlCharSpritePreview.setPreferredSize(new java.awt.Dimension(250, 250));
         pnlCharSpritePreview.setLayout(new java.awt.BorderLayout());
+
+        lblCharSpritePreview.setBackground(new java.awt.Color(255, 255, 255));
+        lblCharSpritePreview.setForeground(new java.awt.Color(204, 204, 204));
         pnlCharSpritePreview.add(lblCharSpritePreview, java.awt.BorderLayout.CENTER);
 
+        cmBxCharAppearance.setBackground(new java.awt.Color(255, 255, 255));
+        cmBxCharAppearance.setForeground(new java.awt.Color(51, 51, 51));
+
+        cmBxCharAppearanceLvl.setBackground(new java.awt.Color(255, 255, 255));
+        cmBxCharAppearanceLvl.setForeground(new java.awt.Color(51, 51, 51));
+
+        btnDelWeapon.setBackground(new java.awt.Color(51, 51, 51));
+        btnDelWeapon.setForeground(new java.awt.Color(204, 204, 204));
         btnDelWeapon.setText("X");
         btnDelWeapon.setEnabled(false);
 
+        btnAddCharAppearance.setBackground(new java.awt.Color(51, 51, 51));
+        btnAddCharAppearance.setForeground(new java.awt.Color(204, 204, 204));
         btnAddCharAppearance.setText("Add New Character Appearance");
 
         lblClassWeapons.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        lblClassWeapons.setForeground(new java.awt.Color(204, 204, 204));
         lblClassWeapons.setText("Weapons:");
 
+        btnCharCreateObject.setBackground(new java.awt.Color(51, 51, 51));
+        btnCharCreateObject.setForeground(new java.awt.Color(204, 204, 204));
         btnCharCreateObject.setText("Create Character Object");
 
+        btnCharExportJson.setBackground(new java.awt.Color(51, 51, 51));
+        btnCharExportJson.setForeground(new java.awt.Color(204, 204, 204));
         btnCharExportJson.setText("Export JSON Character Data");
 
+        lblObjQuantity.setForeground(new java.awt.Color(204, 204, 204));
         lblObjQuantity.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lblObjQuantity.setText("Quantity:");
 

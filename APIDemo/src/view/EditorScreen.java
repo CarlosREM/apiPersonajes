@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.Color;
+
 
 /**
  *
@@ -46,6 +48,7 @@ public class EditorScreen extends javax.swing.JFrame {
         tabbedPane.add(simulationTab, "Simulation");
         
         contentPane.add(tabbedPane);
+        this.getContentPane().setBackground( Color.DARK_GRAY );
     }
     
     private void setupControllers() {

@@ -5,6 +5,8 @@
  */
 package view;
 
+import java.awt.Color;
+
 /**
  *
  * @author carlo
@@ -18,6 +20,7 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
         super(parent, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initComponents();
+        
     }
     
     /**
@@ -50,50 +53,85 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Character Appearance - Character Creation API Demo");
+        setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
 
+        lblInstruction1.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblInstruction1.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction1.setText("Select the level of the Appearance");
 
+        btnDefault.setBackground(new java.awt.Color(51, 51, 51));
+        btnDefault.setForeground(new java.awt.Color(204, 204, 204));
         btnDefault.setText("DEFAULT");
 
+        btnAttack.setBackground(new java.awt.Color(51, 51, 51));
+        btnAttack.setForeground(new java.awt.Color(204, 204, 204));
         btnAttack.setText("ATTACK");
 
+        btnDefend.setBackground(new java.awt.Color(51, 51, 51));
+        btnDefend.setForeground(new java.awt.Color(204, 204, 204));
         btnDefend.setText("DEFEND");
 
+        btnWalk.setBackground(new java.awt.Color(51, 51, 51));
+        btnWalk.setForeground(new java.awt.Color(204, 204, 204));
         btnWalk.setText("WALK");
 
+        btnLowHealth.setBackground(new java.awt.Color(51, 51, 51));
+        btnLowHealth.setForeground(new java.awt.Color(204, 204, 204));
         btnLowHealth.setText("LOWHEALTH");
 
+        btnHurt.setBackground(new java.awt.Color(51, 51, 51));
+        btnHurt.setForeground(new java.awt.Color(204, 204, 204));
         btnHurt.setText("HURT");
 
+        btnCancel.setBackground(new java.awt.Color(51, 51, 51));
+        btnCancel.setForeground(new java.awt.Color(204, 204, 204));
         btnCancel.setText("Cancel");
 
+        btnOk.setBackground(new java.awt.Color(51, 51, 51));
+        btnOk.setForeground(new java.awt.Color(204, 204, 204));
         btnOk.setText("OK");
 
+        lblDefaultPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblDefaultPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setText("Not Selected");
 
+        lblAttackPath.setBackground(new java.awt.Color(51, 51, 51));
         lblAttackPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblAttackPath.setForeground(new java.awt.Color(51, 51, 51));
         lblAttackPath.setText("Not Selected");
 
+        lblDefendPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefendPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblDefendPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefendPath.setText("Not Selected");
 
+        lblWalkPath.setBackground(new java.awt.Color(51, 51, 51));
         lblWalkPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblWalkPath.setForeground(new java.awt.Color(51, 51, 51));
         lblWalkPath.setText("Not Selected");
 
+        lblLowHealthPath.setBackground(new java.awt.Color(51, 51, 51));
         lblLowHealthPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblLowHealthPath.setForeground(new java.awt.Color(51, 51, 51));
         lblLowHealthPath.setText("Not Selected");
 
+        lblHurtPath.setBackground(new java.awt.Color(51, 51, 51));
         lblHurtPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
+        lblHurtPath.setForeground(new java.awt.Color(51, 51, 51));
         lblHurtPath.setText("Not Selected");
 
+        lblInstruction2.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        lblInstruction2.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction2.setText("Select every image to use on the specified Appearance");
 
+        lblLevel.setBackground(new java.awt.Color(51, 51, 51));
+        lblLevel.setForeground(new java.awt.Color(51, 51, 51));
         lblLevel.setText("Level:");
 
         spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
