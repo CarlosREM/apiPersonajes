@@ -256,13 +256,13 @@ public class CharactersController implements ActionListener {
                     JOptionPane.showMessageDialog(screen, "Class name must be filled.",
                                                  "Save Character Class", JOptionPane.ERROR_MESSAGE);
                 else{
-
-                try {
-                    SaveCharClass();
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(CharactersController.class.getName()).log(Level.SEVERE, null, ex);
-                }                    
-		}
+                    try {
+                        SaveCharClass();
+                    }
+                    catch (InterruptedException ex) {
+                        Logger.getLogger(CharactersController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
             
             break;
 
@@ -295,12 +295,13 @@ public class CharactersController implements ActionListener {
     }
         
     private void SaveCharClass() throws InterruptedException {
+        /*
         try {
             saveSprites();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(screen, "Error saving images.", "Save images", JOptionPane.ERROR_MESSAGE);
             return;
-        }
+        }*/
         ACharacter newChar = captureCharClassInput();
         try {
             CharacterPrototypeFactory.getPrototype(newChar.getName());

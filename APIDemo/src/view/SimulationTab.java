@@ -9,7 +9,7 @@ import java.awt.Color;
 
 /**
  *
- * @author carlo
+ * @author Carlos Esquivel
  */
 public class SimulationTab extends javax.swing.JPanel {
 
@@ -34,15 +34,15 @@ public class SimulationTab extends javax.swing.JPanel {
         txtPlayerHP = new javax.swing.JTextField();
         javax.swing.JPanel pnlPlayerWeapon = new javax.swing.JPanel();
         lblPlayerWeapon = new javax.swing.JLabel();
-        pnlComputerImage = new javax.swing.JPanel();
+        javax.swing.JPanel pnlComputerImage = new javax.swing.JPanel();
         lblComputerImage = new javax.swing.JLabel();
         javax.swing.JLabel lblPlayerChar = new javax.swing.JLabel();
         cmBxPlayerChar = new javax.swing.JComboBox<>();
         cmBxComChar = new javax.swing.JComboBox<>();
         javax.swing.JLabel lblComChar = new javax.swing.JLabel();
-        pnlPlayerImage = new javax.swing.JPanel();
+        javax.swing.JPanel pnlPlayerImage = new javax.swing.JPanel();
         lblPlayerImage = new javax.swing.JLabel();
-        btnReady = new javax.swing.JButton();
+        btnStart = new javax.swing.JButton();
         cmBxComWeapon = new javax.swing.JComboBox<>();
         btnStop = new javax.swing.JButton();
         javax.swing.JPanel pnlComWeapon = new javax.swing.JPanel();
@@ -53,6 +53,8 @@ public class SimulationTab extends javax.swing.JPanel {
         txtComHP = new javax.swing.JTextField();
         javax.swing.JLabel lblPlayerHP = new javax.swing.JLabel();
         cmBxPlayerWeapon = new javax.swing.JComboBox<>();
+        javax.swing.JScrollPane jScrollPane2 = new javax.swing.JScrollPane();
+        javax.swing.JTextPane txtInstruction = new javax.swing.JTextPane();
 
         btnPlayerAttack.setBackground(new java.awt.Color(51, 51, 51));
         btnPlayerAttack.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -98,13 +100,13 @@ public class SimulationTab extends javax.swing.JPanel {
         pnlPlayerImage.setLayout(new java.awt.BorderLayout());
         pnlPlayerImage.add(lblPlayerImage, java.awt.BorderLayout.CENTER);
 
-        btnReady.setBackground(new java.awt.Color(51, 51, 51));
-        btnReady.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        btnReady.setForeground(new java.awt.Color(204, 204, 204));
-        btnReady.setText("READY");
-        btnReady.addActionListener(new java.awt.event.ActionListener() {
+        btnStart.setBackground(new java.awt.Color(51, 51, 51));
+        btnStart.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        btnStart.setForeground(new java.awt.Color(204, 204, 204));
+        btnStart.setText("READY");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReadyActionPerformed(evt);
+                btnStartActionPerformed(evt);
             }
         });
 
@@ -135,6 +137,7 @@ public class SimulationTab extends javax.swing.JPanel {
         txtCombatLog.setEditable(false);
         txtCombatLog.setColumns(20);
         txtCombatLog.setRows(5);
+        txtCombatLog.setWrapStyleWord(true);
         scrollCombatLog.setViewportView(txtCombatLog);
 
         lblComHP.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -162,6 +165,15 @@ public class SimulationTab extends javax.swing.JPanel {
             }
         });
 
+        jScrollPane2.setBorder(null);
+
+        txtInstruction.setEditable(false);
+        txtInstruction.setBackground(java.awt.Color.darkGray);
+        txtInstruction.setBorder(null);
+        txtInstruction.setForeground(new java.awt.Color(204, 204, 204));
+        txtInstruction.setText("Select computer weapon\nbefore starting simulation");
+        jScrollPane2.setViewportView(txtInstruction);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -188,7 +200,7 @@ public class SimulationTab extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmBxComChar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblComChar, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)))
-                            .addComponent(btnReady, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnStop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -207,7 +219,8 @@ public class SimulationTab extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cmBxComWeapon, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlComWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(pnlComWeapon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))))
                 .addGap(21, 21, 21))
         );
         layout.setVerticalGroup(
@@ -236,7 +249,7 @@ public class SimulationTab extends javax.swing.JPanel {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cmBxPlayerChar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnReady, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnStop, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -247,19 +260,20 @@ public class SimulationTab extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollCombatLog)
+                        .addComponent(pnlPlayerWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmBxPlayerWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(119, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pnlComWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmBxComWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlPlayerWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmBxPlayerWeapon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(119, Short.MAX_VALUE))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2))
+                            .addComponent(scrollCombatLog))
+                        .addGap(24, 24, 24))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -267,9 +281,9 @@ public class SimulationTab extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPlayerHPActionPerformed
 
-    private void btnReadyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReadyActionPerformed
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnReadyActionPerformed
+    }//GEN-LAST:event_btnStartActionPerformed
 
     private void cmBxComWeaponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmBxComWeaponActionPerformed
         // TODO add your handling code here:
@@ -287,23 +301,29 @@ public class SimulationTab extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmBxPlayerWeaponActionPerformed
 
-
+    public void writeCombatLog(String text) {
+        String previousText = txtCombatLog.getText();
+        txtCombatLog.setText(previousText + "> " + text + "\n");
+    }
+    public void clearCombatLog() {
+        txtCombatLog.setText("");
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton btnPlayerAttack;
-    protected javax.swing.JButton btnReady;
-    protected javax.swing.JButton btnStop;
-    protected javax.swing.JComboBox<String> cmBxComChar;
-    protected javax.swing.JComboBox<String> cmBxComWeapon;
-    protected javax.swing.JComboBox<String> cmBxPlayerChar;
-    protected javax.swing.JComboBox<String> cmBxPlayerWeapon;
-    protected javax.swing.JLabel lblComWeapon;
-    protected javax.swing.JLabel lblComputerImage;
-    protected javax.swing.JLabel lblPlayerImage;
-    protected javax.swing.JLabel lblPlayerWeapon;
-    protected javax.swing.JPanel pnlComputerImage;
-    protected javax.swing.JPanel pnlPlayerImage;
-    protected javax.swing.JTextField txtComHP;
-    protected javax.swing.JTextArea txtCombatLog;
-    protected javax.swing.JTextField txtPlayerHP;
+    public javax.swing.JButton btnPlayerAttack;
+    public javax.swing.JButton btnStart;
+    public javax.swing.JButton btnStop;
+    public javax.swing.JComboBox<String> cmBxComChar;
+    public javax.swing.JComboBox<String> cmBxComWeapon;
+    public javax.swing.JComboBox<String> cmBxPlayerChar;
+    public javax.swing.JComboBox<String> cmBxPlayerWeapon;
+    public javax.swing.JLabel lblComWeapon;
+    public javax.swing.JLabel lblComputerImage;
+    public javax.swing.JLabel lblPlayerImage;
+    public javax.swing.JLabel lblPlayerWeapon;
+    public javax.swing.JTextField txtComHP;
+    public javax.swing.JTextArea txtCombatLog;
+    public javax.swing.JTextField txtPlayerHP;
     // End of variables declaration//GEN-END:variables
 }
