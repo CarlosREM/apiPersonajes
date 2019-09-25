@@ -28,12 +28,16 @@ public class JsonLoader {
      * @return A list of ACharacteres with API's defaults 
      */
     public List<ACharacter> loadDefaultCharacters(){    
-        InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultCharacters.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
+        InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultCharacters.json");
         String json = null;
 
         try(Scanner scanner = new Scanner(defaultFile, StandardCharsets.UTF_8.name())){
             json = scanner.useDelimiter("\\A").next();
+            defaultFile.close();
+        } catch (IOException ex) {
+            Logger.getLogger(JsonLoader.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         try {
             JSONCharacterHolder newHolder = mapper.readValue(json, new TypeReference<JSONCharacterHolder>(){});
             return newHolder.getCharacters();
@@ -49,14 +53,13 @@ public class JsonLoader {
      * @return A list of AWeapons with API's defaults 
      */
     public List<AWeapon> loadDefaultWeapons(){
-        InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultWeapons.json"); //getResource("/resources/defaultCharacters.json").toExternalForm());
+        InputStream defaultFile = getClass().getResourceAsStream("/resources/defaultWeapons.json");
         String json = null;
 
         try(Scanner scanner = new Scanner(defaultFile, StandardCharsets.UTF_8.name())){
             json = scanner.useDelimiter("\\A").next();
         }
         try {
-
             JSONWeaponHolder newHolder = mapper.readValue(json, new TypeReference<JSONWeaponHolder>(){});
             return newHolder.getWeapons();
         } catch (IOException ex) {

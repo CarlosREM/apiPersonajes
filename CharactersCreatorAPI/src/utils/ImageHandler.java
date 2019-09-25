@@ -27,12 +27,11 @@ public class ImageHandler {
             Image dimg;
             if(f.isFile()) {
                 img = ImageIO.read(f);
-                //return new ImageIcon(f.getAbsolutePath());
             }
             else {
                 InputStream defaultFile = getClass().getResourceAsStream(path);
                 img = ImageIO.read(defaultFile);
-                //return new ImageIcon();
+                defaultFile.close();
             }
             dimg = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
             return new ImageIcon(dimg);

@@ -298,8 +298,8 @@ public class WeaponsController implements ActionListener {
             System.out.println("Cant looks: " + weaponAppearance.getLooks().size());
             for(String look : weaponAppearance.getLooks()){
                 Thread.sleep(100);
-                DefaultFilesController d = new DefaultFilesController();
-                newLooks.add(d.saveImage(Paths.get(look)));
+                //DefaultFilesController d = new DefaultFilesController();
+                newLooks.add(DefaultFilesController.saveImage(look));
             }
             weaponAppearance.setLooks(newLooks);
         } 

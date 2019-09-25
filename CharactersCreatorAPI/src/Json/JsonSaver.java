@@ -1,17 +1,12 @@
 package Json;
 
-import ADT.DefaultCharacter;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * 
@@ -23,8 +18,6 @@ import java.util.logging.Logger;
 public class JsonSaver {
     private ObjectMapper mapper = new ObjectMapper();
     
-    
-    
     /**
      * Saves a single ACharacter in a custom json file
      * @param value The ACharacter that will save
@@ -35,14 +28,9 @@ public class JsonSaver {
         
         try {
             JSONCharacterHolder newHolder = mapper.readValue(file, new TypeReference<JSONCharacterHolder>(){});
-            
-            
-            
             newHolder.getCharacters().add(value);
-            
             mapper.writeValue(file, newHolder);
-            
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }        
     }
@@ -68,14 +56,9 @@ public class JsonSaver {
         
         try {
             JSONWeaponHolder newHolder = mapper.readValue(file, new TypeReference<JSONWeaponHolder>(){});
-            
-            
-            
             newHolder.getWeapons().add(value);
-            
             mapper.writeValue(file, newHolder);
-            
-        } catch (IOException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }       
     }

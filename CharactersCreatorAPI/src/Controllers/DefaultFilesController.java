@@ -3,19 +3,16 @@ package Controllers;
 import abstraction.AAppearance;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Class used to manage files operations.
@@ -34,7 +31,6 @@ public class DefaultFilesController {
         File file = new File(dataPath);
         if(!file.isDirectory()){
             file.mkdir();
-            System.out.println(file.isDirectory());
         }
     }
     
@@ -44,33 +40,22 @@ public class DefaultFilesController {
      * @return A String of the new location of the image
      * @throws IOException If occurs some exception in the I/O operations.
      */
-    public String saveImage(Path originalPath) throws IOException{
+    public static String saveImage(String originalPath) throws IOException{
         createDataDirectory();
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
         Date date = new Date(System.currentTimeMillis());        
         File newImg = new File(dataPath+"/"+formatter.format(date)+ "_" + System.currentTimeMillis() +".png");
-        
-        copy(originalPath,newImg);
+        File originalImg = new File(originalPath);
+	
+	if(!originalImg.isFile()) {
+            InputStream defaultFile = DefaultFilesController.class.getResourceAsStream(originalPath);
+            Files.copy(defaultFile, newImg.toPath());
+            defaultFile.close();
+        }
+	else{
+            Files.copy(Paths.get(originalPath), newImg.toPath());  
+	}
         return newImg.toPath().toString();
-    }
-    
-     /**
-     * Copies the contents of a path to a file
-     * @param originalPath The path of the image that you want to save
-     * @param newImg The file that will be pasted
-     * @throws IOException If occurs some exception in the I/O operations.
-     */   
-    private void copy(Path originalPath,File newImg) throws IOException{
-        String var = originalPath.toString();
-        ClassLoader classLoader = getClass().getClassLoader();
-        char charAt = var.charAt(0);
-        if (charAt=='\\'){
-                System.out.println(var);
-                Files.copy(classLoader.getResourceAsStream(var), newImg.toPath());      
-        }
-        else{
-                Files.copy(originalPath, newImg.toPath());
-        }
     }
     
     /**
