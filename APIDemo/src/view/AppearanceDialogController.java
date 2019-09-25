@@ -2,7 +2,6 @@ package view;
 
 import ADT.DefaultCharacterAppearance;
 import ADT.DefaultWeaponAppearance;
-import abstraction.AAppearance;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -73,7 +72,6 @@ public class AppearanceDialogController implements ActionListener {
                 break;
             case "OK":
                 getLevel();
-                System.out.println("Level " + selectedLvl);
                 if (!getAppearanceOverwriteConfirmation())
                     break;
                 

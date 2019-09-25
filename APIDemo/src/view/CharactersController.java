@@ -10,7 +10,6 @@ import abstraction.AAppearance;
 import abstraction.ACharacter;
 import abstraction.AWeapon;
 import abstraction.IPrototype;
-import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -77,7 +76,6 @@ public class CharactersController implements ActionListener {
     
     private void loadItems() {
         cmBxModelCharClasses = new DefaultComboBoxModel(CharacterPrototypeFactory.getKeys().toArray());
-        
         screen.cmBxCharClassSelect.setModel(new CustomCmBx.Model(cmBxModelCharClasses));
         
         listModelClassWeapons = new DefaultListModel<>();
@@ -87,7 +85,7 @@ public class CharactersController implements ActionListener {
         screen.cmBxCharAppearanceLvl.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent event) {
-                if (event.getStateChange() == ItemEvent.SELECTED) {
+                if (event.getStateChange() == ItemEvent.SELECTED & screen.cmBxCharAppearanceLvl.getSelectedIndex() > 1) {
                     screen.cmBxCharAppearance.setSelectedIndex(0);
                     loadCharAppearance();
                 }
@@ -109,6 +107,13 @@ public class CharactersController implements ActionListener {
         });
     }
 
+    private void reloadCmBxClasses() {
+        cmBxModelCharClasses.removeAllElements();
+        for (String key : CharacterPrototypeFactory.getKeys())
+            cmBxModelCharClasses.addElement(key);
+        screen.cmBxCharClassSelect.setModel(new CustomCmBx.Model(cmBxModelCharClasses));
+    }
+    
     private void loadCharClassInfo (){
         String CharName = screen.cmBxCharClassSelect.getSelectedItem().toString();
         ACharacter character = (ACharacter) CharacterPrototypeFactory.getPrototype(CharName);
@@ -186,7 +191,7 @@ public class CharactersController implements ActionListener {
                 }
                 selectedOption =
                         JOptionPane.showOptionDialog(screen, "The current information will be lost if you haven't saved. Proceed?",
-                                                     "Load Character class info", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
+                                                     "Load Character Class", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE,
                                                      null, null, null);
                 if (selectedOption == JOptionPane.YES_OPTION)
                     loadCharClassInfo();
@@ -197,11 +202,12 @@ public class CharactersController implements ActionListener {
                 if (path != null) {
                     try {
                         DefaultPrototypeController.loadCharacterPrototypes(path);
-                        loadItems();
+                        screen.clear();
+                        reloadCmBxClasses();
                     }
                     catch(Exception ex) {
                         JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Character info",
-                                                     "Error - JSON File Parse", JOptionPane.ERROR_MESSAGE);
+                                                     "Import JSON Character Data", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 break;
@@ -228,7 +234,6 @@ public class CharactersController implements ActionListener {
                 break;
                 
             case "Export JSON Character Data":
-                System.out.println(e.getActionCommand());
                 String directory = openDirectoryChooser();
                 if(directory == null)
                     return;
@@ -240,11 +245,15 @@ public class CharactersController implements ActionListener {
                     }
                 }
                 JOptionPane.showMessageDialog(screen, "JSON Exported succesfuly",
-                                              "Info - Exported JSON", JOptionPane.INFORMATION_MESSAGE);
+                                              "Export JSON Character Data", JOptionPane.INFORMATION_MESSAGE);
                 break;
                 
             case "Save Character Class":
-                SaveCharClass();
+                if (screen.txtCharClassName.getText().isEmpty())
+                    JOptionPane.showMessageDialog(screen, "Class name must be filled.",
+                                                 "Save Character Class", JOptionPane.ERROR_MESSAGE);
+                else
+                    SaveCharClass();
                 break;
                 
             case "Create Character Object":
@@ -289,8 +298,8 @@ public class CharactersController implements ActionListener {
                                                               null, null, null);
             if (selectedOption == JOptionPane.NO_OPTION)
                 return;
-            }
-        catch(HeadlessException ex) {
+        }
+        catch(NullPointerException ex) {
             cmBxModelCharClasses.addElement(newChar.getName());
         }
         CharacterPrototypeFactory.addPrototype(newChar.getName(), newChar);

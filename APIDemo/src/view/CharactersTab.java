@@ -426,80 +426,90 @@ public class CharactersTab extends javax.swing.JPanel {
         btnDelWeapon.setEnabled(listClassWeapons.getSelectedIndex() > -1);
     }//GEN-LAST:event_listClassWeaponsValueChanged
 
-    
-    protected int getCharHealth() {
+    public int getCharHealth() {
         int out = 0;
         if (chkBxCharHealth.isSelected())
             out = (int) spnCharHealth.getValue();
         return out;
     }
-    protected void setCharHealth(int value) {
+    public void setCharHealth(int value) {
         spnCharHealth.setValue(value);
         if (value == 0)
             chkBxCharHealth.setSelected(false);
     }
     
-    protected int getCharCost() {
+    public int getCharCost() {
         int out = 0;
         if (chkBxCharCost.isSelected())
             out = (int) spnCharCost.getValue();
         return out;
     }
-    protected void setCharCost(int value) {
+    public void setCharCost(int value) {
         spnCharCost.setValue(value);
         if (value == 0)
             chkBxCharCost.setSelected(false);
     }
     
-    protected int getCharHits() {
+    public int getCharHits() {
         int out = 0;
         if (chkBxCharHits.isSelected())
             out = (int) spnCharHits.getValue();
         return out;
     }
-    protected void setCharHits(int value) {
+    public void setCharHits(int value) {
         spnCharHits.setValue(value);
         if (value == 0)
             chkBxCharHits.setSelected(false);
     }
 
-    protected int getCharTiles() {
+    public int getCharTiles() {
         int out = 0;
         if (chkBxCharTiles.isSelected())
             out = (int) spnCharTiles.getValue();
         return out;
     }
-    protected void setCharTiles(int value) {
+    public void setCharTiles(int value) {
         spnCharTiles.setValue(value);
         if (value == 0)
             chkBxCharTiles.setSelected(false);
     }
     
-    protected int getCharStartLvl() {
+    public int getCharStartLvl() {
         int out = 0;
         if (chkBxCharStartLvl.isSelected())
             out = (int) spnCharStartLvl.getValue();
         return out;
     }
-    protected void setCharStartLvl(int value) {
+    public void setCharStartLvl(int value) {
         spnCharStartLvl.setValue(value);
         if (value == 0)
             chkBxCharStartLvl.setSelected(false);
     }
     
-    protected int getCharUnlockLvl() {
+    public int getCharUnlockLvl() {
         int out = 0;
         if (chkBxCharUnlockLvl.isSelected())
             out = (int) spnCharUnlockLvl.getValue();
         return out;
     }
-    protected void setCharUnlockLvl(int value) {
+    public void setCharUnlockLvl(int value) {
         spnCharUnlockLvl.setValue(value);
         if (value == 0)
             chkBxCharUnlockLvl.setSelected(false);
     }
     
-
+    public void clear() {
+        txtCharClassName.setText("");
+        setCharHealth(1);
+        setCharCost(1);
+        setCharHits(1);
+        setCharTiles(1);
+        setCharStartLvl(1);
+        setCharUnlockLvl(1);
+        lblCharSpritePreview.setIcon(null);
+        cmBxCharAppearanceLvl.removeAllItems();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton btnAddCharAppearance;
     protected javax.swing.JButton btnAddWeapon;
