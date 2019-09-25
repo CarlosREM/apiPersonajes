@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.AppearanceDialogController;
 import utils.DirectoryChooser;
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;

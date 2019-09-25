@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -70,6 +71,7 @@ public class CharactersTab extends javax.swing.JPanel {
         btnCharExportJson = new javax.swing.JButton();
         javax.swing.JLabel lblObjQuantity = new javax.swing.JLabel();
         spnObjQuantity = new javax.swing.JSpinner();
+        btnClear = new javax.swing.JButton();
 
         btnCharSaveClass.setBackground(new java.awt.Color(51, 51, 51));
         btnCharSaveClass.setForeground(new java.awt.Color(204, 204, 204));
@@ -276,6 +278,15 @@ public class CharactersTab extends javax.swing.JPanel {
 
         spnObjQuantity.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
+        btnClear.setBackground(new java.awt.Color(51, 51, 51));
+        btnClear.setForeground(new java.awt.Color(205, 205, 205));
+        btnClear.setText("Clear Screen");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -363,7 +374,8 @@ public class CharactersTab extends javax.swing.JPanel {
                                 .addComponent(spnObjQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(6, 6, 6))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnClear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCharExportJson)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnCharSaveClass)
@@ -395,7 +407,7 @@ public class CharactersTab extends javax.swing.JPanel {
                                 .addComponent(btnAddCharAppearance)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelCharAppearance)))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCharacterClass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -440,7 +452,7 @@ public class CharactersTab extends javax.swing.JPanel {
                                 .addComponent(btnAddWeapon)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDelWeapon)
-                                .addGap(61, 126, Short.MAX_VALUE))
+                                .addContainerGap(130, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(scrollClassWeapons, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
@@ -453,9 +465,9 @@ public class CharactersTab extends javax.swing.JPanel {
                                     .addComponent(btnCharSaveClass)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(btnCharCreateObject)
-                                        .addComponent(btnCharExportJson)))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap())
+                                        .addComponent(btnCharExportJson)
+                                        .addComponent(btnClear)))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -491,6 +503,10 @@ public class CharactersTab extends javax.swing.JPanel {
         btnDelWeapon.setEnabled(listClassWeapons.getSelectedIndex() > -1);
     }//GEN-LAST:event_listClassWeaponsValueChanged
 
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        clear();
+    }//GEN-LAST:event_btnClearActionPerformed
+
     public int getCharHealth() {
         int out = 0;
         if (chkBxCharHealth.isSelected())
@@ -499,8 +515,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharHealth(int value) {
         spnCharHealth.setValue(value);
-        if (value == 0)
-            chkBxCharHealth.setSelected(false);
+        chkBxCharHealth.setSelected(value != 0);
     }
     
     public int getCharCost() {
@@ -511,8 +526,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharCost(int value) {
         spnCharCost.setValue(value);
-        if (value == 0)
-            chkBxCharCost.setSelected(false);
+        chkBxCharCost.setSelected(value != 0);
     }
     
     public int getCharHits() {
@@ -523,8 +537,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharHits(int value) {
         spnCharHits.setValue(value);
-        if (value == 0)
-            chkBxCharHits.setSelected(false);
+        chkBxCharHits.setSelected(value != 0);
     }
 
     public int getCharTiles() {
@@ -535,8 +548,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharTiles(int value) {
         spnCharTiles.setValue(value);
-        if (value == 0)
-            chkBxCharTiles.setSelected(false);
+        chkBxCharTiles.setSelected(value != 0);
     }
     
     public int getCharStartLvl() {
@@ -547,8 +559,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharStartLvl(int value) {
         spnCharStartLvl.setValue(value);
-        if (value == 0)
-            chkBxCharStartLvl.setSelected(false);
+        chkBxCharStartLvl.setSelected(value != 0);
     }
     
     public int getCharUnlockLvl() {
@@ -559,8 +570,7 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     public void setCharUnlockLvl(int value) {
         spnCharUnlockLvl.setValue(value);
-        if (value == 0)
-            chkBxCharUnlockLvl.setSelected(false);
+        chkBxCharUnlockLvl.setSelected(value != 0);
     }
     
     public void clear() {
@@ -573,6 +583,7 @@ public class CharactersTab extends javax.swing.JPanel {
         setCharUnlockLvl(1);
         lblCharSpritePreview.setIcon(null);
         cmBxCharAppearanceLvl.removeAllItems();
+        ((DefaultListModel) listClassWeapons.getModel()).removeAllElements();
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -582,6 +593,7 @@ public class CharactersTab extends javax.swing.JPanel {
     public javax.swing.JButton btnCharExportJson;
     public javax.swing.JButton btnCharImportJson;
     public javax.swing.JButton btnCharSaveClass;
+    public javax.swing.JButton btnClear;
     public javax.swing.JButton btnDelCharAppearance;
     public javax.swing.JButton btnDelWeapon;
     public javax.swing.JButton btnLoadCharClass;

@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.AppearanceDialogController;
 import utils.DirectoryChooser;
 import ADT.DefaultWeapon;
 import ADT.DefaultWeaponAppearance;
@@ -23,6 +22,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import utils.CustomCmBx;
 import utils.FileFilter;
 import utils.ImageHandler;
 import view.WeaponsTab;
@@ -165,7 +165,8 @@ public class WeaponsController implements ActionListener {
                 if (path != null) {
                     try {
                         DefaultPrototypeController.loadWeaponPrototypes(path);
-                        loadItems();
+                        screen.clear();
+                        reloadCmBxClasses();
                     }
                     catch(Exception ex) {
                         JOptionPane.showMessageDialog(screen, "Error: JSON file doesn't contain Weapon info",
@@ -209,6 +210,13 @@ public class WeaponsController implements ActionListener {
             default:
                 throw new UnsupportedOperationException("Not supported.");
         }
+    }
+    
+    private void reloadCmBxClasses() {
+        cmBxModelWeaponClasses.removeAllElements();
+        for (String key : WeaponPrototypeFactory.getKeys())
+            cmBxModelWeaponClasses.addElement(key);
+        screen.cmBxWeaponClassSelect.setModel(new CustomCmBx.Model(cmBxModelWeaponClasses));
     }
     
     private String loadJSONFile() {

@@ -30,6 +30,7 @@ import view.SimulationTab;
 public class SimulationController implements ActionListener {
     SimulationTab screen;
     ImageHandler imgHandler;
+    Thread simulationThread;
     
     private DefaultCharacter playerCharacter;
     private DefaultCharacter computerCharacter;
@@ -40,7 +41,6 @@ public class SimulationController implements ActionListener {
         screen.cmBxPlayerChar.setSelectedIndex(-1);
         screen.cmBxComChar.setModel(new CustomCmBx.Model(cmBxModel));
         screen.cmBxComChar.setSelectedIndex(-1);
-        
     }
     
     
@@ -192,20 +192,17 @@ public class SimulationController implements ActionListener {
                 break;
                 
             case "Attack":
-                Thread thread = new Thread() {
+                simulationThread = new Thread() {
                     @Override
                     public void run(){
-                        try{
+                        try {
                             screen.btnPlayerAttack.setEnabled(false);
                             turnSimulation();
                         }
-                        catch(InterruptedException ex){
-                            ex.printStackTrace();
-                            JOptionPane.showMessageDialog(screen, "An error occurred", "Simulation", JOptionPane.ERROR_MESSAGE);  
-                        }
+                        catch(Exception ex) {}
                     }
                 };
-                thread.start();
+                simulationThread.start();
                 break;
                 
             default:
@@ -216,22 +213,22 @@ public class SimulationController implements ActionListener {
     private void turnSimulation() throws InterruptedException {
         playerTurn();
         sleep(1000);
-        if (computerCharacter.getCurrentHealthPoints() <= 0) {
+        if (!simulationThread.isInterrupted() & computerCharacter.getCurrentHealthPoints() <= 0) {
             screen.writeCombatLog("PLAYER:"+playerCharacter.getName()+" has won!");
             loadCharAppearance(screen.lblPlayerImage, playerCharacter, DefaultCharacterAppearance.codes.DEFAULT);
             return;
         }
         
-        computerTurn();
+        if (!simulationThread.isInterrupted()) computerTurn();
         sleep(1000);
-        if (playerCharacter.getCurrentHealthPoints() <= 0) {
+        if (!simulationThread.isInterrupted() & playerCharacter.getCurrentHealthPoints() <= 0) {
             screen.writeCombatLog("COM:"+computerCharacter.getName()+" has won!");
             loadCharAppearance(screen.lblComputerImage, computerCharacter, DefaultCharacterAppearance.codes.DEFAULT);
             return;
         }
         
-        setPlayerDefaultAppearance();
-        setComputerDefaultAppearance();
+        if (!simulationThread.isInterrupted()) setPlayerDefaultAppearance();
+        if (!simulationThread.isInterrupted()) setComputerDefaultAppearance();
         
         screen.writeCombatLog("Select a Weapon to attack!");
         screen.btnPlayerAttack.setEnabled(true);
@@ -275,5 +272,14 @@ public class SimulationController implements ActionListener {
             loadCharAppearance(screen.lblComputerImage, computerCharacter, DefaultCharacterAppearance.codes.LOWHEALTH);
         else
             loadCharAppearance(screen.lblComputerImage, computerCharacter, DefaultCharacterAppearance.codes.DEFAULT);
+    }
+    
+    public void clear() {
+        if (simulationThread != null & simulationThread.isAlive())
+            simulationThread.interrupt();
+        screen.clear();
+        playerCharacter = null;
+        computerCharacter = null;
+        computerWeapon = null;
     }
 }

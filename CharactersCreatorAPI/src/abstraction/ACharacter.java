@@ -1,8 +1,6 @@
 package abstraction;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.As;
-import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import java.util.ArrayList;
 import java.util.TreeMap;
 
@@ -347,4 +345,8 @@ public abstract class ACharacter implements IPrototype, ILookable{
      * @param y The new Y coordinate.
      */
     public abstract void move(int x, int y);
+    
+    
+    @Override
+    public abstract String toString();
 }

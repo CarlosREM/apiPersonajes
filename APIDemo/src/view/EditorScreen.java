@@ -4,6 +4,8 @@ import controllers.CharactersController;
 import controllers.WeaponsController;
 import controllers.SimulationController;
 import java.awt.Color;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 /**
@@ -14,6 +16,7 @@ public class EditorScreen extends javax.swing.JFrame {
     
     javax.swing.JPanel contentPane = new javax.swing.JPanel();
     
+    javax.swing.JTabbedPane tabbedPane;
     CharactersTab charactersTab;
     WeaponsTab weaponsTab;
     SimulationTab simulationTab;
@@ -33,12 +36,13 @@ public class EditorScreen extends javax.swing.JFrame {
 	setDefaultCloseOperation(javax.swing.JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 876, 649);
 	contentPane = new javax.swing.JPanel();
+        contentPane.setBackground(Color.DARK_GRAY);
 	contentPane.setBorder(null);
 	contentPane.setLayout(null);
 
         setContentPane(contentPane);
         
-        javax.swing.JTabbedPane tabbedPane = new javax.swing.JTabbedPane();
+        tabbedPane = new javax.swing.JTabbedPane();
         tabbedPane.setBounds(0, 0, 870, 614);
         
         charactersTab = new CharactersTab();
@@ -51,7 +55,6 @@ public class EditorScreen extends javax.swing.JFrame {
         tabbedPane.add(simulationTab, "Simulation");
         
         contentPane.add(tabbedPane);
-        this.getContentPane().setBackground( Color.DARK_GRAY );
     }
     
     private void setupControllers() {
@@ -60,6 +63,13 @@ public class EditorScreen extends javax.swing.JFrame {
         charController.setWeaponList(weaponController.getWeaponClassesModel());
         SimulationController simController = new SimulationController(simulationTab);
         simController.setcmBxModelCharacters(charController.getCharClasses());
+        
+        tabbedPane.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent event) {
+                if (tabbedPane.getSelectedIndex() < 2)
+                    simController.clear();
+            }
+        });
     }
     
 }

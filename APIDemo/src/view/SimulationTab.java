@@ -66,11 +66,6 @@ public class SimulationTab extends javax.swing.JPanel {
         txtPlayerHP.setBackground(new java.awt.Color(51, 51, 51));
         txtPlayerHP.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtPlayerHP.setForeground(new java.awt.Color(204, 204, 204));
-        txtPlayerHP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPlayerHPActionPerformed(evt);
-            }
-        });
 
         pnlPlayerWeapon.setBackground(new java.awt.Color(51, 51, 51));
         pnlPlayerWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
@@ -114,29 +109,14 @@ public class SimulationTab extends javax.swing.JPanel {
         btnStart.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnStart.setForeground(new java.awt.Color(204, 204, 204));
         btnStart.setText("START");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
 
         cmBxComWeapon.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cmBxComWeapon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmBxComWeaponActionPerformed(evt);
-            }
-        });
 
         btnStop.setBackground(new java.awt.Color(51, 51, 51));
         btnStop.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         btnStop.setForeground(new java.awt.Color(204, 204, 204));
         btnStop.setText("STOP");
         btnStop.setEnabled(false);
-        btnStop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStopActionPerformed(evt);
-            }
-        });
 
         pnlComWeapon.setBackground(new java.awt.Color(51, 51, 51));
         pnlComWeapon.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Weapon", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(204, 204, 204))); // NOI18N
@@ -161,22 +141,12 @@ public class SimulationTab extends javax.swing.JPanel {
         txtComHP.setBackground(new java.awt.Color(51, 51, 51));
         txtComHP.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         txtComHP.setForeground(new java.awt.Color(204, 204, 204));
-        txtComHP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtComHPActionPerformed(evt);
-            }
-        });
 
         lblPlayerHP.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         lblPlayerHP.setForeground(new java.awt.Color(204, 204, 204));
         lblPlayerHP.setText("HP");
 
         cmBxPlayerWeapon.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
-        cmBxPlayerWeapon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmBxPlayerWeaponActionPerformed(evt);
-            }
-        });
 
         jScrollPane2.setBorder(null);
 
@@ -290,30 +260,6 @@ public class SimulationTab extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtPlayerHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPlayerHPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPlayerHPActionPerformed
-
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void cmBxComWeaponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmBxComWeaponActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmBxComWeaponActionPerformed
-
-    private void btnStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStopActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnStopActionPerformed
-
-    private void txtComHPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComHPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtComHPActionPerformed
-
-    private void cmBxPlayerWeaponActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmBxPlayerWeaponActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmBxPlayerWeaponActionPerformed
-
     public void writeCombatLog(String text) {
         String previousText = txtCombatLog.getText();
         txtCombatLog.setText(previousText + "> " + text + "\n");
@@ -322,6 +268,31 @@ public class SimulationTab extends javax.swing.JPanel {
         txtCombatLog.setText("");
     }
     
+    public void clear() {
+        lblPlayerImage.setIcon(null);
+        lblPlayerWeapon.setIcon(null);
+        lblComputerImage.setIcon(null);
+        lblComWeapon.setIcon(null);
+        
+        txtPlayerHP.setText("");
+        txtComHP.setText("");
+        
+        btnStart.setEnabled(true);
+        btnStop.setEnabled(false);
+        btnPlayerAttack.setEnabled(false);
+        
+        cmBxPlayerChar.setEnabled(true);
+        cmBxPlayerChar.setSelectedIndex(-1);
+        cmBxPlayerWeapon.setEnabled(true);
+        cmBxPlayerWeapon.removeAllItems();
+        
+        cmBxComChar.setEnabled(true);
+        cmBxComChar.setSelectedIndex(-1);
+        cmBxComWeapon.setEnabled(true);
+        cmBxComWeapon.removeAllItems();
+        
+        clearCombatLog();
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnPlayerAttack;

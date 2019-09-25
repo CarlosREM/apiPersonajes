@@ -207,4 +207,7 @@ public abstract class AWeapon implements IPrototype, ILookable{
      * Abstract method to level down the weapon.
      */
     public abstract void levelDown();
+    
+    @Override
+    public abstract String toString();
 }

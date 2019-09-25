@@ -82,6 +82,11 @@ public class DefaultWeapon extends AWeapon{
         return new DefaultWeapon(getName(),getRange(),getDamage(),getLevel(),getAreaOfEffect(),getHitPerUnit(),newAppearances, getUnlockLevel());
     }
     
+    @Override
+    public String toString() {
+        return getName() + " Lvl. "+getLevel();
+    }
+    
     /**
      * Inner class used to implements the Builder and creates a new Default Weapon.
      */

@@ -189,6 +189,19 @@ public class DefaultCharacter extends ACharacter {
         setCoordinateY(y);
     }
     
+    @Override
+    public String toString() {
+        String str = System.identityHashCode(this)+"@"+ getName() +" Lvl."+ getLevel() + " - Weapons: [";
+        int weaponListSize = getWeapons().size();
+        for (int i = 0; i < weaponListSize; i++) {
+            str += getWeapons().get(i).toString();
+            if (i < (weaponListSize-1))
+                str += ", ";
+        }
+        str += "]";
+        return str;
+    }
+    
     /**
      * Inner class used to implements the Builder and creates a new Default Character.
      * @see IBuild
