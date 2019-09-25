@@ -365,7 +365,8 @@ public class CharactersController implements ActionListener {
             System.out.println("Cant looks: " + characterAppearance.getLooks().size());
             for(String look : characterAppearance.getLooks()){
                 Thread.sleep(100);
-                newLooks.add(DefaultFilesController.saveImage(Paths.get(look)));
+                DefaultFilesController d = new DefaultFilesController();
+                newLooks.add(d.saveImage(Paths.get(look)));
             }
             characterAppearance.setLooks(newLooks);
         } 
