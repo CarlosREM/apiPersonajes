@@ -1,5 +1,6 @@
-package view;
+package controllers;
 
+import controllers.AppearanceDialogController;
 import utils.DirectoryChooser;
 import ADT.DefaultWeapon;
 import ADT.DefaultWeaponAppearance;
@@ -24,6 +25,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import utils.FileFilter;
 import utils.ImageHandler;
+import view.WeaponsTab;
 
 /**
  *

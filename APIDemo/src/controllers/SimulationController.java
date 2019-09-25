@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package view;
+package controllers;
 
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;
 import ADT.DefaultCharacterAppearance;
 import ADT.DefaultWeapon;
 import ADT.DefaultWeaponAppearance;
-import ADT.WeaponPrototypeFactory;
 import abstraction.AWeapon;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -22,6 +20,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import utils.CustomCmBx;
 import utils.ImageHandler;
+import view.SimulationTab;
 
 /**
  *
@@ -134,13 +133,27 @@ public class SimulationController implements ActionListener {
     }
     
     private void loadCharAppearance(javax.swing.JLabel lbl, abstraction.ACharacter character, DefaultCharacterAppearance.codes appearance) {
-        String imageURL = character.getAppearance(character.getLevel()).getLook(appearance);
-        lbl.setIcon(imgHandler.createImageicon(imageURL, lbl.getWidth(), lbl.getHeight()));   
+        try {
+            lbl.setText("");
+            String imageURL = character.getAppearance(character.getLevel()).getLook(appearance);
+            lbl.setIcon(imgHandler.createImageicon(imageURL, lbl.getWidth(), lbl.getHeight()));   
+        }
+        catch(NullPointerException ex) {
+            lbl.setIcon(null);
+            lbl.setText("No sprites found");
+        }
     }
     
     private void loadWeaponAppearance(javax.swing.JLabel lbl, AWeapon weapon) {
-       String imageURL = weapon.getAppearance(weapon.getLevel()).getLook(DefaultWeaponAppearance.codes.DEFAULT);
-       lbl.setIcon(imgHandler.createImageicon(imageURL, lbl.getWidth(), lbl.getHeight()));   
+        try {
+            lbl.setText("");
+            String imageURL = weapon.getAppearance(weapon.getLevel()).getLook(DefaultWeaponAppearance.codes.DEFAULT);
+            lbl.setIcon(imgHandler.createImageicon(imageURL, lbl.getWidth(), lbl.getHeight()));   
+        }
+        catch(NullPointerException ex) {
+            lbl.setIcon(null);
+            lbl.setText("No sprites found");
+        }
     }
 
     @Override
@@ -185,7 +198,6 @@ public class SimulationController implements ActionListener {
                         try{
                             screen.btnPlayerAttack.setEnabled(false);
                             turnSimulation();
-                            screen.btnPlayerAttack.setEnabled(true);
                         }
                         catch(InterruptedException ex){
                             ex.printStackTrace();
@@ -222,6 +234,7 @@ public class SimulationController implements ActionListener {
         setComputerDefaultAppearance();
         
         screen.writeCombatLog("Select a Weapon to attack!");
+        screen.btnPlayerAttack.setEnabled(true);
     }
     
     private void playerTurn() {

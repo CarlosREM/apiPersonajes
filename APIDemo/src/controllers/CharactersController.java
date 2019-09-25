@@ -1,5 +1,6 @@
-package view;
+package controllers;
 
+import controllers.AppearanceDialogController;
 import utils.DirectoryChooser;
 import ADT.CharacterPrototypeFactory;
 import ADT.DefaultCharacter;
@@ -29,6 +30,7 @@ import javax.swing.JOptionPane;
 import utils.CustomCmBx;
 import utils.FileFilter;
 import utils.ImageHandler;
+import view.CharactersTab;
 
 
 /**
@@ -295,13 +297,13 @@ public class CharactersController implements ActionListener {
     }
         
     private void SaveCharClass() throws InterruptedException {
-        /*
+        
         try {
             saveSprites();
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(screen, "Error saving images.", "Save images", JOptionPane.ERROR_MESSAGE);
             return;
-        }*/
+        }
         ACharacter newChar = captureCharClassInput();
         try {
             CharacterPrototypeFactory.getPrototype(newChar.getName());

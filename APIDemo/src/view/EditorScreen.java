@@ -1,5 +1,8 @@
 package view;
 
+import controllers.CharactersController;
+import controllers.WeaponsController;
+import controllers.SimulationController;
 import java.awt.Color;
 
 

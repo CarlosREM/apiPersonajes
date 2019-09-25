@@ -59,7 +59,7 @@ public class CharactersTab extends javax.swing.JPanel {
         listClassWeapons = new javax.swing.JList<>();
         javax.swing.JLabel lblCharClassName = new javax.swing.JLabel();
         txtCharClassName = new javax.swing.JTextField();
-        pnlCharSpritePreview = new javax.swing.JPanel();
+        javax.swing.JPanel pnlCharSpritePreview = new javax.swing.JPanel();
         lblCharSpritePreview = new javax.swing.JLabel();
         cmBxCharAppearance = new javax.swing.JComboBox<>();
         cmBxCharAppearanceLvl = new javax.swing.JComboBox<>();
@@ -576,35 +576,34 @@ public class CharactersTab extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton btnAddCharAppearance;
-    protected javax.swing.JButton btnAddWeapon;
-    protected javax.swing.JButton btnCharCreateObject;
-    protected javax.swing.JButton btnCharExportJson;
-    protected javax.swing.JButton btnCharImportJson;
-    protected javax.swing.JButton btnCharSaveClass;
-    protected javax.swing.JButton btnDelCharAppearance;
-    protected javax.swing.JButton btnDelWeapon;
-    protected javax.swing.JButton btnLoadCharClass;
-    protected javax.swing.JCheckBox chkBxCharCost;
-    protected javax.swing.JCheckBox chkBxCharHealth;
-    protected javax.swing.JCheckBox chkBxCharHits;
-    protected javax.swing.JCheckBox chkBxCharStartLvl;
-    protected javax.swing.JCheckBox chkBxCharTiles;
-    protected javax.swing.JCheckBox chkBxCharUnlockLvl;
-    protected javax.swing.JComboBox<String> cmBxCharAppearance;
-    protected javax.swing.JComboBox<String> cmBxCharAppearanceLvl;
-    protected javax.swing.JComboBox<String> cmBxCharClassSelect;
-    protected javax.swing.JLabel lblCharSpritePreview;
-    protected javax.swing.JList<String> listClassWeapons;
-    protected javax.swing.JList<String> listWeapons;
-    protected javax.swing.JPanel pnlCharSpritePreview;
-    protected javax.swing.JSpinner spnCharCost;
-    protected javax.swing.JSpinner spnCharHealth;
-    protected javax.swing.JSpinner spnCharHits;
-    protected javax.swing.JSpinner spnCharStartLvl;
-    protected javax.swing.JSpinner spnCharTiles;
-    protected javax.swing.JSpinner spnCharUnlockLvl;
-    protected javax.swing.JSpinner spnObjQuantity;
-    protected javax.swing.JTextField txtCharClassName;
+    public javax.swing.JButton btnAddCharAppearance;
+    public javax.swing.JButton btnAddWeapon;
+    public javax.swing.JButton btnCharCreateObject;
+    public javax.swing.JButton btnCharExportJson;
+    public javax.swing.JButton btnCharImportJson;
+    public javax.swing.JButton btnCharSaveClass;
+    public javax.swing.JButton btnDelCharAppearance;
+    public javax.swing.JButton btnDelWeapon;
+    public javax.swing.JButton btnLoadCharClass;
+    public javax.swing.JCheckBox chkBxCharCost;
+    public javax.swing.JCheckBox chkBxCharHealth;
+    public javax.swing.JCheckBox chkBxCharHits;
+    public javax.swing.JCheckBox chkBxCharStartLvl;
+    public javax.swing.JCheckBox chkBxCharTiles;
+    public javax.swing.JCheckBox chkBxCharUnlockLvl;
+    public javax.swing.JComboBox<String> cmBxCharAppearance;
+    public javax.swing.JComboBox<String> cmBxCharAppearanceLvl;
+    public javax.swing.JComboBox<String> cmBxCharClassSelect;
+    public javax.swing.JLabel lblCharSpritePreview;
+    public javax.swing.JList<String> listClassWeapons;
+    public javax.swing.JList<String> listWeapons;
+    public javax.swing.JSpinner spnCharCost;
+    public javax.swing.JSpinner spnCharHealth;
+    public javax.swing.JSpinner spnCharHits;
+    public javax.swing.JSpinner spnCharStartLvl;
+    public javax.swing.JSpinner spnCharTiles;
+    public javax.swing.JSpinner spnCharUnlockLvl;
+    public javax.swing.JSpinner spnObjQuantity;
+    public javax.swing.JTextField txtCharClassName;
     // End of variables declaration//GEN-END:variables
 }

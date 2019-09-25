@@ -5,11 +5,9 @@
  */
 package view;
 
-import java.awt.Color;
-
 /**
  *
- * @author carlo
+ * @author Carlos Esquivel
  */
 public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
@@ -33,10 +31,10 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblInstruction1 = new javax.swing.JLabel();
+        javax.swing.JLabel lblInstruction1 = new javax.swing.JLabel();
         btnDefault = new javax.swing.JButton();
-        lblInstruction2 = new javax.swing.JLabel();
-        lblLevel = new javax.swing.JLabel();
+        javax.swing.JLabel lblInstruction2 = new javax.swing.JLabel();
+        javax.swing.JLabel lblLevel = new javax.swing.JLabel();
         spnLevel = new javax.swing.JSpinner();
         btnCancel = new javax.swing.JButton();
         btnOk = new javax.swing.JButton();
@@ -48,7 +46,6 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
         lblInstruction1.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblInstruction1.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction1.setText("Select the level of the Appearance");
 
@@ -58,12 +55,10 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
         lblInstruction2.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblInstruction2.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction2.setText("Select every image to use on the specified Appearance");
 
         lblLevel.setBackground(new java.awt.Color(51, 51, 51));
-        lblLevel.setForeground(new java.awt.Color(51, 51, 51));
         lblLevel.setText("Level:");
 
         spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -78,7 +73,6 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
         lblDefaultPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblDefaultPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setText("Not Selected");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,13 +133,10 @@ public class WeaponAppearanceDialog extends javax.swing.JDialog {
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton btnCancel;
-    protected javax.swing.JButton btnDefault;
-    protected javax.swing.JButton btnOk;
-    protected javax.swing.JLabel lblDefaultPath;
-    private javax.swing.JLabel lblInstruction1;
-    private javax.swing.JLabel lblInstruction2;
-    private javax.swing.JLabel lblLevel;
-    protected javax.swing.JSpinner spnLevel;
+    public javax.swing.JButton btnCancel;
+    public javax.swing.JButton btnDefault;
+    public javax.swing.JButton btnOk;
+    public javax.swing.JLabel lblDefaultPath;
+    public javax.swing.JSpinner spnLevel;
     // End of variables declaration//GEN-END:variables
 }

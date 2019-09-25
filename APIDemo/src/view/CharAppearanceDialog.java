@@ -5,22 +5,21 @@
  */
 package view;
 
-import java.awt.Color;
-
 /**
  *
- * @author carlo
+ * @author Carlos Esquivel
  */
 public class CharAppearanceDialog extends javax.swing.JDialog {
     
     /**
      * Creates new form CharAppearanceDialog
+     * @param parent
      */
     public CharAppearanceDialog(java.awt.Frame parent) {
         super(parent, true);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        initComponents();
         
+        initComponents();
     }
     
     /**
@@ -32,7 +31,7 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblInstruction1 = new javax.swing.JLabel();
+        javax.swing.JLabel lblInstruction1 = new javax.swing.JLabel();
         btnDefault = new javax.swing.JButton();
         btnAttack = new javax.swing.JButton();
         btnDefend = new javax.swing.JButton();
@@ -47,18 +46,16 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
         lblWalkPath = new javax.swing.JLabel();
         lblLowHealthPath = new javax.swing.JLabel();
         lblHurtPath = new javax.swing.JLabel();
-        lblInstruction2 = new javax.swing.JLabel();
-        lblLevel = new javax.swing.JLabel();
+        javax.swing.JLabel lblInstruction2 = new javax.swing.JLabel();
+        javax.swing.JLabel lblLevel = new javax.swing.JLabel();
         spnLevel = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Character Appearance - Character Creation API Demo");
-        setBackground(new java.awt.Color(51, 51, 51));
         setResizable(false);
 
         lblInstruction1.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblInstruction1.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction1.setText("Select the level of the Appearance");
 
@@ -96,42 +93,34 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
 
         lblDefaultPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblDefaultPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefaultPath.setText("Not Selected");
 
         lblAttackPath.setBackground(new java.awt.Color(51, 51, 51));
         lblAttackPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblAttackPath.setForeground(new java.awt.Color(51, 51, 51));
         lblAttackPath.setText("Not Selected");
 
         lblDefendPath.setBackground(new java.awt.Color(51, 51, 51));
         lblDefendPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblDefendPath.setForeground(new java.awt.Color(51, 51, 51));
         lblDefendPath.setText("Not Selected");
 
         lblWalkPath.setBackground(new java.awt.Color(51, 51, 51));
         lblWalkPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblWalkPath.setForeground(new java.awt.Color(51, 51, 51));
         lblWalkPath.setText("Not Selected");
 
         lblLowHealthPath.setBackground(new java.awt.Color(51, 51, 51));
         lblLowHealthPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblLowHealthPath.setForeground(new java.awt.Color(51, 51, 51));
         lblLowHealthPath.setText("Not Selected");
 
         lblHurtPath.setBackground(new java.awt.Color(51, 51, 51));
         lblHurtPath.setFont(new java.awt.Font("Dialog", 2, 12)); // NOI18N
-        lblHurtPath.setForeground(new java.awt.Color(51, 51, 51));
         lblHurtPath.setText("Not Selected");
 
         lblInstruction2.setBackground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        lblInstruction2.setForeground(new java.awt.Color(51, 51, 51));
         lblInstruction2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblInstruction2.setText("Select every image to use on the specified Appearance");
 
         lblLevel.setBackground(new java.awt.Color(51, 51, 51));
-        lblLevel.setForeground(new java.awt.Color(51, 51, 51));
         lblLevel.setText("Level:");
 
         spnLevel.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
@@ -226,23 +215,20 @@ public class CharAppearanceDialog extends javax.swing.JDialog {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton btnAttack;
-    protected javax.swing.JButton btnCancel;
-    protected javax.swing.JButton btnDefault;
-    protected javax.swing.JButton btnDefend;
-    protected javax.swing.JButton btnHurt;
-    protected javax.swing.JButton btnLowHealth;
-    protected javax.swing.JButton btnOk;
-    protected javax.swing.JButton btnWalk;
-    protected javax.swing.JLabel lblAttackPath;
-    protected javax.swing.JLabel lblDefaultPath;
-    protected javax.swing.JLabel lblDefendPath;
-    protected javax.swing.JLabel lblHurtPath;
-    private javax.swing.JLabel lblInstruction1;
-    private javax.swing.JLabel lblInstruction2;
-    private javax.swing.JLabel lblLevel;
-    protected javax.swing.JLabel lblLowHealthPath;
-    protected javax.swing.JLabel lblWalkPath;
-    protected javax.swing.JSpinner spnLevel;
+    public javax.swing.JButton btnAttack;
+    public javax.swing.JButton btnCancel;
+    public javax.swing.JButton btnDefault;
+    public javax.swing.JButton btnDefend;
+    public javax.swing.JButton btnHurt;
+    public javax.swing.JButton btnLowHealth;
+    public javax.swing.JButton btnOk;
+    public javax.swing.JButton btnWalk;
+    public javax.swing.JLabel lblAttackPath;
+    public javax.swing.JLabel lblDefaultPath;
+    public javax.swing.JLabel lblDefendPath;
+    public javax.swing.JLabel lblHurtPath;
+    public javax.swing.JLabel lblLowHealthPath;
+    public javax.swing.JLabel lblWalkPath;
+    public javax.swing.JSpinner spnLevel;
     // End of variables declaration//GEN-END:variables
 }

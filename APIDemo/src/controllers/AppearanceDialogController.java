@@ -1,4 +1,4 @@
-package view;
+package controllers;
 
 import ADT.DefaultCharacterAppearance;
 import ADT.DefaultWeaponAppearance;
@@ -10,6 +10,8 @@ import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import utils.FileFilter;
+import view.CharAppearanceDialog;
+import view.WeaponAppearanceDialog;
 
 /**
  *

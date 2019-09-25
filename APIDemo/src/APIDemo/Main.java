@@ -2,8 +2,8 @@ package APIDemo;
 
 import Controllers.DefaultPrototypeController;
 import view.EditorScreen;
-import view.CharactersController;
-import view.WeaponsController;
+import controllers.CharactersController;
+import controllers.WeaponsController;
 
 /**
  * @author Carlos Esquivel

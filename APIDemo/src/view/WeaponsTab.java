@@ -28,7 +28,7 @@ public class WeaponsTab extends javax.swing.JPanel {
         chkBxWeaponHits = new javax.swing.JCheckBox();
         spnWeaponHits = new javax.swing.JSpinner();
         spnWeaponStartLvl = new javax.swing.JSpinner();
-        pnlWeaponSpritePreview = new javax.swing.JPanel();
+        javax.swing.JPanel pnlWeaponSpritePreview = new javax.swing.JPanel();
         lblWeaponSpritePreview = new javax.swing.JLabel();
         chkBxWeaponStartLvl = new javax.swing.JCheckBox();
         chkBxWeaponUnlockLvl = new javax.swing.JCheckBox();
@@ -44,10 +44,10 @@ public class WeaponsTab extends javax.swing.JPanel {
         cmBxWeaponAppearanceLvl = new javax.swing.JComboBox<>();
         btnSaveWeapon = new javax.swing.JButton();
         btnAddWeaponAppearance = new javax.swing.JButton();
-        lblWeaponClassSelect = new javax.swing.JLabel();
+        javax.swing.JLabel lblWeaponClassSelect = new javax.swing.JLabel();
         btnDelWeaponAppearance = new javax.swing.JButton();
         btnWeaponImportJson = new javax.swing.JButton();
-        javax.swing.JLabel lblCharacterClass1 = new javax.swing.JLabel();
+        javax.swing.JLabel lblWeaponClass = new javax.swing.JLabel();
         btnWeaponExportJson = new javax.swing.JButton();
         cmBxWeaponClassSelect = new javax.swing.JComboBox<>();
         btnLoadWeaponClass = new javax.swing.JButton();
@@ -169,10 +169,10 @@ public class WeaponsTab extends javax.swing.JPanel {
         btnWeaponImportJson.setForeground(new java.awt.Color(204, 204, 204));
         btnWeaponImportJson.setText("Import JSON Weapon Data");
 
-        lblCharacterClass1.setBackground(new java.awt.Color(51, 51, 51));
-        lblCharacterClass1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        lblCharacterClass1.setForeground(new java.awt.Color(204, 204, 204));
-        lblCharacterClass1.setText("Weapon class");
+        lblWeaponClass.setBackground(new java.awt.Color(51, 51, 51));
+        lblWeaponClass.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        lblWeaponClass.setForeground(new java.awt.Color(204, 204, 204));
+        lblWeaponClass.setText("Weapon class");
 
         btnWeaponExportJson.setBackground(new java.awt.Color(51, 51, 51));
         btnWeaponExportJson.setForeground(new java.awt.Color(204, 204, 204));
@@ -255,7 +255,7 @@ public class WeaponsTab extends javax.swing.JPanel {
                                     .addComponent(spnWeaponRange, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnWeaponAOE, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(spnWeaponUnlockLvl, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(lblCharacterClass1)
+                            .addComponent(lblWeaponClass)
                             .addComponent(lblWeaponAttributes)
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblWeaponClassSelect)
@@ -290,7 +290,7 @@ public class WeaponsTab extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCharacterClass1)
+                        .addComponent(lblWeaponClass)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblWeaponClassSelect)
                         .addGap(8, 8, 8)
@@ -372,73 +372,73 @@ public class WeaponsTab extends javax.swing.JPanel {
         spnWeaponDmg.setEnabled(chkBxWeaponDmg.isSelected());
     }//GEN-LAST:event_chkBxWeaponDmgItemStateChanged
 
-    protected int getWeaponDmg() {
+    public int getWeaponDmg() {
         int out = 0;
         if (chkBxWeaponDmg.isSelected())
             out = (int) spnWeaponDmg.getValue();
         return out;
     }
-    protected void setWeaponDmg(int value) {
+    public void setWeaponDmg(int value) {
         spnWeaponDmg.setValue(value);
         if (value == 0)
             chkBxWeaponDmg.setSelected(false);
     }
     
-    protected int getWeaponRange() {
+    public int getWeaponRange() {
         int out = 0;
         if (chkBxWeaponRange.isSelected())
             out = (int) spnWeaponRange.getValue();
         return out;
     }
-    protected void setWeaponRange(int value) {
+    public void setWeaponRange(int value) {
         spnWeaponRange.setValue(value);
         if (value == 0)
             chkBxWeaponRange.setSelected(false);
     }
     
-    protected int getWeaponHits() {
+    public int getWeaponHits() {
         int out = 0;
         if (chkBxWeaponHits.isSelected())
             out = (int) spnWeaponHits.getValue();
         return out;
     }
-    protected void setWeaponHits(int value) {
+    public void setWeaponHits(int value) {
         spnWeaponHits.setValue(value);
         if (value == 0)
             chkBxWeaponHits.setSelected(false);
     }
     
-    protected int getWeaponAOE() {
+    public int getWeaponAOE() {
         int out = 0;
         if (chkBxWeaponAOE.isSelected())
             out = (int) spnWeaponAOE.getValue();
         return out;
     }
-    protected void setWeaponAOE(int value) {
+    public void setWeaponAOE(int value) {
         spnWeaponAOE.setValue(value);
         if (value == 0)
             chkBxWeaponAOE.setSelected(false);
     }
     
-    protected int getWeaponStartLvl() {
+    public int getWeaponStartLvl() {
         int out = 0;
         if (chkBxWeaponStartLvl.isSelected())
             out = (int) spnWeaponStartLvl.getValue();
         return out;
     }
-    protected void setWeaponStartLvl(int value) {
+    public void setWeaponStartLvl(int value) {
         spnWeaponStartLvl.setValue(value);
         if (value == 0)
             chkBxWeaponStartLvl.setSelected(false);
     }
     
-    protected int getWeaponUnlockLvl() {
+    public int getWeaponUnlockLvl() {
         int out = 0;
         if (chkBxWeaponUnlockLvl.isSelected())
             out = (int) spnWeaponUnlockLvl.getValue();
         return out;
     }
-    protected void setWeaponUnlockLvl(int value) {
+    public void setWeaponUnlockLvl(int value) {
         spnWeaponUnlockLvl.setValue(value);
         if (value == 0)
             chkBxWeaponUnlockLvl.setSelected(false);
@@ -446,30 +446,28 @@ public class WeaponsTab extends javax.swing.JPanel {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton btnAddWeaponAppearance;
-    protected javax.swing.JButton btnDelWeaponAppearance;
-    protected javax.swing.JButton btnLoadWeaponClass;
-    protected javax.swing.JButton btnSaveWeapon;
-    protected javax.swing.JButton btnWeaponExportJson;
-    protected javax.swing.JButton btnWeaponImportJson;
-    protected javax.swing.JCheckBox chkBxWeaponAOE;
-    protected javax.swing.JCheckBox chkBxWeaponDmg;
-    protected javax.swing.JCheckBox chkBxWeaponHits;
-    protected javax.swing.JCheckBox chkBxWeaponRange;
-    protected javax.swing.JCheckBox chkBxWeaponStartLvl;
-    protected javax.swing.JCheckBox chkBxWeaponUnlockLvl;
-    protected javax.swing.JComboBox<String> cmBxWeaponAppearance;
-    protected javax.swing.JComboBox<String> cmBxWeaponAppearanceLvl;
-    protected javax.swing.JComboBox<String> cmBxWeaponClassSelect;
-    private javax.swing.JLabel lblWeaponClassSelect;
-    protected javax.swing.JLabel lblWeaponSpritePreview;
-    protected javax.swing.JPanel pnlWeaponSpritePreview;
-    protected javax.swing.JSpinner spnWeaponAOE;
-    protected javax.swing.JSpinner spnWeaponDmg;
-    protected javax.swing.JSpinner spnWeaponHits;
-    protected javax.swing.JSpinner spnWeaponRange;
-    protected javax.swing.JSpinner spnWeaponStartLvl;
-    protected javax.swing.JSpinner spnWeaponUnlockLvl;
-    protected javax.swing.JTextField txtWeaponClassName;
+    public javax.swing.JButton btnAddWeaponAppearance;
+    public javax.swing.JButton btnDelWeaponAppearance;
+    public javax.swing.JButton btnLoadWeaponClass;
+    public javax.swing.JButton btnSaveWeapon;
+    public javax.swing.JButton btnWeaponExportJson;
+    public javax.swing.JButton btnWeaponImportJson;
+    public javax.swing.JCheckBox chkBxWeaponAOE;
+    public javax.swing.JCheckBox chkBxWeaponDmg;
+    public javax.swing.JCheckBox chkBxWeaponHits;
+    public javax.swing.JCheckBox chkBxWeaponRange;
+    public javax.swing.JCheckBox chkBxWeaponStartLvl;
+    public javax.swing.JCheckBox chkBxWeaponUnlockLvl;
+    public javax.swing.JComboBox<String> cmBxWeaponAppearance;
+    public javax.swing.JComboBox<String> cmBxWeaponAppearanceLvl;
+    public javax.swing.JComboBox<String> cmBxWeaponClassSelect;
+    public javax.swing.JLabel lblWeaponSpritePreview;
+    public javax.swing.JSpinner spnWeaponAOE;
+    public javax.swing.JSpinner spnWeaponDmg;
+    public javax.swing.JSpinner spnWeaponHits;
+    public javax.swing.JSpinner spnWeaponRange;
+    public javax.swing.JSpinner spnWeaponStartLvl;
+    public javax.swing.JSpinner spnWeaponUnlockLvl;
+    public javax.swing.JTextField txtWeaponClassName;
     // End of variables declaration//GEN-END:variables
 }
