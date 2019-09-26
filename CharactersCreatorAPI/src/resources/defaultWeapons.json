@@ -5,7 +5,7 @@
     "@class" : "ADT.DefaultWeapon",
     "name" : "Melee",
     "range" : 1,
-    "damage" : 25,
+    "damage" : 10,
     "level" : 1,
     "areaOfEffect" : 1,
     "hitPerUnit" : 2,

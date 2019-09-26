@@ -237,7 +237,7 @@ public class SimulationController implements ActionListener {
     private void playerTurn() {
         loadCharAppearance(screen.lblPlayerImage, playerCharacter, DefaultCharacterAppearance.codes.ATTACK);
         
-        int weaponIndex = screen.cmBxComWeapon.getSelectedIndex();
+        int weaponIndex = screen.cmBxPlayerWeapon.getSelectedIndex();
         DefaultWeapon playerWeapon = (DefaultWeapon) playerCharacter.getWeapons().get(weaponIndex);
         playerCharacter.useWeapon(playerWeapon, computerCharacter);
         int damage = playerWeapon.getDamage()*playerWeapon.getHitPerUnit();

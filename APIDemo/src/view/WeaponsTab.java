@@ -399,7 +399,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponDmg(int value) {
         spnWeaponDmg.setValue(value);
-        chkBxWeaponDmg.setSelected(value == 0);
+        chkBxWeaponDmg.setSelected(value != 0);
     }
     
     public int getWeaponRange() {
@@ -410,7 +410,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponRange(int value) {
         spnWeaponRange.setValue(value);
-        chkBxWeaponRange.setSelected(value == 0);
+        chkBxWeaponRange.setSelected(value != 0);
     }
     
     public int getWeaponHits() {
@@ -421,7 +421,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponHits(int value) {
         spnWeaponHits.setValue(value);
-        chkBxWeaponHits.setSelected(value == 0);
+        chkBxWeaponHits.setSelected(value != 0);
     }
     
     public int getWeaponAOE() {
@@ -432,7 +432,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponAOE(int value) {
         spnWeaponAOE.setValue(value);
-        chkBxWeaponAOE.setSelected(value == 0);
+        chkBxWeaponAOE.setSelected(value != 0);
     }
     
     public int getWeaponStartLvl() {
@@ -443,7 +443,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponStartLvl(int value) {
         spnWeaponStartLvl.setValue(value);
-        chkBxWeaponStartLvl.setSelected(value == 0);
+        chkBxWeaponStartLvl.setSelected(value != 0);
     }
     
     public int getWeaponUnlockLvl() {
@@ -454,7 +454,7 @@ public class WeaponsTab extends javax.swing.JPanel {
     }
     public void setWeaponUnlockLvl(int value) {
         spnWeaponUnlockLvl.setValue(value);
-        chkBxWeaponUnlockLvl.setSelected(value == 0);
+        chkBxWeaponUnlockLvl.setSelected(value != 0);
     }
     
         public void clear() {

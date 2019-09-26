@@ -66,8 +66,12 @@ public class EditorScreen extends javax.swing.JFrame {
         
         tabbedPane.addChangeListener(new ChangeListener() {
             public void stateChanged(ChangeEvent event) {
-                if (tabbedPane.getSelectedIndex() < 2)
-                    simController.clear();
+                if (tabbedPane.getSelectedIndex() < 2) {
+                    try {
+                        simController.clear();
+                    }
+                    catch(Exception ex) {}
+                }
             }
         });
     }

@@ -20,14 +20,14 @@
       "@class" : "ADT.DefaultWeapon",
       "name" : "Melee",
       "range" : 1,
-      "damage" : 1,
+      "damage" : 10,
       "level" : 1,
       "areaOfEffect" : 1,
-      "hitPerUnit" : 1,
+      "hitPerUnit" : 2,
       "appearances" : {
         "1" : {
           "@class" : "ADT.DefaultWeaponAppearance",
-          "looks" : [ "/resources/images/weapon2.png" ]
+          "looks" : [ "/resources/images/melee.png" ]
         }
       },
       "unlockLevel" : 1
@@ -54,14 +54,14 @@
       "@class" : "ADT.DefaultWeapon",
       "name" : "Melee",
       "range" : 1,
-      "damage" : 1,
+      "damage" : 10,
       "level" : 1,
       "areaOfEffect" : 1,
-      "hitPerUnit" : 1,
+      "hitPerUnit" : 2,
       "appearances" : {
         "1" : {
           "@class" : "ADT.DefaultWeaponAppearance",
-          "looks" : [ "/resources/images/weapon1.png" ]
+          "looks" : [ "/resources/images/melee.png" ]
         }
       },
       "unlockLevel" : 1
@@ -88,14 +88,14 @@
       "@class" : "ADT.DefaultWeapon",
       "name" : "Melee",
       "range" : 1,
-      "damage" : 1,
+      "damage" : 10,
       "level" : 1,
       "areaOfEffect" : 1,
-      "hitPerUnit" : 1,
+      "hitPerUnit" : 2,
       "appearances" : {
         "1" : {
           "@class" : "ADT.DefaultWeaponAppearance",
-          "looks" : [ "/resources/images/weapon3.png" ]
+          "looks" : [ "/resources/images/melee.png" ]
         }
       },
       "unlockLevel" : 1
