@@ -208,6 +208,10 @@ public abstract class AWeapon implements IPrototype, ILookable{
      */
     public abstract void levelDown();
     
+    /**
+     * Abstract method to get the String of a weapon
+     * @return An String containing the information of the weapon.
+     */
     @Override
     public abstract String toString();
 }

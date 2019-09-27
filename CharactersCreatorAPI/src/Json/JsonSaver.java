@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * 
+ * Class provided to manage the JSON file saver operations.
  * @author Fabricio Ceciliano
  * @author Carlos Esquivel
  * @author Marco Gamboa

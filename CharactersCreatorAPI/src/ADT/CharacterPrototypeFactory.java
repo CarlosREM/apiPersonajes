@@ -49,13 +49,17 @@ public class CharacterPrototypeFactory {
     }
     
     /**
-     * Static method to get the keys from the HashMap
+     * Static method to get the keys from the HashMap.
      * @return A list with the key set from the HashMap of prototypes.
      */
     public static List<String> getKeys(){
         return new ArrayList( prototypes.keySet());
     }
     
+    /**
+     * Static method to get all the characters stored in the prototype factory.
+     * @return A List of ACharacter containing all the characters from the prototype factory.
+     */
     public static List<ACharacter> getAllCharacters(){
         List<ACharacter> prototypesList = new ArrayList<>();
         for(String key:prototypes.keySet()){

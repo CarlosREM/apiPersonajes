@@ -82,6 +82,10 @@ public class DefaultWeapon extends AWeapon{
         return new DefaultWeapon(getName(),getRange(),getDamage(),getLevel(),getAreaOfEffect(),getHitPerUnit(),newAppearances, getUnlockLevel());
     }
     
+    /**
+     * To string of the Default Weapon
+     * @return An String containing the information of the weapon.
+     */
     @Override
     public String toString() {
         return getName() + " Lvl. "+getLevel();

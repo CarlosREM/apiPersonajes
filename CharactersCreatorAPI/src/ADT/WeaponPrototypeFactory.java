@@ -56,6 +56,10 @@ public class WeaponPrototypeFactory {
         return new ArrayList( prototypes.keySet());
     }
     
+    /**
+     * Static method to get all the weapons stored in the prototype factory
+     * @return A List of AWeapon containing all the weapons from the prototype factory
+     */
     public static List<AWeapon> getAllWeapons(){
         List<AWeapon> prototypesList = new ArrayList<>();
         for(String key:prototypes.keySet()){

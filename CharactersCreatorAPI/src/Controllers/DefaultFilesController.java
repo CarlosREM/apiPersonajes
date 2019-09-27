@@ -38,7 +38,7 @@ public class DefaultFilesController {
      * Takes a image and storage it in API data directory and returns the path of new location
      * @param originalPath The path of the image that you want to save
      * @return A String of the new location of the image
-     * @throws IOException If occurs some exception in the I/O operations.
+     * @throws IOException If occurs some exception during the I/O operations.
      */
     public static String saveImage(String originalPath) throws IOException{
         createDataDirectory();
@@ -92,6 +92,12 @@ public class DefaultFilesController {
         }
     }
     
+    /**
+     * Static method to creates a JSON file with a character information.
+     * @param directory The directory to stored the new file
+     * @return The directory where the new file is stored
+     * @throws IOException If an Exception occurs during the file write operations.
+     */
     public static String createCharacterJson(String directory) throws IOException{
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
         Date date = new Date(System.currentTimeMillis());        
@@ -103,6 +109,12 @@ public class DefaultFilesController {
         return newJson.getPath();
     }
     
+    /**
+     * Static method to creates a JSON file with a weapon information.
+     * @param directory The directory to stored the new file
+     * @return The directory where the new file is stored
+     * @throws IOException If an Exception occurs during the file write operations.
+     */
     public static String createWeaponJson(String directory) throws IOException{
         SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd_HH_mm_ss");
         Date date = new Date(System.currentTimeMillis());        

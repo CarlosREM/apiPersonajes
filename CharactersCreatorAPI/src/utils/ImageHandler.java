@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package utils;
 
 import java.awt.Image;
@@ -16,10 +11,21 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
+ * Class used to manage an image resizing operations
+ * @author Fabricio Ceciliano
  * @author Carlos Esquivel
  * @author Marco Gamboa
+ * @author Diego Murillo
  */
 public class ImageHandler {
+    
+    /**
+     * Creates an image icon.
+     * @param path The location of the image.
+     * @param width The desired image icon's width.
+     * @param height The desired image icon's height.
+     * @return An ImageIcon of the image with the dimensions specified.
+     */
    public ImageIcon createImageicon(String path, int width, int height){
         File f = new File(path);
         try {

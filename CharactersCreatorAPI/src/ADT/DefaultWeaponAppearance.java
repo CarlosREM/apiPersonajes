@@ -31,7 +31,6 @@ public class DefaultWeaponAppearance extends AAppearance{
             String newLook = look;
             getLooks().add(newLook);
         }
-        
     }
     
     /**

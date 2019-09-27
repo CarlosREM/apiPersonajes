@@ -189,6 +189,10 @@ public class DefaultCharacter extends ACharacter {
         setCoordinateY(y);
     }
     
+    /**
+     * To string of the Default Character
+     * @return An String containing the information of the character.
+     */
     @Override
     public String toString() {
         String str = System.identityHashCode(this)+"@"+ getName() +" Lvl."+ getLevel() + " - Weapons: [";

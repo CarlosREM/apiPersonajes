@@ -346,7 +346,10 @@ public abstract class ACharacter implements IPrototype, ILookable{
      */
     public abstract void move(int x, int y);
     
-    
+    /**
+     * Abstract method to get the String of a character
+     * @return An String containing the information of the character.
+     */
     @Override
     public abstract String toString();
 }

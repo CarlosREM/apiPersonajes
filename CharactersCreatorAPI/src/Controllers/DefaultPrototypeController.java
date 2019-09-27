@@ -9,7 +9,7 @@ import abstraction.AWeapon;
 import java.io.IOException;
 
 /**
- *
+ * Class used to manage the default prototype implementation.
  * @author Fabricio Ceciliano
  * @author Carlos Esquivel
  * @author Marco Gamboa
@@ -60,12 +60,22 @@ public class DefaultPrototypeController {
         }   
     } 
     
+    /**
+     * Static method to export to a JSON file the info of all characters stored in the prototype factory.
+     * @param directory The desired directory to used to realize the export operation.
+     * @throws IOException If the directory doesn't exists.
+     */
     public static void exportCharacterPrototypes(String directory) throws IOException{
         String path = DefaultFilesController.createCharacterJson(directory);
         JsonSaver saver = new JsonSaver();
         saver.saveCustomCharacters((ArrayList<ACharacter>) CharacterPrototypeFactory.getAllCharacters(),path);
     }
     
+    /**
+     * Static method to export to a JSON file the info of all weapons stored in the prototype factory.
+     * @param directory The desired directory to used to realize the export operation.
+     * @throws IOException If the directory doesn't exists.
+     */
     public static void exportWeaponPrototypes(String directory)throws IOException{
         String path = DefaultFilesController.createWeaponJson(directory);
         JsonSaver saver = new JsonSaver();

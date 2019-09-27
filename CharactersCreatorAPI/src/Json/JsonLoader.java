@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * Class provided to manage the JSON file loader operations.
  * @author Fabricio Ceciliano
  * @author Carlos Esquivel
  * @author Marco Gamboa
